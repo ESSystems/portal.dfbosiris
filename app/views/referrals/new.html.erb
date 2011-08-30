@@ -7,7 +7,7 @@
 		<%= form.input :specific_requirements, :as => :text %>
 		<%= form.input :advice, :as => :text %>
 		<%= form.input :referral_reason_id, :as => :select, :collection => @referral_reasons.map {|u| [u.reason, u.id]} %>
-		<%= form.input :preferred_date, :as => :string %>
+		<%= form.input :preferred_date, :as => :datepicker %>
 		<%= form.input :patient_consent, :as => :boolean %>
 	<% end %>
 	<%= form.buttons do %>
