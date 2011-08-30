@@ -1,0 +1,16 @@
+<%= semantic_form_for @referral, :url => referrals_path, :html => {:id => "new_referral"} do |form| %>
+	<%= form.inputs do %>
+		<%= form.input :patient %>
+		<%= form.input :patient_id, :as => :hidden %>
+		<%= form.input :patient_status_id, :as => :select, :collection => @patient_statuses.map {|u| [u.status, u.id]} %>
+		<%= form.input :case_nature, :as => :text %>
+		<%= form.input :specific_requirements, :as => :text %>
+		<%= form.input :advice, :as => :text %>
+		<%= form.input :referral_reason_id, :as => :select, :collection => @referral_reasons.map {|u| [u.reason, u.id]} %>
+		<%= form.input :preferred_date, :as => :string %>
+		<%= form.input :patient_consent, :as => :boolean %>
+	<% end %>
+	<%= form.buttons do %>
+		<%= form.commit_button %>
+	<% end %>
+<% end %>
