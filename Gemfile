@@ -32,16 +32,19 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'rspec-rails'
-  #gem 'growl_notify'
   gem 'cucumber-rails'
   gem "launchy"
   gem 'database_cleaner'
   
   # Guard stuff
-  gem 'rb-fsevent'
   gem 'guard-rspec'
   gem 'guard-cucumber'
 
   # Pretty printed test output
   gem 'turn', :require => false
+
+  if RUBY_PLATFORM.downcase.include?("darwin")
+  	gem 'rb-fsevent'
+  	gem 'growl_notify'
+  end
 end

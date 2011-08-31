@@ -10,24 +10,6 @@ describe "referrals/new.html.erb" do
     mock_model('Referral').as_new_record.as_null_object
   end
   
-  let(:referral_reasons) do
-    {
-      "Prolonged sickness referral" => 1,
-      "Fitness to work" => 2,
-      "Fitness to return to work" => 3,
-      "Functional Assessment" => 4,
-      "Short term sickness" => 5
-    }
-  end
-  
-  let(:patient_statuses) do
-    {
-      "Off sick" => 1,
-      "Phased return to work" => 2,
-      "At work" => 3,
-    }
-  end
-  
   before do
     assign(:referral, referral)
     
@@ -75,8 +57,6 @@ describe "referrals/new.html.erb" do
   it "should render a select for referral reason" do
     page.should have_selector(form_selector + "//select[@name='referral[referral_reason_id]']")
   end
-  
-  it "should render a select for referral type" #or this should be done automatically?
   
   it "should render a text field to enter preferred date" do
     page.should have_selector(form_selector + "//input[@type='text' and @name='referral[preferred_date]']")

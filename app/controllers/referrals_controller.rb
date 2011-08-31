@@ -1,5 +1,7 @@
 class ReferralsController < ApplicationController
   
+  #autocomplete :patient
+  
   def index
     @referrals = Referral.all
   end

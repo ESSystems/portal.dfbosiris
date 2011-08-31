@@ -1,6 +1,7 @@
 <%= semantic_form_for @referral, :url => referrals_path, :html => {:id => "new_referral"} do |form| %>
 	<%= form.inputs do %>
-		<%= form.input :patient %>
+		<input type="text" id="autocomplete" />
+		<%= form.input :patient_id, :as => :string %>
 		<%= form.input :patient_id, :as => :hidden %>
 		<%= form.input :patient_status_id, :as => :select, :collection => @patient_statuses.map {|u| [u.status, u.id]} %>
 		<%= form.input :case_nature, :as => :text %>
