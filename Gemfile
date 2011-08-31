@@ -16,8 +16,8 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
 gem 'formtastic', '2.0.0.rc4'
+gem 'rails3-jquery-autocomplete'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -32,7 +32,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'rspec-rails'
-  gem 'growl_notify'
+  #gem 'growl_notify'
   gem 'cucumber-rails'
   gem "launchy"
   gem 'database_cleaner'
