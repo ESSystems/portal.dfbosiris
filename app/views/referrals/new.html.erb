@@ -7,11 +7,11 @@
 		</li>
 		<%= form.input :person_id, :as => :hidden %>
 		<% #= form.autocompleted_input :patient_full_name, :url => autocomplete_patient_full_name_referrals_path %>
-		<%= form.input :patient_status_id, :as => :select, :collection => @patient_statuses.map {|u| [u.status, u.id]} %>
+		<%= form.input :patient_status, :collection => @patient_statuses.map {|u| [u.status, u.id]} %>
 		<%= form.input :case_nature, :as => :text %>
 		<%= form.input :specific_requirements, :as => :text %>
 		<%= form.input :advice, :as => :text %>
-		<%= form.input :referral_reason_id, :as => :select, :collection => @referral_reasons.map {|u| [u.reason, u.id]} %>
+		<%= form.input :referral_reason, :collection => @referral_reasons.map {|u| [u.reason, u.id]} %>
 		<%= form.input :preferred_date, :as => :datepicker %>
 		<%= form.input :patient_consent, :as => :boolean %>
 	<% end %>

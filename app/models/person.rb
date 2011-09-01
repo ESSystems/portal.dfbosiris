@@ -17,4 +17,16 @@ class Person < ActiveRecord::Base
     (middle_name[-1,1] != "." ? middle_name << '.' : middle_name) unless middle_name.blank?
   end
   
+  def first_name
+    super.capitalize
+  end
+  
+  def last_name
+    super.capitalize
+  end
+  
+  def middle_name
+    super.capitalize
+  end
+  
 end

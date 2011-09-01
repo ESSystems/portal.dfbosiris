@@ -21,6 +21,13 @@ describe Person do
       person.middle_name = "A."
       person.full_name.should eq("John A. Doe")
     end
+    
+    it "should capitalize only the first letter" do
+      person.first_name = "JOHN"
+      person.last_name = "DOE"
+      person.middle_name = "A."
+      person.full_name.should eq("John A. Doe")
+    end
   end
 
 end
