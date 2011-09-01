@@ -3,7 +3,7 @@
 		<li id="referral_patient_full_name_input" class="string input required stringish">
 			<%= label_tag :referral_patient_full_name, 'Patient<abbr title="required">*</abbr>'.html_safe, :class => "label" %>
 			<%= form.autocomplete_field :patient_full_name, autocomplete_patient_full_name_referrals_path, :id_element => '#referral_patient_id', :required => true %>
-			<%= form.errors_on(:patient_id) %>
+			<%= form.semantic_errors :patient_id %>
 		</li>
 		<%= form.input :patient_id, :as => :hidden %>
 		<% #= form.autocompleted_input :patient_full_name, :url => autocomplete_patient_full_name_referrals_path %>
