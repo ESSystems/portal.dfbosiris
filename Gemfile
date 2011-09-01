@@ -43,6 +43,8 @@ group :development, :test do
   # Pretty printed test output
   gem 'turn', :require => false
 
+  gem 'simplecov'
+
   if RUBY_PLATFORM.downcase.include?("darwin")
   	gem 'rb-fsevent'
   	gem 'growl_notify'
