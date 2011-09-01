@@ -350,7 +350,7 @@ CREATE TABLE `referral_reasons` (
 
 CREATE TABLE `referrals` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `patient_id` int(11) DEFAULT NULL,
+  `person_id` int(11) DEFAULT NULL,
   `patient_status_id` int(11) DEFAULT NULL,
   `case_nature` text,
   `specific_requirements` text,
@@ -361,7 +361,7 @@ CREATE TABLE `referrals` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `schema_migrations` (
   `version` varchar(255) NOT NULL,
@@ -438,3 +438,5 @@ INSERT INTO schema_migrations (version) VALUES ('20110826151510');
 INSERT INTO schema_migrations (version) VALUES ('20110826202429');
 
 INSERT INTO schema_migrations (version) VALUES ('20110831125841');
+
+INSERT INTO schema_migrations (version) VALUES ('20110901101452');

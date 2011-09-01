@@ -10,6 +10,8 @@ Feature: Referral
 			| Fitness to return to work 	|
 			| Functional Assessment 		|
 			| Short term sickness 			|
+		Given following patients exist:
+			||
 	
 	Scenario: Create Valid Referral
 		Given I have no referrals 

@@ -6,7 +6,7 @@
 	</tr>
 	<% @referrals.each do |referral| %>
 	<tr>
-		<td><%= h(referral.patient.full_name) unless referral.patient == nil %></td>
+		<td><%= h(referral.person.full_name) unless referral.person == nil %></td>
 		<td><%= h(referral.case_nature) %></td>
   		<td><%= h(referral.referral_reason.reason) %></td>
 	</tr>

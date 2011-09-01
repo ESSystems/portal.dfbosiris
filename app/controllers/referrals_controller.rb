@@ -1,6 +1,6 @@
 class ReferralsController < ApplicationController
   
-  autocomplete :patient, :full_name, :full => true
+  autocomplete :person, :full_name, :full => true
 
   before_filter :init
   
@@ -27,10 +27,10 @@ class ReferralsController < ApplicationController
     end
   end
   
-  def autocomplete_patient_full_name
-    @patients = Patient.find_by_full_name params[:term]
+  def autocomplete_person_full_name
+    @persons = Person.autocomplete_fields.find_by_full_name params[:term]
     respond_to do |format|
-      format.json { render :json => @patients }
+      format.json { render :json => @persons }
     end
   end
   

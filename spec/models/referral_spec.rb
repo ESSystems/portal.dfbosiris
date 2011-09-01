@@ -7,7 +7,7 @@ describe Referral do
   
   before(:each) do
     @referral = Referral.new(
-      :patient => factory_referral.patient,
+      :person => factory_referral.person,
       :case_nature => factory_referral.case_nature,
       :referral_reason => factory_referral.referral_reason
     )
@@ -17,8 +17,8 @@ describe Referral do
     @referral.should be_valid
   end
   
-  it "is not valid without a patient" do
-    @referral.patient = nil
+  it "is not valid without a person" do
+    @referral.person = nil
     @referral.should_not be_valid
   end
   

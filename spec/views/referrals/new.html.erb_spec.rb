@@ -22,17 +22,17 @@ describe "referrals/new.html.erb" do
     page.should have_selector(form_selector + "//input[@type='submit']")
   end
   
-  it "should hide a field with patient id" do
-    page.should have_selector(form_selector + "//input[@type='hidden' and @name='referral[patient_id]']")
+  it "should hide a field with person id" do
+    page.should have_selector(form_selector + "//input[@type='hidden' and @name='referral[person_id]']")
   end
   
-  it "should render a text field to enter a patient name" # do
+  it "should render a text field to enter a person name" # do
   #     page.should have_selector(form_selector + "//input[@type='text' and @name='referral[patient]']")
   #   end
   
-  it "text field to enter patient should suggest patient names"
+  it "text field to enter patient should suggest person names"
   
-  it "should have a button to show all patients"
+  it "should have a button to show all people"
   
   it "should render a select for patient status" do
     page.should have_selector(form_selector + "//select[@name='referral[patient_status_id]']")

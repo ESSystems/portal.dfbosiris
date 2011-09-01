@@ -1,5 +1,5 @@
 Factory.define :referral do |f|
-  f.association :patient
+  f.association :person
   f.case_nature "The pacient can't see the monitor"
   f.association :referral_reason
 end
