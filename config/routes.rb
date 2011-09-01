@@ -1,6 +1,9 @@
 ClinicManagerExtension::Application.routes.draw do
   
-  resources :referrals
+  resources :referrals do
+    get :autocomplete_patient_full_name, :on => :collection
+    get :autocomplete_patient_status_status, :on => :collection
+  end
 
   root :to => "referrals#index"
   
