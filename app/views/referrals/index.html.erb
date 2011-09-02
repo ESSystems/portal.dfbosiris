@@ -1,16 +1,31 @@
-<h1>Referrals</h1>
-<table width="30%">
-	<tr>
-		<th>Case nature</th>
-		<th>Referral reason</th>
-	</tr>
-	<% @referrals.each do |referral| %>
-	<tr>
-		<td><%= h(referral.person.full_name) unless referral.person == nil %></td>
-		<td><%= h(referral.case_nature) %></td>
-  		<td><%= h(referral.referral_reason.reason) %></td>
-	</tr>
-	<% end %>
-<table>
-
-<%= link_to "New referral", new_referral_path %>
+<% title "Referrals" %>
+<div class="grid_16 widget first">
+    <div class="widget_title clearfix">
+        <h2>List</h2>
+		<ul>
+			<li><%= link_to "New referral", new_referral_path, :class => "btn orange right" %></li>
+		</ul>
+    </div>
+    <div class="widget_body">
+		<div class="widget_options clearfix">
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<td>Person</th>
+					<td>Case nature</th>
+					<td>Referral reason</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @referrals.each do |referral| %>
+				<tr>
+					<td><%= h(referral.person.full_name) unless referral.person == nil %></td>
+					<td><%= h(referral.case_nature) %></td>
+			  		<td><%= h(referral.referral_reason.reason) %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+    </div>
+</div>

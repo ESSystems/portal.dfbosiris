@@ -1,21 +1,29 @@
-<%= semantic_form_for @referral, :url => referrals_path, :html => {:id => "new_referral"} do |form| %>
-	<%= form.inputs do %>
-		<li id="referral_person_full_name_input" class="string input required stringish">
-			<%= label_tag :referral_person_full_name, 'Person<abbr title="required">*</abbr>'.html_safe, :class => "label" %>
-			<%= form.autocomplete_field :person_full_name, autocomplete_person_full_name_referrals_path, :id_element => '#referral_person_id' %>
-			<%= form.semantic_errors :person_id %>
-		</li>
-		<%= form.input :person_id, :as => :hidden %>
-		<% #= form.autocompleted_input :patient_full_name, :url => autocomplete_patient_full_name_referrals_path %>
-		<%= form.input :patient_status, :collection => @patient_statuses.map {|u| [u.status, u.id]} %>
-		<%= form.input :case_nature, :as => :text %>
-		<%= form.input :specific_requirements, :as => :text %>
-		<%= form.input :advice, :as => :text %>
-		<%= form.input :referral_reason, :collection => @referral_reasons.map {|u| [u.reason, u.id]} %>
-		<%= form.input :preferred_date, :as => :datepicker %>
-		<%= form.input :patient_consent, :as => :boolean %>
-	<% end %>
-	<%= form.buttons do %>
-		<%= form.commit_button %>
-	<% end %>
-<% end %>
+<% title "Add referral" %>
+<div class="grid_16 widget first">
+    <div class="widget_title clearfix">
+        <h2>Complete form</h2>
+    </div>
+    <div class="widget_body">
+		<%= semantic_form_for @referral, :url => referrals_path, :html => {:id => "new_referral"} do |form| %>
+			<%= form.inputs do %>
+				<li id="referral_person_full_name_input" class="string input required stringish">
+					<%= label_tag :referral_person_full_name, 'Person<abbr title="required">*</abbr>'.html_safe, :class => "label" %>
+					<%= form.autocomplete_field :person_full_name, autocomplete_person_full_name_referrals_path, :id_element => '#referral_person_id' %>
+					<%= form.semantic_errors :person_id %>
+				</li>
+				<%= form.input :person_id, :as => :hidden %>
+				<% #= form.autocompleted_input :patient_full_name, :url => autocomplete_patient_full_name_referrals_path %>
+				<%= form.input :patient_status, :collection => @patient_statuses.map {|u| [u.status, u.id]} %>
+				<%= form.input :case_nature, :as => :text %>
+				<%= form.input :specific_requirements, :as => :text %>
+				<%= form.input :advice, :as => :text %>
+				<%= form.input :referral_reason, :collection => @referral_reasons.map {|u| [u.reason, u.id]} %>
+				<%= form.input :preferred_date, :as => :datepicker %>
+				<%= form.input :patient_consent, :as => :boolean %>
+			<% end %>
+			<%= form.buttons do %>
+				<%= form.commit_button %>
+			<% end %>
+		<% end %>
+    </div>
+</div>

@@ -7,8 +7,129 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= flash[:notice] %>
-<%= yield %>
 
+	<header>
+	            <div class="container_16 clearfix">
+		<!--
+	                <div class="clearfix">
+	                    <a id="logo" href="/"></a>
+	                    <input type="text" class="search" title="Search..."/>
+	                </div>
+		-->
+	                <nav>
+	                    <div id="navcontainer" class="clearfix">
+	                    <div id="user" class="clearfix">
+	                        <img src="demo/avatar.png" alt="" />
+	                        <strong class="username">Welcome, <a href="#">Administrator</a></strong>
+	                        <ul class="piped">
+	                            <li><a href="#">My Account</a></li>
+	                            <li><a href="#">Logout</a></li>
+	                        </ul>
+	                    </div>
+
+	                    <div id="navclose"></div>
+
+	                    <ul class="sf-menu">
+	                        <li class="active">
+	                            <a href="/">
+	                                <span class="icon"><img src="/assets/chameleon-circuit/menu/dashboard.png" /></span>
+	                                <span class="title">Dashboard</span>
+	                            </a>
+	                        </li>
+	                        <li>
+	                            <a href="/referrals">
+	                                <span class="icon"><img src="/assets/chameleon-circuit/menu/tables.png" /></span>
+	                                <span class="title">Referrals</span>
+	                            </a>
+								<ul>
+	                                <li><a href="/referrals/new" class="styleswitcher" rel="new">Add new</a></li>
+	                            </ul>
+	                        </li>
+	<!--
+	                        <li>
+	                            <a href="forms.html">
+	                                <span class="icon"><img src="/assets/chameleon-circuit/menu/form.png" /></span>
+	                                <span class="title">Form Elements</span>
+	                            </a>
+	                        </li>
+	                        <li>
+	                            <a href="#">
+	                                <span class="icon"><img src="/assets/chameleon-circuit/menu/styles.png" /></span>
+	                                <span class="title">Styles</span>
+	                            </a>
+	                            <ul>
+	                                <li><a href="#" class="styleswitcher" rel="fluid">Fluid</a></li>
+	                                <li><a href="#" class="styleswitcher" rel="fixed">Fixed</a></li>
+	                            </ul>
+	                        </li>
+	                        <li class="">
+	                            <a href="pages.html">
+	                                <span class="icon"><img src="/assets/chameleon-circuit/menu/pages.png" /></span>
+	                                <span class="title">Sample Pages</span>
+	                            </a>
+	                        </li>
+	                        <li class="">
+	                            <a href="gallery.html">
+	                                <span class="icon"><img src="/assets/chameleon-circuit/menu/gallery.png" /></span>
+	                                <span class="title">Gallery</span>
+	                            </a>
+	                        </li>
+	                        <li class="">
+	                            <a href="charts.html">
+	                                <span class="icon"><img src="/assets/chameleon-circuit/menu/charts.png" /></span>
+	                                <span class="title">Statistics</span>
+	                            </a>
+	                        </li>
+	                        <li class="sep">
+	                            <a href="#">
+	                                <span class="notification">3</span>
+	                                <span class="icon"><img src="/assets/chameleon-circuit/menu/msg.png" /></span>
+	                                <span class="title">Messages</span>
+	                            </a>
+	                        </li>
+	                        <li>
+	                            <a href="#">
+	                                <span class="icon"><img src="/assets/chameleon-circuit/menu/settings.png" /></span>
+	                                <span class="title">Settings</span>
+	                            </a>
+	                        </li>
+	-->
+	                    </ul>
+	                    </div>
+	                </nav>
+	                <div id="pagetitle" class="clearfix">
+	                    <h1 class="left">
+	                        <%= yield :title %>
+	                    </h1>
+	                </div>
+	            </div>
+	        </header>
+	        <div class="container_16 clearfix" id="actualbody">
+<!-- 
+				<ul class="breadcrumbs first">
+				    <li><a href="#">Home</a></li>
+				    <li class="active"><a href="#">Dashboard</a></li>
+				</ul>
+-->		
+				<%= flash[:notice] %>
+				<%= yield %>
+		
+			    <div class="clear"></div>
+	
+	            </div> <!-- #actualbody -->
+	        </div> <!-- #main -->
+	    </div> <!-- #wrap -->
+	    <footer>
+	        <div class="container_12">
+	            <div class="grid_12 clearfix">
+	                <p class="left">
+	                    Powered by <a href="http://www.tripledub.co.uk">Tripledub</a>
+	                </p>
+	                <p class="right">
+	                    &copy IOH <%= Time.new.year %>
+	                </p>
+	            </div>
+	        </div>
+	    </footer>
 </body>
 </html>

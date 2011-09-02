@@ -7,4 +7,14 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-//= require_tree .
+//= require autocomplete-rails
+//= require chameleon-circuit/examples
+//= require chameleon-circuit/jquery.cleditor.min
+//= require chameleon-circuit/jquery.colorbox-min
+//= require chameleon-circuit/jquery.dataTables.min
+//= require chameleon-circuit/jquery.labelify
+//= require chameleon-circuit/jquery.ui.selectmenu
+//= require chameleon-circuit/jquery.tipsy
+//= require chameleon-circuit/iphone-style-checkboxes
+//= require chameleon-circuit/superfish
+
