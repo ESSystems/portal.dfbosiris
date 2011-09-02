@@ -18,15 +18,15 @@ class Person < ActiveRecord::Base
   end
   
   def first_name
-    super.capitalize
+    super.capitalize unless super == nil
   end
   
   def last_name
-    super.capitalize
+    super.capitalize unless super == nil
   end
   
   def middle_name
-    super.capitalize
+    super.capitalize unless super == nil
   end
   
 end
