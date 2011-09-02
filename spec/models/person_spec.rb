@@ -12,6 +12,21 @@ describe Person do
       person.full_name.should eq("John Doe")
     end
     
+    it "should not show middle name if it is nil" do
+      person.middle_name = nil
+      person.full_name.should eq("John Doe")
+    end
+    
+    it "should not show first name if it is nil" do
+      person.first_name = nil
+      person.full_name.should eq("A. Doe")
+    end
+    
+    it "should not show last name if it is nil" do
+      person.last_name = nil
+      person.full_name.should eq("John A.")
+    end
+    
     it "should show middle initial" do
       person.middle_name = "A"
       person.full_name.should eq("John A. Doe")
