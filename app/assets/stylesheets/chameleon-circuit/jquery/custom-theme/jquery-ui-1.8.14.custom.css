@@ -56,29 +56,29 @@
 
 /* Component containers
 ----------------------------------*/
-.ui-widget { font-family: Verdana,Arial,sans-serif; font-size: 1.1em; }
+.ui-widget { font-family: Verdana,Arial,sans-serif; font-size: 1em; }
 .ui-widget .ui-widget { font-size: 1em; }
 .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Verdana,Arial,sans-serif; font-size: 1em; }
-.ui-widget-content { border: 1px solid #a1a1a1; background: #c9c9c9 url(images/ui-bg_diagonals-small_40_c9c9c9_40x40.png) 50% 50% repeat; color: #222222; }
-.ui-widget-content a { color: #222222; }
-.ui-widget-header { border: 1px solid #4b5258; background: #233648 url(images/ui-bg_highlight-soft_100_233648_1x100.png) 50% 50% repeat-x; color: #eaf5f7; font-weight: bold; }
+.ui-widget-content { border: 1px solid #a1a1a1; background: #F6F6F6; color: #222222; }
+.ui-widget-content a { }
+.ui-widget-header { border: 1px solid #4b5258; background: #233648 url(/assets/chameleon-circuit/jquery/custom-theme/ui-bg_highlight-soft_100_233648_1x100.png) 50% 50% repeat-x; color: #eaf5f7; /*font-weight: bold;*/ }
 .ui-widget-header a { color: #eaf5f7; }
 
 /* Interaction states
 ----------------------------------*/
-.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #51575d; background: #424e5c url(images/ui-bg_highlight-soft_45_424e5c_1x100.png) 50% 50% repeat-x; font-weight: normal; color: #ffffff; }
-.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #ffffff; text-decoration: none; }
-.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { border: 1px solid #173644; background: #343a42 url(images/ui-bg_highlight-soft_75_343a42_1x100.png) 50% 50% repeat-x; font-weight: normal; color: #d4d4d4; }
-.ui-state-hover a, .ui-state-hover a:hover { color: #d4d4d4; text-decoration: none; }
-.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: 1px solid #545a64; background: #232b35 url(images/ui-bg_gloss-wave_50_232b35_500x100.png) 50% 50% repeat-x; font-weight: normal; color: #ffffff; }
-.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #ffffff; text-decoration: none; }
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {  }
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { }
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { background: #eee; border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; }
+.ui-state-hover a, .ui-state-hover a:hover { }
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: 1px solid #545a64; font-weight: normal; color: #ffffff; }
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { }
 .ui-widget :active { outline: none; }
 
 /* Interaction Cues
 ----------------------------------*/
-.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight  {border: 1px solid #f5eec0; background: #f6efc0 url(images/ui-bg_glass_55_f6efc0_1x400.png) 50% 50% repeat-x; color: #000; }
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight  {border: 1px solid #f5eec0; background: #f6efc0 url(/assets/chameleon-circuit/jquery/custom-theme/ui-bg_glass_55_f6efc0_1x400.png) 50% 50% repeat-x; color: #000; }
 .ui-state-highlight a, .ui-widget-content .ui-state-highlight a,.ui-widget-header .ui-state-highlight a { color: #000; }
-.ui-state-error, .ui-widget-content .ui-state-error, .ui-widget-header .ui-state-error {border: 1px solid #c7a9a9; background: #edb0b0 url(images/ui-bg_gloss-wave_45_edb0b0_500x100.png) 50% top repeat-x; color: #000; }
+.ui-state-error, .ui-widget-content .ui-state-error, .ui-widget-header .ui-state-error {border: 1px solid #c7a9a9; background: #edb0b0 url(/assets/chameleon-circuit/jquery/custom-theme/ui-bg_gloss-wave_45_edb0b0_500x100.png) 50% top repeat-x; color: #000; }
 .ui-state-error a, .ui-widget-content .ui-state-error a, .ui-widget-header .ui-state-error a { color: #000; }
 .ui-state-error-text, .ui-widget-content .ui-state-error-text, .ui-widget-header .ui-state-error-text { color: #000; }
 .ui-priority-primary, .ui-widget-content .ui-priority-primary, .ui-widget-header .ui-priority-primary { font-weight: bold; }
@@ -89,14 +89,14 @@
 ----------------------------------*/
 
 /* states and images */
-.ui-icon { width: 16px; height: 16px; background-image: url(images/ui-icons_222222_256x240.png); }
-.ui-widget-content .ui-icon {background-image: url(images/ui-icons_222222_256x240.png); }
-.ui-widget-header .ui-icon {background-image: url(images/ui-icons_eaf5f7_256x240.png); }
-.ui-state-default .ui-icon { background-image: url(images/ui-icons_d4d4d4_256x240.png); }
-.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {background-image: url(images/ui-icons_d4d4d4_256x240.png); }
-.ui-state-active .ui-icon {background-image: url(images/ui-icons_ffffff_256x240.png); }
-.ui-state-highlight .ui-icon {background-image: url(images/ui-icons_f7a50d_256x240.png); }
-.ui-state-error .ui-icon, .ui-state-error-text .ui-icon {background-image: url(images/ui-icons_f6726f_256x240.png); }
+.ui-icon { width: 16px; height: 16px; background-image: url(/assets/chameleon-circuit/jquery/custom-theme/ui-icons_222222_256x240.png); }
+.ui-widget-content .ui-icon {background-image: url(/assets/chameleon-circuit/jquery/custom-theme/ui-icons_222222_256x240.png); }
+.ui-widget-header .ui-icon {background-image: url(/assets/chameleon-circuit/jquery/custom-theme/ui-icons_eaf5f7_256x240.png); }
+.ui-state-default .ui-icon { background-image: url(/assets/chameleon-circuit/jquery/custom-theme/ui-icons_d4d4d4_256x240.png); }
+.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {background-image: url(/assets/chameleon-circuit/jquery/custom-theme/ui-icons_d4d4d4_256x240.png); }
+.ui-state-active .ui-icon {background-image: url(/assets/chameleon-circuit/jquery/custom-theme/ui-icons_ffffff_256x240.png); }
+.ui-state-highlight .ui-icon {background-image: url(/assets/chameleon-circuit/jquery/custom-theme/ui-icons_f7a50d_256x240.png); }
+.ui-state-error .ui-icon, .ui-state-error-text .ui-icon {background-image: url(/assets/chameleon-circuit/jquery/custom-theme/ui-icons_f6726f_256x240.png); }
 
 /* positioning */
 .ui-icon-carat-1-n { background-position: 0 0; }
@@ -286,8 +286,8 @@
 .ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br { -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px; -khtml-border-bottom-right-radius: 4px; border-bottom-right-radius: 4px; }
 
 /* Overlays */
-.ui-widget-overlay { background: #aaaaaa url(images/ui-bg_flat_75_aaaaaa_40x100.png) 50% 50% repeat-x; opacity: .30;filter:Alpha(Opacity=30); }
-.ui-widget-shadow { margin: 5px 0 0 5px; padding: 0px; background: #999999 url(images/ui-bg_flat_55_999999_40x100.png) 50% 50% repeat-x; opacity: .45;filter:Alpha(Opacity=45); -moz-border-radius: 5px; -khtml-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }/*
+.ui-widget-overlay { background: #aaaaaa url(/assets/chameleon-circuit/jquery/custom-theme/ui-bg_flat_75_aaaaaa_40x100.png) 50% 50% repeat-x; opacity: .30;filter:Alpha(Opacity=30); }
+.ui-widget-shadow { margin: 5px 0 0 5px; padding: 0px; background: #999999 url(/assets/chameleon-circuit/jquery/custom-theme/ui-bg_flat_55_999999_40x100.png) 50% 50% repeat-x; opacity: .45;filter:Alpha(Opacity=45); -moz-border-radius: 5px; -khtml-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }/*
  * jQuery UI Accordion 1.8.14
  *
  * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
@@ -468,7 +468,7 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
  *
  * http://docs.jquery.com/UI/Datepicker#theming
  */
-.ui-datepicker { width: 17em; padding: .2em .2em 0; display: none; }
+/*.ui-datepicker { width: 17em; padding: .2em .2em 0; display: none; }
 .ui-datepicker .ui-datepicker-header { position:relative; padding:.2em 0; }
 .ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next { position:absolute; top: 2px; width: 1.8em; height: 1.8em; }
 .ui-datepicker .ui-datepicker-prev-hover, .ui-datepicker .ui-datepicker-next-hover { top: 1px; }
@@ -488,10 +488,10 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 .ui-datepicker td span, .ui-datepicker td a { display: block; padding: .2em; text-align: right; text-decoration: none; }
 .ui-datepicker .ui-datepicker-buttonpane { background-image: none; margin: .7em 0 0 0; padding:0 .2em; border-left: 0; border-right: 0; border-bottom: 0; }
 .ui-datepicker .ui-datepicker-buttonpane button { float: right; margin: .5em .2em .4em; cursor: pointer; padding: .2em .6em .3em .6em; width:auto; overflow:visible; }
-.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current { float:left; }
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current { float:left; }*/
 
 /* with multiple calendars */
-.ui-datepicker.ui-datepicker-multi { width:auto; }
+/*.ui-datepicker.ui-datepicker-multi { width:auto; }
 .ui-datepicker-multi .ui-datepicker-group { float:left; }
 .ui-datepicker-multi .ui-datepicker-group table { width:95%; margin:0 auto .4em; }
 .ui-datepicker-multi-2 .ui-datepicker-group { width:50%; }
@@ -500,10 +500,10 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 .ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header { border-left-width:0; }
 .ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header { border-left-width:0; }
 .ui-datepicker-multi .ui-datepicker-buttonpane { clear:left; }
-.ui-datepicker-row-break { clear:both; width:100%; font-size:0em; }
+.ui-datepicker-row-break { clear:both; width:100%; font-size:0em; }*/
 
 /* RTL support */
-.ui-datepicker-rtl { direction: rtl; }
+/*.ui-datepicker-rtl { direction: rtl; }
 .ui-datepicker-rtl .ui-datepicker-prev { right: 2px; left: auto; }
 .ui-datepicker-rtl .ui-datepicker-next { left: 2px; right: auto; }
 .ui-datepicker-rtl .ui-datepicker-prev:hover { right: 1px; left: auto; }
@@ -513,7 +513,7 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 .ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current { float:right; }
 .ui-datepicker-rtl .ui-datepicker-group { float:right; }
 .ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header { border-right-width:0; border-left-width:1px; }
-.ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header { border-right-width:0; border-left-width:1px; }
+.ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header { border-right-width:0; border-left-width:1px; }*/
 
 /* IE6 IFRAME FIX (taken from datepicker 1.5.3 */
 .ui-datepicker-cover {

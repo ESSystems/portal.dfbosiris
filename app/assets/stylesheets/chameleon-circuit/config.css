@@ -7,13 +7,13 @@ body {font-family: tahoma, arial, helvetica, sans-serif;}
 h1, h2, h3, h4, h5, h6, .btn, nav, label {font-family: Mentone-SemiBold, 'Mentone SemiBold', 'Trebuchet MS', sans-serif;}
 
 /* Customize the color of the theme's' header */
-header {background-color: #2e799c}
+header {background-color: #1B282B;}
 
 /* Customize the color of the theme's' navigation. It is recommended to keep the colors of both the primary navigation and submenu's the same */
-nav {background-color: #1b4559} /* Primary Navigation */
+nav {background-color: #1B4352} /* Primary Navigation */
 
 .sf-menu li li, .sf-menu li li li {
-	background: #1b4559; color: #777;   /* Secondary Navigation back and foreground color */
+	background: #1B4352; color: #777;   /* Secondary Navigation back and foreground color */
         opacity: 0.95;
 }
 .sf-menu li li:hover, .sf-menu li li li:hover {
@@ -21,7 +21,7 @@ nav {background-color: #1b4559} /* Primary Navigation */
 }
 
 /* Customize the color of the theme's' widget boxes */
-.widget {background-color: #2e799c;}
+.widget {background-color: #212121;}
 
 /* Customize the backgroundcolor of the loginpage */
 #loginpage {background-color: #101521;}

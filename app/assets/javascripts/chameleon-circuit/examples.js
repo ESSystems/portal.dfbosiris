@@ -3,6 +3,10 @@ $(function(){
     //Table Odd/Even styles
    $("table:not(.simple) tr:nth-child(odd)").addClass("odd"); // Table Odd/Even
    $("table:not(.simple) tr:nth-child(even)").addClass("even"); // Table Odd/Even
+   
+   // Ol Odd/Even
+   $("form ol li.input:odd").addClass("odd"); // Ol Odd/Even
+   $("form ol li.input:even").addClass("even"); // Ol Odd/Even
 
    //input titles to label
    $(":text").labelify({labelledClass: "inputHighlight" });

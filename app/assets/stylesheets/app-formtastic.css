@@ -1,0 +1,25 @@
+.formtastic .input {
+	padding: 5px;
+	margin: 0;
+}
+.formtastic .buttons {
+	padding: 0px;
+}
+.formtastic .button {
+	padding: 5px 5px 5px 25%;
+	float: none;
+}
+.formtastic .errors {
+    margin: 4px 15px;
+    color: #000000;
+    display: inline-block;
+    vertical-align: top;
+    list-style-type: none;
+}
+.formtastic .errors li {
+	background: url("/assets/chameleon-circuit/fugue/cross.png") no-repeat 0 2px;
+	padding-left: 20px;
+}
+.formtastic abbr {
+	color: #CC0000;
+} 

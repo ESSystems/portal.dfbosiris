@@ -8,3 +8,4 @@ test/
 coverage/
 database.yml
 .sass-cache/
+.project

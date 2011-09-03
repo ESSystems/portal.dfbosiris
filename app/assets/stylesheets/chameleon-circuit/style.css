@@ -159,8 +159,8 @@ table {width: 100%}
 caption {background: #525252;color: #FFFFFF;font-weight: bold;line-height: 2em;}
 thead th, thead td {color:#777; font-size: 0.917em; font-weight: bold; vertical-align: middle; padding: 10px 5px}
 td {text-align: left; padding: 5px; vertical-align: middle}
-tbody tr.odd  {background:#f7f7f7}
-tbody tr.even {background:#ededed}
+tbody tr.odd, li.odd {background:#f7f7f7}
+tbody tr.even, li.even {background:#ededed}
 
 table.simple td:first-child {padding-left: 10px}
 
