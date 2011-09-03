@@ -23,3 +23,14 @@
 .formtastic abbr {
 	color: #CC0000;
 } 
+.formtastic .input .inline-hints {
+	color: #8F8F8F;
+    display: block;
+    font-size: 0.833em;
+    padding-bottom: 3px;
+    margin: 0 25%;
+}
+.formtastic .input .nested-attributes li {width: 48%; float:left;}
+.formtastic .input .nested-attributes li.odd, .formtastic .input .nested-attributes li.even {background: transparent;}
+.formtastic .input .nested-attributes li label {width: 100%;}
+

@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.rc8'
+gem 'rails', "~> 3.1.0.rc"
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -16,8 +16,9 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'formtastic', '2.0.0.rc4'
+gem 'formtastic', "~> 2.0.0.rc"
 gem 'rails3-jquery-autocomplete'
+gem 'paperclip'
 
 # Use unicorn as the web server
 # gem 'unicorn'

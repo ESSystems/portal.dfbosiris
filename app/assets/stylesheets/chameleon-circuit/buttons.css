@@ -50,7 +50,7 @@ button.green:hover, .btn.green:hover, input.green:hover {
 }
 
   
- button.orange, .btn.orange, input.orange {
+ button.orange, .btn.orange, input.orange, input.orange[type="submit"] {
     background: #feda71; /* Old browsers */
     background: -moz-linear-gradient(top, #feda71 0%, #febb4a 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#feda71), color-stop(100%,#febb4a)); /* Chrome,Safari4+ */
@@ -75,7 +75,7 @@ button.green:hover, .btn.green:hover, input.green:hover {
     text-align: center;
     text-shadow: 0 1px 0 #fee1a0;
 }
-  button.orange:hover, .btn.orange:hover, input.orange:hover {
+  button.orange:hover, .btn.orange:hover, input.orange:hover, input.orange[type="submit"]:hover {
     background: #fec354; /* Old browsers */
     background: -moz-linear-gradient(top, #fec354 0%, #fecd61 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fec354), color-stop(100%,#fecd61)); /* Chrome,Safari4+ */
