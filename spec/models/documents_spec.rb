@@ -1,5 +1,10 @@
 require 'spec_helper'
 
 describe Documents do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+  it "is valid with valid attributes"
+  
+  it "is not valid without a file"
+  
 end
+

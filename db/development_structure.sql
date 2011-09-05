@@ -188,6 +188,21 @@ CREATE TABLE `diary_restrictions` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+CREATE TABLE `documents` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `attachable_id` int(11) DEFAULT NULL,
+  `attachable_type` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `document_file_name` varchar(255) DEFAULT NULL,
+  `document_content_type` varchar(255) DEFAULT NULL,
+  `document_file_size` int(11) DEFAULT NULL,
+  `document_updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
 CREATE TABLE `employee_department` (
   `person_id` int(11) NOT NULL,
   `client_id` int(11) NOT NULL,
@@ -361,7 +376,7 @@ CREATE TABLE `referrals` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `schema_migrations` (
   `version` varchar(255) NOT NULL,
@@ -440,3 +455,7 @@ INSERT INTO schema_migrations (version) VALUES ('20110826202429');
 INSERT INTO schema_migrations (version) VALUES ('20110831125841');
 
 INSERT INTO schema_migrations (version) VALUES ('20110901101452');
+
+INSERT INTO schema_migrations (version) VALUES ('20110903105240');
+
+INSERT INTO schema_migrations (version) VALUES ('20110903110107');

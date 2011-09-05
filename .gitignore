@@ -9,3 +9,4 @@ coverage/
 database.yml
 .sass-cache/
 .project
+public/system/documents/*

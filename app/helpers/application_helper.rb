@@ -17,5 +17,25 @@ module ApplicationHelper
   def box_widget(title, options = {}, &block)
     block_to_partial('shared/box_widget', options.merge(:title => title), &block)
   end
- 
+  
+  def add_document_button(title, target, form, options = {})
+    add_document = render(:partial => 'shared/add_document', :locals => { :f => form, :document => Document.new })
+    options.merge!(:type => "button", :onclick => "$('##{target}').append('" << escape_javascript(add_document) << "')")
+    button = content_tag :button, options do
+      title
+    end
+  end
+  
+   def button_to_add_fields(name, f, association, options = {}, target = "")  
+    new_object = f.object.class.reflect_on_association(association).klass.new  
+    fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
+      render("shared/" << association.to_s.singularize << "_fields", :f => builder)  
+    end
+    target = association if target == ""
+    options.merge!(:type => "button", :onclick => "add_fields(this, \"#{association}\", \"#{target}\", \"#{escape_javascript(fields)}\")")
+    button = content_tag :button, options do
+      name
+    end
+  end
+
 end

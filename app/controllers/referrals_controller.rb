@@ -15,7 +15,7 @@ class ReferralsController < ApplicationController
   
   def new
     @referral = Referral.new
-    1.times { @referral.documents.build }
+    #1.times { @referral.documents.build }
   end
   
   def create

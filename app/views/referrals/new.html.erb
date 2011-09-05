@@ -28,19 +28,17 @@
 <%= box_widget "Attachments" do %>
 	<%= form.inputs :class => "nested-attributes" do %>
 		<li id="referral_person_full_name_input" class="string input required stringish">
-			<%= label_tag :referral_person_full_name, 'Add files'.html_safe, :class => "label" %>
-			<%= form.semantic_fields_for :documents, :html => {:class => "nested-attributes"} do |doc| %>
+			<%= label_tag :referral_person_full_name, 'Upload files'.html_safe, :class => "label" %>
+			<div id="upload-file-list">
+			<%= form.semantic_fields_for :documents do |doc| %>
 				<% if doc.object.new_record? %>
-					<%= doc.inputs do %>
-						<%= doc.input :document, :as => :file %>
-						<%= doc.input :title %>
-						<%= doc.input :description, :as => :text %>
-					<% end %>
+					<%= render 'shared/document_fields', :f => doc %>
 				<% end %>
 			<% end %>
+			</div>
 		</li>
 		<li class="button">
-			<a class="btn small grey" href="#"><span>Add another file</span></a>
+			<%= button_to_add_fields "Add document", form, :documents, {:class => "btn small grey", :id => "referral-file-to-upload"}, "upload-file-list" %>
 		</li>
 	<% end %>
 <% end %>

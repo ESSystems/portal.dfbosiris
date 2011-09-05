@@ -33,4 +33,4 @@
 .formtastic .input .nested-attributes li {width: 48%; float:left;}
 .formtastic .input .nested-attributes li.odd, .formtastic .input .nested-attributes li.even {background: transparent;}
 .formtastic .input .nested-attributes li label {width: 100%;}
-
+.formtastic #upload-file-list {padding-left: 25%;}

@@ -66,4 +66,6 @@ describe "referrals/new.html.erb" do
   
   it "should render a field to upload attachment"
   
+  it "should render fields to upload other referrers"
+  
 end
