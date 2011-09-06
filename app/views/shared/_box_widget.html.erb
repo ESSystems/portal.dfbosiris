@@ -1,8 +1,15 @@
 <div class="grid_16 widget first">
     <div class="widget_title clearfix">
         <h2><%= title %></h2>
+        <% if extra.any? %>
+        	<ul>
+        		<% extra.each do |e| %>
+        		<li><%= e %></li>
+        		<% end %>
+        	</ul>
+        <% end %>
     </div>
-    <div class="widget_body">
+    <div class="widget_body <%= body_class if defined? body_class %>">
 		<%= body %>
     </div>
 </div>

@@ -1,0 +1,21 @@
+<% title "View referral for " << @referral.person.full_name %>
+
+<% box_extra = link_to "Edit referral", edit_referral_path(@referral), :class => "btn orange right" %>
+<%= box_widget "Referral information", {:body_class => "information"}, [box_extra] do %>
+	<ul>
+		<li><span class="label">Person</span>: <%= @referral.person.full_name %></li>
+		<li><span class="label">Patient status</span>: <%= @referral.patient_status.status %></li>
+		<li><span class="label">Referral Reason</span>: <%= @referral.referral_reason.reason %></li>
+		<li><span class="label">Preferred date</span>: <%= @referral.preferred_date %></li>
+	</ul>	
+	<div class="clear"></div>
+	<p><span class="label">Case nature</span>: <%= @referral.case_nature %></p>
+	<p><span class="label">Specific requirements</span>: <%= @referral.specific_requirements %></p>
+	<p><span class="label">Advice</span>: <%= @referral.advice %></p>
+<% end %>
+
+<%= box_widget "Appointment" do %>
+<% end %>
+
+<%= box_widget "Followups" do %>
+<% end %>

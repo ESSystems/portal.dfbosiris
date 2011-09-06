@@ -168,9 +168,11 @@ table .piped, table .piped a {color:#777; font-size: 0.917em;}
 
 .simple thead {border-bottom: 1px solid #d4d4d4}
 
+tbody tr.highlight td {cursor: pointer; background: #FBF176;}
+
 /* Form
 -------------------------------------------------------------------*/
-label {font-weight: bold;}
+label, .label {font-weight: bold;}
 
 input[type='text'], input[type='password'], input[type='file'], textarea, select {
     background-color: #f6f6f6;
@@ -266,3 +268,9 @@ header .search {
 }
 
 .widget_options .search {padding: 3px 5px}
+
+
+/* Information list */
+.information {padding: 5px;}
+.information li {float:left; width: 33%; margin-top: 5px;}
+.information li.new-line {float: none;clear: left}

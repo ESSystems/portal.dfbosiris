@@ -14,8 +14,8 @@ module ApplicationHelper
   end
  
   # Create as many of these as you like, each should call a different partial 
-  def box_widget(title, options = {}, &block)
-    block_to_partial('shared/box_widget', options.merge(:title => title), &block)
+  def box_widget(title, options = {}, extra = [], &block)
+    block_to_partial('shared/box_widget', options.merge(:title => title, :extra => extra), &block)
   end
   
   def add_document_button(title, target, form, options = {})

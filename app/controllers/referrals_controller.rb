@@ -13,6 +13,10 @@ class ReferralsController < ApplicationController
     @referrals = Referral.all
   end
   
+  def show
+    @referral = Referral.find(params[:id])
+  end
+  
   def new
     @referral = Referral.new
   end

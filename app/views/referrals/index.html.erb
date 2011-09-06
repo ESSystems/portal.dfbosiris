@@ -12,9 +12,11 @@
 		<table>
 			<thead>
 				<tr>
-					<td>Person</th>
-					<td>Case nature</th>
-					<td>Referral reason</th>
+					<td>Person</td>
+					<td>Case nature</td>
+					<td>Referral reason</td>
+					<td>Status</td>
+					<td>Action</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -23,6 +25,14 @@
 					<td><%= h(referral.person.full_name) unless referral.person == nil %></td>
 					<td><%= h(referral.case_nature) %></td>
 			  		<td><%= h(referral.referral_reason.reason) %></td>
+			  		<td>&nbsp;</td>
+			  		<td>
+			  			<ul class="hor-list piped">
+			  				<li><%= link_to "View", referral_path(referral) %></li>
+			  				<li><%= link_to "Edit", edit_referral_path(referral) %></li>
+			  				<li><a href="#">Delete</a></li>
+			  			</ul>
+			  		</td>
 				</tr>
 				<% end %>
 			</tbody>
