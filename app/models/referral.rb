@@ -1,6 +1,6 @@
 class Referral < ActiveRecord::Base
   attr_accessor :person_full_name
-  attr_accessible :person, :patient_status, :person_id, :case_nature, :referral_reason, :referral_reason_id, :documents_attributes
+  attr_accessible :person, :person_id, :patient_status, :patient_status_id, :case_nature, :referral_reason, :referral_reason_id, :documents_attributes
   
   belongs_to :person
   belongs_to :patient_status

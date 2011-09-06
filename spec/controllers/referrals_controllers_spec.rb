@@ -29,7 +29,7 @@ describe ReferralsController do
       
       it "sets a flash[:notice] message" do
         post :create
-        flash[:notice].should eq("New referral created.")
+        flash[:success].should eq("New referral created.")
       end
       
       it "redirects to the Referrals index" do
@@ -51,6 +51,7 @@ describe ReferralsController do
       it "renders the new template" do
         post :create
         response.should render_template("new")
+        flash[:error].should eq("Could not create new referral.")
       end
     end
   end

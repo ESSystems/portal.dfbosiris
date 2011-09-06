@@ -15,15 +15,15 @@ class ReferralsController < ApplicationController
   
   def new
     @referral = Referral.new
-    #1.times { @referral.documents.build }
   end
   
   def create
     @referral = Referral.new(params[:referral])
     if @referral.save
-      flash[:notice] = "New referral created."
+      flash[:success] = "New referral created."
       redirect_to :action => "index"
     else
+      flash.now[:error] = "Could not create new referral."
       render :action => "new"
     end
   end

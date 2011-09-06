@@ -1,0 +1,8 @@
+<% flash.each do |key,msg| %>
+<div class="grid_16 first flash">
+	<div class="msg <%= key %>">
+		<span><%= msg %></span>
+		<a class="close" href="#">x</a>
+	</div>
+</div>
+<% end %>  
