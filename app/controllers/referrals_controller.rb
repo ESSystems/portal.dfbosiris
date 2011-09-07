@@ -17,6 +17,10 @@ class ReferralsController < ApplicationController
     @referral = Referral.find(params[:id])
   end
   
+  def edit
+    @referral = Referral.find(params[:id])
+  end
+  
   def new
     @referral = Referral.new
   end
@@ -29,6 +33,17 @@ class ReferralsController < ApplicationController
     else
       flash.now[:error] = "Could not create new referral."
       render :action => "new"
+    end
+  end
+  
+  def update
+    @referral = Referral.find(params[:id])
+    if @referral.update_attributes(params[:referral])
+      flash[:success] = "Referral was successfully updated."
+      redirect_to :action => "show"
+    else
+      flash.now[:error] = "Could not update the referral."
+      render :action => "edit"
     end
   end
   

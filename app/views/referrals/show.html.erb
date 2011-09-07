@@ -12,6 +12,7 @@
 	<p><span class="label">Case nature</span>: <%= @referral.case_nature %></p>
 	<p><span class="label">Specific requirements</span>: <%= @referral.specific_requirements %></p>
 	<p><span class="label">Advice</span>: <%= @referral.advice %></p>
+	<p><span class="label">Documents</span>: <%= show_documents @referral.documents %></p>
 <% end %>
 
 <%= box_widget "Appointment" do %>
