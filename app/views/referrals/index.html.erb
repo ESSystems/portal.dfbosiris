@@ -12,18 +12,21 @@
 		<table>
 			<thead>
 				<tr>
-					<td>Person</td>
+					<td style="width: 180px;">Person</td>
 					<td>Case nature</td>
-					<td>Referral reason</td>
-					<td>Status</td>
-					<td>Action</td>
+					<td style="width: 170px;">Referral reason</td>
+					<td style="width: 100px;">Status</td>
+					<td class="action">Action</td>
 				</tr>
 			</thead>
 			<tbody>
 				<% @referrals.each do |referral| %>
 				<tr>
 					<td><%= h(referral.person.full_name) unless referral.person == nil %></td>
-					<td><%= h(referral.case_nature) %></td>
+					<td>
+						<%= h(referral.case_nature.slice(0..200)) %> 
+						<%= "..." if referral.case_nature.length > 200 %>
+					</td>
 			  		<td><%= h(referral.referral_reason.reason) %></td>
 			  		<td>&nbsp;</td>
 			  		<td>

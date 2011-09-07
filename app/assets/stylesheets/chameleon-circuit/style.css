@@ -170,6 +170,8 @@ table .piped, table .piped a {color:#777; font-size: 0.917em;}
 
 tbody tr.highlight td {cursor: pointer; background: #FBF176;}
 
+td.action {width:110px;}
+
 /* Form
 -------------------------------------------------------------------*/
 label, .label {font-weight: bold;}
