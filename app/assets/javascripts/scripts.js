@@ -10,7 +10,7 @@ $(document).ready(function(){
    	}
   )
   
-  $('a[original-title]').tipsy();
+  $('[original-title]').tipsy();
 });
 
 function add_fields(link, association, target, content) {

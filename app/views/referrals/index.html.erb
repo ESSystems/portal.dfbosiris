@@ -12,6 +12,7 @@
 		<table>
 			<thead>
 				<tr>
+					<td style="width:18px">&nbsp;</td>
 					<td style="width: 180px;">Person</td>
 					<td>Case nature</td>
 					<td style="width: 170px;">Referral reason</td>
@@ -22,6 +23,7 @@
 			<tbody>
 				<% @referrals.each do |referral| %>
 				<tr>
+					<td><%= "<span class=\"icon attachments\" original-title=\"Has attachments\"></span>".html_safe if not referral.documents.empty? %></td>
 					<td><%= h(referral.person.full_name) unless referral.person == nil %></td>
 					<td>
 						<%= h(referral.case_nature.slice(0..150)) %> 
