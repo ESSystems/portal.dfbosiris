@@ -18,4 +18,8 @@ class Referral < ActiveRecord::Base
   def person_full_name
     person.full_name unless person.nil?
   end
+  
+  def show_patient_consent
+    patient_consent ? "yes" : "no"
+  end
 end

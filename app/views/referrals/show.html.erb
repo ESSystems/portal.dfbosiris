@@ -5,7 +5,7 @@
 	<ul>
 		<li><span class="label">Person</span>: <%= @referral.person.full_name %></li>
 		<li><span class="label">Patient status</span>: <%= @referral.patient_status.status %></li>
-		<li><span class="label">Patient consent</span>: <%= "yes" if @referral.patient_consent %></li>
+		<li><span class="label">Patient consent</span>: <%= @referral.show_patient_consent %></li>
 		<li><span class="label">Referral Reason</span>: <%= @referral.referral_reason.reason %></li>
 		<li><span class="label">Preferred date</span>: <%= @referral.preferred_date %></li>
 	</ul>	
