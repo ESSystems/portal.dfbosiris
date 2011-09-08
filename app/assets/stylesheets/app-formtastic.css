@@ -31,6 +31,6 @@
     margin: 0 25%;
 }
 .formtastic .input .nested-attributes li {width: 48%; float:left;}
-.formtastic .input .nested-attributes li.odd, .formtastic .input .nested-attributes li.even {background: none;}
-.formtastic .input .nested-attributes li label {width: 100%;}
-.formtastic #upload-file-list {padding-left: 25%;}
+.formtastic .nested-attributes .inputs li.odd, .formtastic .nested-attributes .inputs li.even {background: transparent;}
+.formtastic .nested-attributes li label {width: 100%;}
+.formtastic .file-list {padding-left: 25%;}

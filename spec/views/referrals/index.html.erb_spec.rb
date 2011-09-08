@@ -6,5 +6,5 @@ describe "referrals/index.html.erb" do
   
   it "should show only 200 characters of case nature"
   
-  it "should show '...' only if case nature is longer than 200 characters"
+  it "should show '...' only if case nature is longer than 150 characters"
 end

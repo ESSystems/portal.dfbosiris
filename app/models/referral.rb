@@ -14,4 +14,8 @@ class Referral < ActiveRecord::Base
   validates :referral_reason, :presence => true
     
   accepts_nested_attributes_for :documents, :reject_if => lambda { |d| d[:document].blank? }, :allow_destroy => true
+  
+  def person_full_name
+    person.full_name unless person == nil
+  end
 end

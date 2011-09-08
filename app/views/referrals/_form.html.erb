@@ -23,9 +23,9 @@
 
 <%= box_widget "Attachments" do %>
 	<%= form.inputs :class => "nested-attributes" do %>
-		<li id="referral_person_full_name_input" class="string input required stringish">
+		<li id="referral_person_full_name_input" class="string input">
 			<%= label_tag :referral_person_full_name, 'Attached files'.html_safe, :class => "label" %>
-			<div id="upload-file-list">
+			<div class="file-list">
 			<%= form.semantic_fields_for :documents do |doc| %>
 				<% if !doc.object.new_record? %>
 					<%= render 'shared/document_fields', :f => doc %>
@@ -33,9 +33,9 @@
 			<% end %>
 			</div>
 		</li>
-		<li id="referral_person_full_name_input" class="string input required stringish">
+		<li id="referral_person_full_name_input" class="string input">
 			<%= label_tag :referral_person_full_name, 'Upload files'.html_safe, :class => "label" %>
-			<div id="upload-file-list">
+			<div id="upload-file-list" class="file-list">
 			<%= form.semantic_fields_for :documents do |doc| %>
 				<% if doc.object.new_record? %>
 					<%= render 'shared/document_fields', :f => doc %>
