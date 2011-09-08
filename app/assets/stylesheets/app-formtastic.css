@@ -33,4 +33,11 @@
 .formtastic .input .nested-attributes li {width: 48%; float:left;}
 .formtastic .nested-attributes .inputs li.odd, .formtastic .nested-attributes .inputs li.even {background: transparent;}
 .formtastic .nested-attributes li label {width: 100%;}
+.formtastic .nested-attributes .file-list .input {padding: 1px; margin: 0;}
 .formtastic .file-list {padding-left: 25%;}
+.formtastic .file-list .inputs {
+	margin-top: 5px;
+	border-bottom: 1px solid #CCCCCC;
+    padding: 10px 0;
+}
+.formtastic .file-list .inputs:first-child {padding-top:0px;}

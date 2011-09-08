@@ -9,7 +9,11 @@
 		</li>
 		<% #= form.autocompleted_input :patient_full_name, :url => autocomplete_patient_full_name_referrals_path %>
 		<%= form.input :patient_status, :collection => @patient_statuses.map {|u| [u.status, u.id]} %>
-		<%= form.input :patient_consent, :as => :boolean %>
+		<li class="input">
+			<%= form.label :patient_consent, :class => "label" %>
+			<%= form.check_box :patient_consent %>
+		</li>
+		<% #= form.input :patient_consent, :as => :boolean %>
 	<% end %>
 <% end %>
 
@@ -23,7 +27,7 @@
 
 <%= box_widget "Attachments" do %>
 	<%= form.inputs :class => "nested-attributes" do %>
-		<li id="referral_person_full_name_input" class="string input">
+		<li class="string input">
 			<%= label_tag :referral_person_full_name, 'Attached files'.html_safe, :class => "label" %>
 			<div class="file-list">
 			<%= form.semantic_fields_for :documents do |doc| %>
@@ -33,7 +37,7 @@
 			<% end %>
 			</div>
 		</li>
-		<li id="referral_person_full_name_input" class="string input">
+		<li class="string input">
 			<%= label_tag :referral_person_full_name, 'Upload files'.html_safe, :class => "label" %>
 			<div id="upload-file-list" class="file-list">
 			<%= form.semantic_fields_for :documents do |doc| %>

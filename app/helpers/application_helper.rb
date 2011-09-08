@@ -44,7 +44,7 @@ module ApplicationHelper
     documents.each do |d|
       result << ", " if result.length != 0
       title = d.title == "" ? d.document_file_name : d.title
-      html_options["original-title"] = d.description if d.description != ""
+      html_options["original-title"] = d.description != "" ? d.description : nil
       result << link_to(title , d.document.url, html_options)
     end
     result.html_safe

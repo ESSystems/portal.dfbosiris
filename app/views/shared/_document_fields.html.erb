@@ -1,5 +1,19 @@
 <%= f.inputs do %>
-	<%= f.input :document, :as => :file %>
+	<%= f.input :id, :as => :hidden %>
+	<% if f.object.id.nil? %>
+		<%= f.input :document, :as => :file %>
+	<% else %>
+		<li class="input">
+			<label class="label">File</label>
+			<%= link_to f.object.document_file_name, f.object.document.url %>
+		</li>
+	<% end %>
 	<%= f.input :title %>
 	<%= f.input :description, :as => :text %>
+	<% if not f.object.id.nil? %>
+		<li class="input">
+			<label class="label">Remove document</label>
+			<%= f.check_box :_destroy %>
+		</li>
+	<% end %>
 <% end %>
