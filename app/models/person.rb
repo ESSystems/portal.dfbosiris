@@ -13,6 +13,24 @@ class Person < ActiveRecord::Base
     [first_name, middle_name_with_period, last_name].compact.join(' ')
   end
   
+  def full_name=(full_name)
+    full_name_array = full_name.split
+    case full_name_array.count
+    when 1
+      self.first_name = full_name_array[0]
+      self.middle_name = nil
+      self.last_name = nil
+    when 2
+      self.first_name = full_name_array[0]
+      self.middle_name = nil
+      self.last_name = full_name_array[1]
+    when 3
+      self.first_name = full_name_array[0]
+      self.middle_name = full_name_array[1]
+      self.last_name = full_name_array[2]
+    end
+  end
+  
   def middle_name_with_period
     (middle_name[-1,1] != "." ? middle_name << '.' : middle_name) unless middle_name.blank?
   end

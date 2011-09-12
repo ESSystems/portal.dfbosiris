@@ -34,7 +34,7 @@ group :development, :test do
   gem 'capybara'
   gem 'rspec-rails'
   gem 'cucumber-rails'
-  gem "launchy"
+  gem 'launchy'
   gem 'database_cleaner'
   
   # Guard stuff

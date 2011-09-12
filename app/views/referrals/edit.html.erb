@@ -1,4 +1,4 @@
-<% title "Add referral for: " << @referral.person.full_name %>
+<% title "Edit referral for: " << @referral.person.full_name %>
 
 <%= semantic_form_for @referral, :url => referral_path(@referral), :html => {:id => "edit_referral", :multipart => true} do |form| %>
 

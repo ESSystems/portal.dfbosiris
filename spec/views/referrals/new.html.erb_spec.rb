@@ -22,7 +22,7 @@ describe "referrals/new.html.erb" do
     page.should have_selector(form_selector + "//input[@type='submit']")
   end
   
-  it "should render a multypart form to create new referral"
+  it "should render a multipart form to create new referral"
   
   it "should hide a field with person id" do
     page.should have_selector(form_selector + "//input[@type='hidden' and @name='referral[person_id]']")

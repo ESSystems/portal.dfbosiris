@@ -53,7 +53,7 @@ $(function(){
     });
 
     //Selectmenu
-	$('.forcewidth').selectmenu({width:120});
+	//$('.forcewidth').selectmenu({width:120});
     $('select').selectmenu();
 
     // iOS checkbox

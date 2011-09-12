@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Person do
   
-  describe "full name" do
+  describe "get full name" do
     let(:person) do
       Factory.build(:person, :first_name => "John", :last_name => "Doe")
     end
@@ -42,6 +42,35 @@ describe Person do
       person.last_name = "DOE"
       person.middle_name = "A."
       person.full_name.should eq("John A. Doe")
+    end
+  end
+  
+  describe "set full name" do
+    let(:person) do
+      Factory.build(:person)
+    end
+    
+    it "should set first name if assignment is composed of one word" do
+      person.full_name = "David"
+      person.first_name.should eq("David")
+    end
+    
+    it "should set first name and last name if assignment is composed of two words" do
+      person.full_name = "David Coperfield"
+      person.first_name.should eq("David")
+      person.last_name.should eq("Coperfield")
+    end
+    
+    it "should assign middle name to nil if assignment is composed of two words" do
+      person.full_name = "David Coperfield"
+      person.middle_name.should eq(nil)
+    end
+    
+    it "should set first name, middle name and last name if assignment is composed of three words" do
+      person.full_name = "David S. Coperfield"
+      person.first_name.should eq("David")
+      person.middle_name.should eq("S.")
+      person.last_name.should eq("Coperfield")
     end
   end
 
