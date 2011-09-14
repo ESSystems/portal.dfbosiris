@@ -4,16 +4,17 @@ describe Referral do
   let(:factory_referral) do
     Factory.build(:referral)
   end
-  
+
   before(:each) do
     @referral = Referral.new(
       :person => factory_referral.person,
       :patient_status => factory_referral.patient_status,
       :case_nature => factory_referral.case_nature,
-      :referral_reason => factory_referral.referral_reason
+      :referral_reason => factory_referral.referral_reason,
+      :case_reference_number => factory_referral.case_reference_number
     )
   end
-  
+
   it "is valid with valid attributes" do
     @referral.should be_valid
   end
@@ -39,4 +40,9 @@ describe Referral do
   end
   
   it "should generate a case reference number when created"
+  
+  it "is not valid withous a case reference number" do
+    @referral.case_reference_number = nil
+    @referral.should_not be_valid
+  end
 end

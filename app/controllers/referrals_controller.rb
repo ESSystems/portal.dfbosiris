@@ -62,5 +62,4 @@ class ReferralsController < ApplicationController
       format.json { render :json => @persons }
     end
   end
-  
 end

@@ -3,6 +3,7 @@ Factory.define :referral do |f|
   f.association :patient_status
   f.case_nature "The pacient can't see the monitor"
   f.association :referral_reason
+  f.case_reference_number Forgery(:basic).number :at_least => 10, :at_most => 10
 end
 
 Factory.define :patient do |f|

@@ -13,11 +13,10 @@
 			<thead>
 				<tr>
 					<td style="width:18px">&nbsp;</td>
-<!-- 					<td style="width:100px">Case Reference Number</td> -->
-					<td style="width: 140px;">Person</td>
+					<td style="width:90px">Case Reference Number</td>
+					<td style="width: 150px;">Person</td>
 					<td>Case nature</td>
-					<td style="width: 150px;">Referral reason</td>
-					<td style="width: 100px;">Status</td>
+					<td style="width: 170px;">Referral reason</td>
 					<td class="action">Action</td>
 				</tr>
 			</thead>
@@ -25,19 +24,18 @@
 				<% @referrals.each do |referral| %>
 				<tr>
 					<td><%= "<span class=\"icon attachments\" original-title=\"Has attachments\"></span>".html_safe if not referral.documents.empty? %></td>
-<!-- 					<td><%= h(referral.case_reference_number) %></td> -->
+					<td><%= h(referral.case_reference_number) unless referral.case_reference_number == nil %></td>
 					<td><%= h(referral.person.full_name) unless referral.person == nil %></td>
 					<td>
-						<%= h(referral.case_nature.slice(0..120)) %> 
-						<%= "..." if referral.case_nature.length > 120 %>
+						<%= h(referral.case_nature.slice(0..150)) %> 
+						<%= "..." if referral.case_nature.length > 150 %>
 					</td>
 			  		<td><%= h(referral.referral_reason.reason) %></td>
-			  		<td>&nbsp;</td>
 			  		<td>
 			  			<ul class="hor-list piped">
 			  				<li><%= link_to "View", referral_path(referral) %></li>
 			  				<li><%= link_to "Edit", edit_referral_path(referral) %></li>
-			  				<li><a href="#">Delete</a></li>
+			  				<li><a href="#">Cancel</a></li>
 			  			</ul>
 			  		</td>
 				</tr>

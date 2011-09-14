@@ -1,4 +1,4 @@
-<% title "View referral for " << @referral.person.full_name %>
+<% title "View referral for " << @referral.person.full_name << " / " << @referral.case_reference_number %>
 
 <% box_extra = link_to "Edit referral", edit_referral_path(@referral), :class => "btn orange right" %>
 <%= box_widget "Referral information", {:body_class => "information"}, [box_extra] do %>
