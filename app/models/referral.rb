@@ -6,6 +6,7 @@ class Referral < ActiveRecord::Base
   belongs_to :patient_status
   belongs_to :referral_reason
   has_many :documents, :as => :attachable, :dependent => :destroy
+  has_one :appointment
   
   validates :person, :presence => true
   validates :patient_status, :presence => true
@@ -34,4 +35,8 @@ class Referral < ActiveRecord::Base
     self.case_reference_number ||= csn[0..9].upcase
   end
   
+  def valid_attribute?(attribute_name)
+    self.valid?
+    self.errors[attribute_name].blank?
+  end
 end

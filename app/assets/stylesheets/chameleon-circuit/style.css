@@ -148,7 +148,7 @@ nav ul li.active {opactiy: 0.2}
 .ui-toolbar input[type='text'], .ui-toolbar input[type='password'], .ui-toolbar input[type='file'], .ui-toolbar textarea, .ui-toolbar select,
 .widget_options input[type='text'], .widget_options input[type='password'], .widget_options input[type='file'], .widget_options textarea, .widget_options select {margin-bottom: 0px}
     
-.widget_body {border-radius:0 0 4px 4px;-moz-border-radius:0 0 3px 3px; background: #fff; padding-bottom: 10px; border: 1px solid #c1c1c1;}
+.widget_body {border-radius:0 0 4px 4px;-moz-border-radius:0 0 3px 3px; background: #fff; padding: 5px 5px 10px; border: 1px solid #c1c1c1;}
 .widget_options {background: #f7f7f7; border-bottom: 1px solid #d4d4d4; padding: 10px}
 
 .widget_content {padding: 5px 10px ;}

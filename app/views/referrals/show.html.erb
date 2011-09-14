@@ -16,8 +16,9 @@
 	<p><span class="label">Documents</span>: <%= show_documents @referral.documents %></p>
 <% end %>
 
-<%= box_widget "Appointment" do %>
+<% if @referral.appointment %>
+<% box_extra = link_to "Confirm appointment", "", :class => "btn orange right" %>
+<%= box_widget "Appointment", {}, [box_extra] do %>
+	<p>An appointment was created for this referral: <b><%= @referral.appointment.from_date.to_date %></b> from <b><%= @referral.appointment.from_date.to_s(:hours_and_minutes) %> to <%= @referral.appointment.to_date.to_s(:hours_and_minutes) %></b></p>
 <% end %>
-
-<%= box_widget "Followups" do %>
 <% end %>
