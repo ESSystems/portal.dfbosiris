@@ -1,9 +1,8 @@
 Factory.define :referral do |f|
   f.association :person
   f.association :patient_status
-  f.case_nature "The pacient can't see the monitor"
+  f.case_nature Forgery(:lorem_ipsum).words(30)
   f.association :referral_reason
-  f.case_reference_number Forgery(:basic).number :at_least => 10, :at_most => 10
 end
 
 Factory.define :patient do |f|
@@ -11,18 +10,18 @@ Factory.define :patient do |f|
 end
 
 Factory.define :patient_status do |f|
-  f.status "Off sick"
+  f.status Forgery(:lorem_ipsum).words(3)
 end
 
 Factory.define :referral_reason do |f|
-  f.reason "Short term sickness"
+  f.reason Forgery(:lorem_ipsum).words(6)
 end
 
 Factory.define :person do |f|
   #f.association :employee
-  f.first_name "John"
-  f.last_name "Doe"
-  f.middle_name "A."
+  f.first_name Forgery(:name).first_name
+  f.last_name Forgery(:name).last_name
+  f.middle_name Forgery(:lorem_ipsum).character
 end
 
 Factory.define :employee do |f|

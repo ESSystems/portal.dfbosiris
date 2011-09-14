@@ -61,11 +61,12 @@ Feature: Show the list of referrals and create a new one
 			
 	@javascript
 	Scenario: When choosing a person in the autocomplete list, there should be full name
-		And I am on the list of referrals 
+		Given I am on the list of referrals 
 		When I follow "New referral"
 		And I fill in "Person" with "val"
 		And I choose "Valere Romanus" in the autocomplete list
 		Then the field with id "referral_person_id" should contain "2"
+		And the "Person" field should contain "Valere Romanus"
 		
 	@javascript
 	Scenario: When choosing a person in the autocomplete list, there should be SAP number
@@ -77,14 +78,23 @@ Feature: Show the list of referrals and create a new one
 		And I fill in "Person" with "val"
 		And I choose "8001025" in the autocomplete list
 		Then the field with id "referral_person_id" should contain "2"
+		And I should see "8001025"
 		
 	@javascript
 	Scenario: When choosing a person in the autocomplete list, there should be date of birth
-		And I am on the list of referrals 
+		Given I am on the list of referrals 
 		When I follow "New referral"
 		And I fill in "Person" with "val"
 		And I choose "23 March, 1980" in the autocomplete list
 		Then the field with id "referral_person_id" should contain "2"
+		And I should see "23 March, 1980"
+		
+	@javascript
+	Scenario: Show full list of people when pushing a button
+		Given I am on the list of referrals
+		When I follow "New referral"
+		And I follow "Show all people"
+		Then I should see all people in the autocomplete list
 	
 	Scenario: When choosing a date from the datepicker, date should be in the format: {dd} {month name} {year}
 		Given I am on the list of referrals

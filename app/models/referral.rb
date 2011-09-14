@@ -27,6 +27,12 @@ class Referral < ActiveRecord::Base
     patient_consent ? "yes" : "no"
   end
   
+  def short_case_nature
+    cn = case_nature.slice(0..150)
+    cn << "..." if case_nature.length > 150
+    cn
+  end
+  
   private 
   
   def generate_case_reference_number
