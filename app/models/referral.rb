@@ -16,6 +16,8 @@ class Referral < ActiveRecord::Base
     
   accepts_nested_attributes_for :documents, :reject_if => lambda { |d| d[:document].blank? and d[:id] == "" }, :allow_destroy => true
   
+  after_initialize :generate_case_reference_number
+  
   def person_full_name
     person.full_name unless person.nil?
   end
@@ -24,16 +26,12 @@ class Referral < ActiveRecord::Base
     patient_consent ? "yes" : "no"
   end
   
-  def after_initialize
-    case_reference_number = generate_case_reference_number
-  end
-  
   private 
   
   def generate_case_reference_number
     csn = SecureRandom.uuid
     csn.gsub!("-","")
-    csn[0..9].upcase
+    self.case_reference_number ||= csn[0..9].upcase
   end
   
 end
