@@ -36,6 +36,7 @@ group :development, :test do
   gem 'cucumber-rails'
   gem 'launchy'
   gem 'database_cleaner'
+  gem 'forgery', '~> 0.5.0'
   
   # Guard stuff
   gem 'guard-rspec'

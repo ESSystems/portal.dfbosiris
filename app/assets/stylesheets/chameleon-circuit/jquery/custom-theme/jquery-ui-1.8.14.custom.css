@@ -320,6 +320,13 @@
 /* workarounds */
 * html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
 
+.ui-autocomplete span {
+	color: #666666;
+    font-size: 0.8em;
+    position: relative;
+    top: -4px;
+}
+
 /*
  * jQuery UI Menu 1.8.14
  *

@@ -48,7 +48,16 @@ class ReferralsController < ApplicationController
   end
   
   def autocomplete_person_full_name
-    @persons = Person.autocomplete_fields.find_by_full_name params[:term]
+    @persons = Person.find_by_full_name(params[:term])
+    @persons.collect! do |p|
+      result = {}
+      result["id"] = p.id
+      result["value"] = p.full_name
+      result["label"] = p.full_name
+      result["sap_number"] = p.employee.sap_number unless p.employee == nil
+      result["dob"] = "#{p.date_of_birth}"
+      result
+    end
     respond_to do |format|
       format.json { render :json => @persons }
     end

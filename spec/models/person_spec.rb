@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe Person do
   
+  describe "scope autocomplete fields" do
+    it "should get full name as value"
+  end
+  
   describe "get full name" do
     let(:person) do
       Factory.build(:person, :first_name => "John", :last_name => "Doe")

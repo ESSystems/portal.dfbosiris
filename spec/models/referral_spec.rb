@@ -37,4 +37,6 @@ describe Referral do
     @referral.referral_reason = nil
     @referral.should_not be_valid
   end
+  
+  it "should generate a case reference number when created"
 end

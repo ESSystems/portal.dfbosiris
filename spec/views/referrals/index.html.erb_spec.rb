@@ -12,5 +12,6 @@ describe "referrals/index.html.erb" do
   
   it "should show a link to edit a referral"
   
+  it "should show case reference number"
   
 end

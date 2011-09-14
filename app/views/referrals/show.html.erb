@@ -3,7 +3,7 @@
 <% box_extra = link_to "Edit referral", edit_referral_path(@referral), :class => "btn orange right" %>
 <%= box_widget "Referral information", {:body_class => "information"}, [box_extra] do %>
 	<ul>
-		<li><span class="label">Person</span>: <%= @referral.person.full_name %></li>
+		<li><span class="label">Person</span>: <%= @referral.person.full_name %><br /><%= render 'shared/person_information', :person => @referral.person %></li>
 		<li><span class="label">Patient status</span>: <%= @referral.patient_status.status %></li>
 		<li><span class="label">Patient consent</span>: <%= @referral.show_patient_consent %></li>
 		<li><span class="label">Referral Reason</span>: <%= @referral.referral_reason.reason %></li>

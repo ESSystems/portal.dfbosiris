@@ -201,7 +201,7 @@ CREATE TABLE `documents` (
   `document_file_size` int(11) DEFAULT NULL,
   `document_updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `employee_department` (
   `person_id` int(11) NOT NULL,
@@ -302,7 +302,7 @@ CREATE TABLE `person` (
   `last_name` varchar(40) DEFAULT NULL,
   `middle_name` varchar(10) DEFAULT NULL,
   `title` varchar(12) DEFAULT NULL,
-  `date_of_birth` datetime DEFAULT NULL,
+  `date_of_birth` date DEFAULT NULL,
   `address1` varchar(100) DEFAULT NULL,
   `address2` varchar(100) DEFAULT NULL,
   `address3` varchar(100) DEFAULT NULL,
@@ -375,8 +375,9 @@ CREATE TABLE `referrals` (
   `patient_consent` tinyint(1) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
+  `case_reference_number` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `schema_migrations` (
   `version` varchar(255) NOT NULL,
@@ -459,3 +460,7 @@ INSERT INTO schema_migrations (version) VALUES ('20110901101452');
 INSERT INTO schema_migrations (version) VALUES ('20110903105240');
 
 INSERT INTO schema_migrations (version) VALUES ('20110903110107');
+
+INSERT INTO schema_migrations (version) VALUES ('20110913134713');
+
+INSERT INTO schema_migrations (version) VALUES ('20110913152746');

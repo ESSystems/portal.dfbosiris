@@ -2,11 +2,11 @@ class Person < ActiveRecord::Base
   set_table_name "person"
   
   has_one :patient
+  has_one :employee
   
-  scope :autocomplete_fields, select("id, CONCAT(first_name,' ',last_name) as label, CONCAT(first_name,' ',last_name) as value")
   scope :find_by_full_name, lambda { |search| 
     param = "%#{search}%"
-    where("first_name LIKE ? OR last_name LIKE ?", param, param) 
+    where("first_name LIKE ? OR last_name LIKE ?", param, param)
   }
     
   def full_name
@@ -46,5 +46,4 @@ class Person < ActiveRecord::Base
   def middle_name
     super.capitalize unless super == nil
   end
-  
 end

@@ -1,0 +1,8 @@
+<div id="person-info">
+	<% if defined?(person.employee) and person.employee != nil %>
+		<span><b>SAP Number:</b> <%= person.employee.sap_number %></span>
+	<% end %>
+	<% if defined?(person.date_of_birth) and person.date_of_birth != nil %>
+		<span><b>Dob:</b> <%= person.date_of_birth %></span>
+	<% end %>
+</div>

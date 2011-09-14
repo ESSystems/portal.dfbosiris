@@ -288,3 +288,9 @@ header .search {
 .icon.attachments {
 	background-image: url(/assets/chameleon-circuit/fugue/paper-clip-small.png)
 }
+
+#person-info {
+	display: inline;
+}
+#person-info span {color: #666666;}
+#edit_referral #person-info span {margin-left: 10px;}
