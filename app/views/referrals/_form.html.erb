@@ -20,9 +20,9 @@
 
 <%= box_widget "Case information" do %>
 	<%= form.inputs do %>
-		<%= form.input :case_nature, :as => :text %>
-		<%= form.input :specific_requirements, :as => :text %>
-		<%= form.input :advice, :as => :text %>
+		<%= form.input :case_nature, :as => :text, :hint => "Describe what is wrong with the patient" %>
+		<%= form.input :specific_requirements, :as => :text, :hint => "Does the patient require disabled access or morning appointments? Only speaks Spanish? Anything else similar" %>
+		<%= form.input :advice, :as => :text, :hint => "Advice already given to the patient which may be relevant" %>
 	<% end %>
 <% end %>
 

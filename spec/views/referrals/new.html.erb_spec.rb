@@ -66,6 +66,18 @@ describe "referrals/new.html.erb" do
     page.should have_selector(form_selector + "//button[@id='referral-file-to-upload']")
   end
   
+  it "should render a hint for case nature" do
+    page.should have_content("Describe what is wrong with the patient")
+  end
+  
+  it "should render a hint for specific requirements" do
+    page.should have_content("Does the patient require disabled access or morning appointments? Only speaks Spanish? Anything else similar")
+  end
+  
+  it "should render a hint for advice" do
+    page.should have_content("Advice already given to the patient which may be relevant")
+  end
+
   it "should render fields to upload other referrers"
   
 end
