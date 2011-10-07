@@ -8,7 +8,6 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require autocomplete-rails
-//= require chameleon-circuit/examples
 //= require scripts
 //= require chameleon-circuit/jquery.cleditor.min
 //= require chameleon-circuit/jquery.colorbox-min

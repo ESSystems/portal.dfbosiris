@@ -15,3 +15,15 @@ Then /^the field with id "([^"]*)" should contain "([^"]*)"$/ do |id, value|
     assert_match(/#{value}/, field_value)
   end
 end
+
+When /^I choose today in the "([^"]*)" datepicker$/ do |id|
+  page.execute_script %Q{ $('##{id}').trigger("focus") }
+  page.execute_script %Q{ $('##{id}').trigger("keydown") }
+  page.execute_script %Q{ $('##{id}').trigger("mouseenter").trigger("click"); }
+  sleep 1
+  page.execute_script %Q{ $('.ui-datepicker-today a').trigger("mouseenter").trigger("click") }
+end
+
+Then /^the "([^"]*)" field should contain today$/ do |field|
+  Then %Q{the "#{field}" field should contain "#{Date.today.to_s}"}
+end

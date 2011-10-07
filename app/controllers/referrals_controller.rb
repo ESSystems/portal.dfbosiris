@@ -2,9 +2,9 @@ class ReferralsController < ApplicationController
   
   autocomplete :person, :full_name, :full => true
 
-  before_filter :init
+  before_filter :init_options, :only => [:new, :edit]
   
-  def init
+  def init_options
     @patient_statuses = PatientStatus.all
     @referral_reasons = ReferralReason.all
   end

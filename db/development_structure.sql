@@ -28,9 +28,13 @@ CREATE TABLE `appointments` (
   `note` text,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
+  `case_nature` text,
   `attendance_id` int(11) DEFAULT NULL,
+  `referral_id` int(11) DEFAULT NULL,
+  `referral_reason_id` int(11) NOT NULL,
+  `diagnosis_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `attendance_reasons` (
   `code` varchar(8) NOT NULL,
@@ -377,7 +381,7 @@ CREATE TABLE `referrals` (
   `updated_at` datetime DEFAULT NULL,
   `case_reference_number` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `schema_migrations` (
   `version` varchar(255) NOT NULL,

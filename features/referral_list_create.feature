@@ -71,8 +71,8 @@ Feature: Show the list of referrals and create a new one
 	@javascript
 	Scenario: When choosing a person in the autocomplete list, there should be SAP number
 		Given the following employee exists:
-			| person_id | sap_number 	|
-			| 2			| 8001025		|
+			| Person 	| sap_number 	|
+			| Id: 2		| 8001025		|
 		And I am on the list of referrals 
 		When I follow "New referral"
 		And I fill in "Person" with "val"
@@ -95,8 +95,40 @@ Feature: Show the list of referrals and create a new one
 		When I follow "New referral"
 		And I follow "Show all people"
 		Then I should see all people in the autocomplete list
-	
-	Scenario: When choosing a date from the datepicker, date should be in the format: {dd} {month name} {year}
+		
+	@javascript
+	Scenario: Add new person if not in the list of people
 		Given I am on the list of referrals
 		When I follow "New referral"
+		And I follow "Show all people"
+		And I see all people in the autocomplete list
+		And I choose "Add new person" in the autocomplete list
+		And a modal window pops up
+		And I select "Mr." from "Title"
+		And I fill in the following: 
+			| First name		| Spencer				|
+			| Last name			| Wells					|
+			| Middle name		| K						|
+			| Date of birth		| 12 September 1976 	|
+			| Address 1			| 12 Dunscar			|
+			| Address 2			| Mulberry Park			|
+			| Address 3			| Houghton-le-Spring	|
+			| County			| Gateshead				|
+			| Post code			| QRE 32C				|
+			| Area code			| 6482					|
+			| Telephone number	| 4392130				|
+			| Extension			| 8932					|
+			| Email				| spencerw@test.com		|
+		And I select "M" from "Gender"
+		When I press "Add person"
+		Then the modal window should close
+		And the "Person" field should contain "Spencer K. Wells"
+		And I should see "12 September 1976"
+		
+	@javascript
+	Scenario: When choosing a date from the datepicker, date should be in the format: {dd} {month name}, {year}
+		Given I am on the list of referrals
+		When I follow "New referral"
+		And I choose today in the "referral_preferred_date" datepicker
+		Then the "referral_preferred_date" field should contain today
 		

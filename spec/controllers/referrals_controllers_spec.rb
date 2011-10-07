@@ -2,14 +2,6 @@ require 'spec_helper'
 
 describe ReferralsController do
   
-  describe "responding to GET new" do
-    it "should expose a new referral as @referral" do
-      # referral = Factory.build(:referral)
-      #       Referral.should_receive(:new).and_return(referral)
-      #       assigns[:referral].should equal(referral)
-    end
-  end
-  
   describe "POST create" do
     let(:referral) { mock_model(Referral).as_null_object }
     
@@ -53,6 +45,18 @@ describe ReferralsController do
         response.should render_template("new")
         flash[:error].should eq("Could not create new referral.")
       end
+    end
+  end
+  
+  describe "PUT update" do
+    let(:referral) {Factory(:referral)}
+    
+    context "when the referral saves successfully" do
+      it "redirects to referral view page"
+    end
+    
+    context "when the referral fails to save" do
+      it "renders the edit template"
     end
   end
   

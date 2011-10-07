@@ -8,7 +8,7 @@ describe Person do
   
   describe "get full name" do
     let(:person) do
-      Factory.build(:person, :first_name => "John", :last_name => "Doe")
+      Factory.build(:person, :first_name => "John", :middle_name => "A", :last_name => "Doe")
     end
     
     it "should show first name and last name if no middle name" do
