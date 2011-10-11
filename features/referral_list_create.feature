@@ -124,7 +124,7 @@ Feature: Show the list of referrals and create a new one
 		Then the modal window should close
 		And the "Person" field should contain "Spencer K. Wells"
 		And I should see "12 September 1976"
-		
+
 	@javascript
 	Scenario: When choosing a date from the datepicker, date should be in the format: {dd} {month name}, {year}
 		Given I am on the list of referrals

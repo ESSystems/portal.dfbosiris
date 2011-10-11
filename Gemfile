@@ -43,7 +43,7 @@ group :development, :test do
   gem 'guard-cucumber'
 
   # Pretty printed test output
-  gem 'turn', :require => false
+  gem 'turn', '< 0.8.3'
 
   gem 'simplecov'
 

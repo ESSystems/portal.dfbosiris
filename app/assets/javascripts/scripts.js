@@ -113,7 +113,7 @@ $(document).ready(function(){
 	});
     
   //jQuery UI Datepicker
-  $('.datepicker').datepicker({ dateFormat: 'd MM, yy' });
+  $('.datepicker').datepicker({ dateFormat: 'dd MM, yy' });
   
   $("tbody tr").hover(
 	function() {
@@ -138,8 +138,21 @@ $(document).ready(function(){
 			.data( "item.autocomplete", item )
 			.append( "<a>" + suggestion + "</a>" )
 			.appendTo( ul );
-		};
-	}
+	};
+	
+	$("#show-all-people").click(function() {
+  		var input = $("#referral_person_full_name");
+		if (input.autocomplete( "widget" ).is( ":visible" ) ) {
+			input.autocomplete( "close" );
+			return;
+		}
+		
+		input.autocomplete('option', 'source', input.attr('data-autocomplete'));
+		input.autocomplete('option', 'minLength', 0);
+		input.autocomplete("search", "");
+		input.focus();
+  	});
+  }
 });
 
 function person_info(sap_number,dob) {

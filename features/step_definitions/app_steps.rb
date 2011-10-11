@@ -27,3 +27,7 @@ end
 Then /^the "([^"]*)" field should contain today$/ do |field|
   Then %Q{the "#{field}" field should contain "#{Date.today.to_s}"}
 end
+
+Then /^I should see all people in the autocomplete list$/ do
+  pending # express the regexp above with the code you wish you had
+end

@@ -31,7 +31,7 @@ describe "referrals/new.html.erb" do
   end
   
   it "should have a button to show all people" do
-    page.should have_link("//a[@id='show-all-people']")
+    page.should have_link("show-all-people")
   end
   
   it "should render a select for patient status" do
