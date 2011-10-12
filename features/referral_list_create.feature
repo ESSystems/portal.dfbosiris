@@ -94,8 +94,11 @@ Feature: Show the list of referrals and create a new one
 		Given I am on the list of referrals
 		When I follow "New referral"
 		And I follow "Show all people"
-		Then I should see all people in the autocomplete list
-		
+		Then I should see "Kishen B. Luitger"
+		And I should see "Valere Romanus"
+		And I should see "Bert S. Geraldo"
+		And I should see "Allyson Ishee"
+
 	@javascript
 	Scenario: Add new person if not in the list of people
 		Given I am on the list of referrals
