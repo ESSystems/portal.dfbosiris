@@ -17,8 +17,16 @@
 <% end %>
 
 <% if @referral.appointment %>
-	<% confirm_extra = link_to "Confirm appointment", confirm_appointment_path(@referral.appointment), :class => "btn orange right" if not @referral.appointment.confirmed %>
+	<%
+		if @referral.appointment.confirmed
+			appointment_message = "You confirmed the appointment for"
+			confirm_extra = ""
+		else
+			appointment_message = "An appointment was created for this referral"
+			confirm_extra = link_to "Confirm appointment", confirm_appointment_path(@referral.appointment), :class => "btn orange right"
+		end
+	%>
 	<%= box_widget "Appointment", {}, [confirm_extra] do %>
-		<p>An appointment was created for this referral: <b><%= @referral.appointment.from_date.to_date %></b> from <b><%= @referral.appointment.from_date.to_s(:hours_and_minutes) %> to <%= @referral.appointment.to_date.to_s(:hours_and_minutes) %></b></p>
+		<p><%= appointment_message %>: <b><%= @referral.appointment.display_date %></b> with <%= @referral.appointment.diary.name %></p>
 	<% end %>
 <% end %>

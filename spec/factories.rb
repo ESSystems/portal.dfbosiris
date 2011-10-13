@@ -2,8 +2,8 @@ Factory.define :appointment do |a|
   a.association :person
   a.association :referral
   a.association :referral_reason
+  a.association :diary
   a.user_id 10614
-  a.diary_id 5
   a.from_date {Time.now + (60 * 60 * 48)}
   a.to_date {Time.now + (60 * 60 * 49)}
 end
@@ -12,6 +12,16 @@ Factory.define :client do |f|
 end
 
 Factory.define :department do |f|
+end
+
+Factory.define :diary do |d|
+  d.name Forgery(:name).full_name
+  d.appointment_length 0
+  d.available_days 0
+  d.color_id 21
+  d.start_time "00:00:00"
+  d.end_time "00:00:00"
+  d.owner_id 0
 end
 
 Factory.define :employee do |f|
@@ -34,7 +44,7 @@ Factory.define :patient_status do |f|
 end
 
 Factory.define :person do |f|
-  #f.association :employee
+#f.association :employee
   f.first_name Forgery(:name).first_name
   f.last_name Forgery(:name).last_name
   f.middle_name Forgery(:lorem_ipsum).character

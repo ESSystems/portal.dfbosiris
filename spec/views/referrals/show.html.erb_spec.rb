@@ -54,7 +54,28 @@ describe "referrals/show.html.erb" do
     end
     
     describe "show appointment information" do
-      it "should show doctor name"
+      let(:appointment) do
+        Factory(:appointment, :referral => referral)
+      end
+      
+      it "should show doctor name" do
+        referral.appointment = appointment
+        visit referral_path(referral)
+        page.should have_content("with #{appointment.diary.name}")
+      end
+      
+      it "should show that an appointment was created if one exists" do
+        referral.appointment = appointment
+        visit referral_path(referral)
+        page.should have_content("An appointment was created for this referral: " << appointment.display_date)
+      end
+      
+      it "should show that appointment was confirmed if it was" do
+        appointment.confirmed = true
+        referral.appointment = appointment
+        visit referral_path(referral)
+        page.should have_content("You confirmed the appointment for: " << appointment.display_date)
+      end
     end
     
     describe "show appointment confirmation options" do
