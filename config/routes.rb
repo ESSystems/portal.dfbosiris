@@ -3,6 +3,10 @@ ClinicManagerExtension::Application.routes.draw do
   resources :referrals do
     get :autocomplete_person_full_name, :on => :collection
   end
+  
+  resources :appointments do
+    get :confirm_appointment, :on => :member, :as => "confirm"
+  end
 
   root :to => "referrals#index"
   

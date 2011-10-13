@@ -1,5 +1,5 @@
 Feature: Show the list of referrals and create a new one
-	As an user with full rights
+	As a user with full rights
 	I want to raise an electronic referral
 	In order to schedule appointments for employees
 	

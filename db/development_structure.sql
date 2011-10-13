@@ -33,6 +33,7 @@ CREATE TABLE `appointments` (
   `referral_id` int(11) DEFAULT NULL,
   `referral_reason_id` int(11) NOT NULL,
   `diagnosis_id` int(11) DEFAULT NULL,
+  `confirmed` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
@@ -468,3 +469,5 @@ INSERT INTO schema_migrations (version) VALUES ('20110903110107');
 INSERT INTO schema_migrations (version) VALUES ('20110913134713');
 
 INSERT INTO schema_migrations (version) VALUES ('20110913152746');
+
+INSERT INTO schema_migrations (version) VALUES ('20111013150210');

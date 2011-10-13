@@ -1,5 +1,7 @@
 class Appointment < ActiveRecord::Base
   belongs_to :referral
+  belongs_to :person
+  belongs_to :referral_reason
   set_inheritance_column :ruby_type
 
   # getter for the "type" column
