@@ -4,6 +4,8 @@ class ReferralsController < ApplicationController
 
   before_filter :init_options, :only => [:new, :edit]
   
+  load_and_authorize_resource
+  
   def init_options
     @patient_statuses = PatientStatus.all
     @referral_reasons = ReferralReason.all
