@@ -26,14 +26,16 @@
 		-->
 	                <nav>
 	                    <div id="navcontainer" class="clearfix">
-	                    <div id="user" class="clearfix">
-	                        <img src="/assets/ioh-avatar.jpg" alt="" />
-	                        <strong class="username">Welcome, <a href="#">HR</a></strong>
-	                        <ul class="piped">
-	                            <li><a href="#">My Account</a></li>
-	                            <li><a href="#">Logout</a></li>
-	                        </ul>
-	                    </div>
+	                    <% if user_signed_in? %>
+		                    <div id="user" class="clearfix">
+		                        <img src="/assets/ioh-avatar.jpg" alt="" />
+		                        <strong class="username">Welcome, <a href="#"><%= current_user.person.full_name %></a></strong>
+		                        <ul class="piped">
+		                            <li><a href="#">My Account</a></li>
+		                            <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+		                        </ul>
+		                    </div>
+		                <% end %>
 
 	                    <div id="navclose"></div>
 

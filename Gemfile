@@ -15,8 +15,10 @@ group :assets do
   gem 'uglifier'
 end
 
+gem 'devise'
+gem 'cancan'
 gem 'jquery-rails'
-gem 'formtastic', "~> 2.0.0.rc"
+gem 'formtastic'
 gem 'rails3-jquery-autocomplete'
 gem 'paperclip'
 
@@ -36,7 +38,7 @@ group :development, :test do
   gem 'cucumber-rails'
   gem 'launchy'
   gem 'database_cleaner'
-  gem 'forgery', '~> 0.5.0'
+  gem 'forgery'
   
   # Guard stuff
   gem 'guard-rspec'

@@ -384,6 +384,28 @@ CREATE TABLE `referrals` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
+CREATE TABLE `referrers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL DEFAULT '',
+  `encrypted_password` varchar(128) NOT NULL DEFAULT '',
+  `reset_password_token` varchar(255) DEFAULT NULL,
+  `reset_password_sent_at` datetime DEFAULT NULL,
+  `remember_created_at` datetime DEFAULT NULL,
+  `sign_in_count` int(11) DEFAULT '0',
+  `current_sign_in_at` datetime DEFAULT NULL,
+  `last_sign_in_at` datetime DEFAULT NULL,
+  `current_sign_in_ip` varchar(255) DEFAULT NULL,
+  `last_sign_in_ip` varchar(255) DEFAULT NULL,
+  `person_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_referrers_on_email` (`email`),
+  UNIQUE KEY `index_referrers_on_reset_password_token` (`reset_password_token`),
+  UNIQUE KEY `index_referrers_on_username` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE `schema_migrations` (
   `version` varchar(255) NOT NULL,
   UNIQUE KEY `unique_schema_migrations` (`version`)
@@ -471,3 +493,9 @@ INSERT INTO schema_migrations (version) VALUES ('20110913134713');
 INSERT INTO schema_migrations (version) VALUES ('20110913152746');
 
 INSERT INTO schema_migrations (version) VALUES ('20111013150210');
+
+INSERT INTO schema_migrations (version) VALUES ('20111014112238');
+
+INSERT INTO schema_migrations (version) VALUES ('20111014114908');
+
+INSERT INTO schema_migrations (version) VALUES ('20111016101505');
