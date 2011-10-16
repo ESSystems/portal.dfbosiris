@@ -27,7 +27,7 @@ hr_user = User.find_or_initialize_by_username("hresources")
 hr_user.update_attributes({
   :email => hr_person.email_address,
   :password => "abc123",
-  :password_confirmation => "abc123",
-  :person_id => hr_person.id
+  :password_confirmation => "abc123"
 })
+hr_user.update_attribute(:person_id, hr_person.id)
 puts "finished creating test users."
