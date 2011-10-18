@@ -39,10 +39,10 @@ group :development, :test do
   gem 'launchy'
   gem 'database_cleaner'
   gem 'forgery'
-  
-  # Guard stuff
   gem 'guard-rspec'
   gem 'guard-cucumber'
+  gem 'spork', '~> 0.9.0.rc'
+  gem 'guard-spork'
 
   # Pretty printed test output
   gem 'turn', '< 0.8.3'

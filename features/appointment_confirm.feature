@@ -2,7 +2,7 @@ Feature: Confirm appointment or change appointment date
 	As a user
 	I want to confirm or cancel an appointment
 	In order to fit my availability
-	
+
 	Background:
 		Given the following patient status exists:
 			| Off sick	|
@@ -18,7 +18,7 @@ Feature: Confirm appointment or change appointment date
 		And the following diary exists:
 			| id	| Name				|
 			| 20	| Doctor Holland	|
-		
+
 	Scenario: Confirm appointment
 		Given the following appointment exists:
 			| Diary		| Person 	| from_date 			| to_date 				| Referral	| Referral reason 						|
@@ -29,9 +29,8 @@ Feature: Confirm appointment or change appointment date
 		Then I should see "Appointment confirmed"
 		And I should see "You confirmed the appointment for: 09 September, 2011 from 11:00 to 12:00 with Doctor Holland"
 		And I should not see "Confirm appointment"
-		
+
 	Scenario: Don't show confirm button if an appointment is not associated with the referral
 		Given I am on the list of referrals
 		And I follow "View"
 		Then I should not see "Confirm appointment"
-		

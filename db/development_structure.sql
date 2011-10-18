@@ -319,7 +319,7 @@ CREATE TABLE `person` (
   `gender` varchar(2) DEFAULT NULL,
   `email_address` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=23968 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=23976 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `recall_list_item_events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -404,7 +404,7 @@ CREATE TABLE `referrers` (
   UNIQUE KEY `index_referrers_on_email` (`email`),
   UNIQUE KEY `index_referrers_on_reset_password_token` (`reset_password_token`),
   UNIQUE KEY `index_referrers_on_username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `schema_migrations` (
   `version` varchar(255) NOT NULL,
