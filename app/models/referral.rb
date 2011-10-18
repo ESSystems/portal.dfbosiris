@@ -1,13 +1,15 @@
 class Referral < ActiveRecord::Base
   attr_accessor :person_full_name
-  attr_accessible :person, :person_id, :patient_status, :patient_status_id, :patient_consent, :case_nature, :specific_requirements, :advice, :referral_reason, :referral_reason_id, :documents_attributes, :preferred_date
+  attr_accessible :referrer_id, :person, :person_id, :patient_status, :patient_status_id, :patient_consent, :case_nature, :specific_requirements, :advice, :referral_reason, :referral_reason_id, :documents_attributes, :preferred_date
   
+  belongs_to :user, :foreign_key => "referrer_id"
   belongs_to :person
   belongs_to :patient_status
   belongs_to :referral_reason
   has_many :documents, :as => :attachable, :dependent => :destroy
   has_one :appointment
-  
+
+  validates :user, :presence => true
   validates :person, :presence => true
   validates :patient_status, :presence => true
   validates :person_id, :presence => true
@@ -33,6 +35,14 @@ class Referral < ActiveRecord::Base
     cn
   end
   
+  def referrer
+    user
+  end
+  
+  def referrer=(r)
+    self.user=r
+  end
+
   private 
   
   def generate_case_reference_number

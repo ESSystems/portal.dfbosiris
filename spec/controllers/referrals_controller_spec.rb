@@ -14,6 +14,8 @@ describe ReferralsController do
       post :create
     end
     
+    it "should assign the current user as the referrer"
+    
     context "when the referral saves successfully" do
       before do
         referral.stub(:save).and_return(true)
@@ -51,6 +53,8 @@ describe ReferralsController do
   describe "PUT update" do
     let(:referral) {Factory(:referral)}
     
+    it "should not modify the user that created the referral, i.e. referrer_id"
+
     context "when the referral saves successfully" do
       it "redirects to referral view page"
     end

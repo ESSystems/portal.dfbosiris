@@ -43,11 +43,11 @@ Factory.define :patient_status do |f|
   f.status Forgery(:lorem_ipsum).words(3)
 end
 
-Factory.define :person do |f|
-#f.association :employee
-  f.first_name Forgery(:name).first_name
-  f.last_name Forgery(:name).last_name
-  f.middle_name Forgery(:lorem_ipsum).character
+Factory.define :person do |p|
+  #p.association :employee
+  p.first_name Forgery(:name).first_name
+  p.last_name Forgery(:name).last_name
+  p.middle_name Forgery(:lorem_ipsum).character
 end
 
 Factory.define :referral do |f|
@@ -55,8 +55,16 @@ Factory.define :referral do |f|
   f.association :patient_status
   f.case_nature Forgery(:lorem_ipsum).words(30)
   f.association :referral_reason
+  f.association :user
 end
 
 Factory.define :referral_reason do |f|
   f.reason Forgery(:lorem_ipsum).words(6)
+end
+
+Factory.define :user do |u|
+  u.association :person
+  u.username Forgery(:basic).text(:at_least => 6)
+  u.email Forgery(:internet).email_address
+  u.password Forgery(:basic).password(:at_least => 6)
 end

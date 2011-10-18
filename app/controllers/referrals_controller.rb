@@ -29,6 +29,7 @@ class ReferralsController < ApplicationController
   
   def create
     @referral = Referral.new(params[:referral])
+    @referral.referrer = current_user
     if @referral.save
       flash[:success] = "New referral created."
       redirect_to :action => "index"
