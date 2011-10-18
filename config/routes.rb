@@ -4,6 +4,7 @@ ClinicManagerExtension::Application.routes.draw do
 
   resources :referrals do
     get :autocomplete_person_full_name, :on => :collection
+    get :followers_suggestions, :on => :collection
   end
   
   resources :appointments do

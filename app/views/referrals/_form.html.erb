@@ -57,10 +57,11 @@
 
 <%= box_widget "Submit referral" do %>
 	<%= form.inputs do %>
-			<%= form.input :referral_reason, :collection => @referral_reasons.map {|u| [u.reason, u.id]} %>
-			<%= form.input :preferred_date, :as => :datepicker %>
-		<% end %>
-		<%= form.buttons do %>
-			<%= form.commit_button :button_html => {:class => "btn large orange auto"} %>
-		<% end %>
+		<%= form.input :referral_reason, :collection => @referral_reasons.map {|u| [u.reason, u.id]} %>
+		<%= form.input :preferred_date, :as => :datepicker %>
+		<%= form.input :followers, :input_html => {:id => "cmx-token-input", :class => "clean", :suggestions_url => followers_suggestions_referrals_path}, :include_blank => true %>
+	<% end %>
+	<%= form.buttons do %>
+		<%= form.commit_button :button_html => {:class => "btn large orange auto"} %>
+	<% end %>
 <% end%>

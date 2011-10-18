@@ -9,4 +9,5 @@
  *= require chameleon-circuit/style
  *= require chameleon-circuit/fluid
  *= require chameleon-circuit/fixed
+ *= require token-input-facebook
 */

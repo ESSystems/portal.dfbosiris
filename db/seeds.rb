@@ -19,7 +19,8 @@ puts "creating test users..."
 hr_person = Person.find_or_initialize_by_email_address("hresources@test.com")
 hr_person.update_attributes({
   :first_name => "John",
-  :last_name => "Doe",
+  :middle_name => "V",
+  :last_name => "Carter",
   :title => "Mr",
   :date_of_birth => "1980-11-05"
 })
@@ -30,4 +31,20 @@ hr_user.update_attributes({
   :password_confirmation => "abc123"
 })
 hr_user.update_attribute(:person_id, hr_person.id)
+
+tm_person = Person.find_or_initialize_by_email_address("tmanager@test.com")
+tm_person.update_attributes({
+  :first_name => "Barbara",
+  :middle_name => "F",
+  :last_name => "Shehan",
+  :title => "Mrs",
+  :date_of_birth => "1968-19-02"
+})
+tm_user = User.find_or_initialize_by_username("tmanager")
+tm_user.update_attributes({
+  :email => tm_person.email_address,
+  :password => "abc123",
+  :password_confirmation => "abc123"
+})
+tm_user.update_attribute(:person_id, tm_person.id)
 puts "finished creating test users."

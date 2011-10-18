@@ -13,4 +13,13 @@ class User < ActiveRecord::Base
   validates :username, :presence => true
   validates :username, :uniqueness => {:case_sensitive => false}
   validates :username, :length => {:minimum => 6}
+  
+  scope :find_by_full_name, lambda { |search| 
+    param = "%#{search}%"
+    joins(:person).where("person.first_name LIKE ? OR person.last_name LIKE ?", param, param)
+  }
+
+  def display_name
+    person.full_name
+  end
 end

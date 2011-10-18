@@ -49,8 +49,8 @@ $(document).ready(function(){
     });
 
     //Selectmenu
-	//$('.forcewidth').selectmenu({width:120});
-    $('select').selectmenu();
+	//$('.forcewidth').selectormenu({width:120});
+    $('select:not(.clean)').selectmenu();
 
     // iOS checkbox
    $('.ioscheckbox').iphoneStyle({
@@ -153,7 +153,38 @@ $(document).ready(function(){
 		input.focus();
   	});
   }
+  
+  // Token input should be a select for this to work
+  if($("#cmx-token-input").length) {
+  	selector = "#cmx-token-input";
+  	suggestions_url = $(selector).attr("suggestions_url");
+  	$(selector).tokenInput(suggestions_url, {
+    	theme: "facebook",
+    	preventDuplicates: true,
+    	onAdd: function (item) {
+    		current_values = $(selector).tokenInput("get");
+    		select_values = new Array();
+    		for(var i in current_values) {
+    			select_values.push(current_values[i].id);
+    		}
+        	$(selector).val(select_values);
+        },
+        onDelete: function (item) {
+        	$(selector + " option[value='" + item.id + "']").removeAttr('selected');
+        },
+        prePopulate: token_input_existing_values(selector)
+	});
+  }
 });
+
+function token_input_existing_values(selector) {
+	existing_values = $(selector).val();
+	items = new Array();
+	for(var i in existing_values) {
+		items.push({id: existing_values[i], name: $(selector + " option[value='" + existing_values[i] + "']").text()})
+	}
+	return items;
+}
 
 function person_info(sap_number,dob) {
 	info = ""

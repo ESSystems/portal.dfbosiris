@@ -65,4 +65,17 @@ class ReferralsController < ApplicationController
       format.json { render :json => @persons }
     end
   end
+  
+  def followers_suggestions
+    @followers = User.find_by_full_name(params[:q])
+    @followers.collect! do |f|
+      result = {}
+      result["id"] = f.id
+      result["name"] = f.person.full_name
+      result
+    end
+    respond_to do |format|
+      format.json { render :json => @followers }
+    end
+  end
 end

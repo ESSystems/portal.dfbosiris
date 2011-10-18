@@ -17,4 +17,5 @@
 //= require chameleon-circuit/jquery.tipsy
 //= require chameleon-circuit/iphone-style-checkboxes
 //= require chameleon-circuit/superfish
+//= require jquery.tokeninput
 
