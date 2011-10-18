@@ -9,7 +9,6 @@
 			<%= render 'shared/person_information', :person => @referral.person %>
 			<p class="inline-hints">Begin typing to get suggestions</p>
 		</li>
-		<% #= form.autocompleted_input :patient_full_name, :url => autocomplete_patient_full_name_referrals_path %>
 		<%= form.input :patient_status, :collection => @patient_statuses.map {|u| [u.status, u.id]} %>
 		<li class="input">
 			<%= form.label :patient_consent, :class => "label" %>

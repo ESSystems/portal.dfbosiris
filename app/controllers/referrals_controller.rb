@@ -2,7 +2,7 @@ class ReferralsController < ApplicationController
   
   autocomplete :person, :full_name, :full => true
 
-  before_filter :init_options, :only => [:new, :edit]
+  before_filter :init_options, :only => [:new, :edit, :update, :create]
   
   load_and_authorize_resource
   
@@ -12,7 +12,13 @@ class ReferralsController < ApplicationController
   end
 
   def index
-    @referrals = Referral.all
+    if !current_user.nil?
+      if current_user.track_referrals == "all"
+        @referrals = Referral.all
+      elsif current_user.track_referrals == "initiated_and_assigned"
+        @referrals = Referral.initiated_and_assigned(current_user.id)
+      end
+    end
   end
   
   def show

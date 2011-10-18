@@ -44,13 +44,15 @@ describe "referrals/show.html.erb" do
       
       it "should show advice"
       
-      it "should show attached documents"
+      it "should show attached documents if there are any attached documents"
 
       it "should show a link to edit a referral" do
         page.should have_link("Edit", :href => edit_referral_path(referral))
       end
       
       it "should show a link to cancel a referral"
+      
+      it "should show referral followers if there are any followers"
     end
     
     describe "show appointment information" do

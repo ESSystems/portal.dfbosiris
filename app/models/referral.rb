@@ -21,6 +21,19 @@ class Referral < ActiveRecord::Base
   accepts_nested_attributes_for :documents, :reject_if => lambda { |d| d[:document].blank? and d[:id] == "" }, :allow_destroy => true
 
   after_initialize :generate_case_reference_number
+  
+  scope :initiated, lambda { |referrer_id|
+    where("referrals.referrer_id" => referrer_id)
+  }
+  
+  scope :assigned, lambda { |referrer_id|
+    joins(:followers).where("referrals_followers.referrer_id" => referrer_id)
+  }
+  
+  scope :initiated_and_assigned, lambda { |referrer_id|
+    initiated(referrer_id) | assigned(referrer_id)
+  }
+
   def person_full_name
     person.full_name unless person.nil?
   end

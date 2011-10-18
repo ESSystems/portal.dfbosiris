@@ -55,7 +55,7 @@ Factory.define :referral do |f|
   f.association :patient_status
   f.case_nature Forgery(:lorem_ipsum).words(30)
   f.association :referral_reason
-  f.association :user
+  f.association :referrer, :factory => :user
 end
 
 Factory.define :referral_reason do |f|
@@ -67,4 +67,5 @@ Factory.define :user do |u|
   u.username Forgery(:basic).text(:at_least => 6)
   u.email Forgery(:internet).email_address
   u.password Forgery(:basic).password(:at_least => 6)
+  u.track_referrals "all"
 end

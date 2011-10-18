@@ -28,23 +28,42 @@ hr_user = User.find_or_initialize_by_username("hresources")
 hr_user.update_attributes({
   :email => hr_person.email_address,
   :password => "abc123",
-  :password_confirmation => "abc123"
+  :password_confirmation => "abc123",
+  :track_referrals => "all"
 })
 hr_user.update_attribute(:person_id, hr_person.id)
 
-tm_person = Person.find_or_initialize_by_email_address("tmanager@test.com")
-tm_person.update_attributes({
+tl_person = Person.find_or_initialize_by_email_address("tleader@test.com")
+tl_person.update_attributes({
   :first_name => "Barbara",
   :middle_name => "F",
   :last_name => "Shehan",
   :title => "Mrs",
   :date_of_birth => "1968-19-02"
 })
-tm_user = User.find_or_initialize_by_username("tmanager")
-tm_user.update_attributes({
-  :email => tm_person.email_address,
+tl_user = User.find_or_initialize_by_username("tleader")
+tl_user.update_attributes({
+  :email => tl_person.email_address,
   :password => "abc123",
-  :password_confirmation => "abc123"
+  :password_confirmation => "abc123",
+  :track_referrals => "initiated_and_assigned"
 })
-tm_user.update_attribute(:person_id, tm_person.id)
+tl_user.update_attribute(:person_id, tl_person.id)
+
+tl_person_2 = Person.find_or_initialize_by_email_address("teaml@test.com")
+tl_person_2.update_attributes({
+  :first_name => "Charlie",
+  :middle_name => "B",
+  :last_name => "Brigham",
+  :title => "Mr",
+  :date_of_birth => "1971-25-10"
+})
+tl_user_2 = User.find_or_initialize_by_username("teaml")
+tl_user_2.update_attributes({
+  :email => tl_person_2.email_address,
+  :password => "abc123",
+  :password_confirmation => "abc123",
+  :track_referrals => "initiated_and_assigned"
+})
+tl_user_2.update_attribute(:person_id, tl_person_2.id)
 puts "finished creating test users."

@@ -9,8 +9,14 @@ class ApplicationController < ActionController::Base
   end
   
   rescue_from CanCan::AccessDenied do |exception|  
-    flash[:error] = "Access denied! Please login first!"  
-    redirect_to user_session_url  
+    Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
+    if !current_user.nil?
+      flash[:error] = "You don't have access to this resource! Please contact your supervisor or IOH Staff Members!"
+      redirect_to root_url
+    elsif
+      flash[:error] = "Access denied! Please login first!"
+      redirect_to user_session_url
+    end
   end
   
   def after_sign_out_path_for(resource_or_scope)

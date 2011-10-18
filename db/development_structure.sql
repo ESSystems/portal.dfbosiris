@@ -319,7 +319,7 @@ CREATE TABLE `person` (
   `gender` varchar(2) DEFAULT NULL,
   `email_address` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=23976 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=23979 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `recall_list_item_events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -381,8 +381,16 @@ CREATE TABLE `referrals` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `case_reference_number` varchar(255) DEFAULT NULL,
+  `referrer_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `referrals_followers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `referral_id` int(11) DEFAULT NULL,
+  `referrer_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `referrers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -400,11 +408,12 @@ CREATE TABLE `referrers` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
+  `track_referrals` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_referrers_on_email` (`email`),
   UNIQUE KEY `index_referrers_on_reset_password_token` (`reset_password_token`),
   UNIQUE KEY `index_referrers_on_username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `schema_migrations` (
   `version` varchar(255) NOT NULL,
@@ -499,3 +508,9 @@ INSERT INTO schema_migrations (version) VALUES ('20111014112238');
 INSERT INTO schema_migrations (version) VALUES ('20111014114908');
 
 INSERT INTO schema_migrations (version) VALUES ('20111016101505');
+
+INSERT INTO schema_migrations (version) VALUES ('20111018045237');
+
+INSERT INTO schema_migrations (version) VALUES ('20111018074734');
+
+INSERT INTO schema_migrations (version) VALUES ('20111018134316');
