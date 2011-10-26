@@ -12,6 +12,8 @@ module NavigationHelpers
       '/'
     when /the list of referrals/
       referrals_path
+    when /the login page/
+      new_user_session_path
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

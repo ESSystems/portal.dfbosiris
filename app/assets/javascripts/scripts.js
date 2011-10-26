@@ -126,6 +126,24 @@ $(document).ready(function(){
   
   $('[original-title]').tipsy();
   
+  var $referral_patient_consent_dialog = $('<div></div>')
+  	.html("Please attach a copy of the patient consent!")
+	.dialog({
+		autoOpen: false,
+		title: 'Patient Consent',
+		modal: true,
+		buttons: {
+			Ok: function() {
+				$(this).dialog( "close" );
+			}
+		}
+	});
+  $("#referral_patient_consent").click(function(){
+  	if($("#referral_patient_consent:checked").val()) {
+  		$referral_patient_consent_dialog.dialog('open');
+  	}
+  })
+  
   if($("#referral_person_full_name").length) {
   	$("#referral_person_full_name").bind( "autocompleteselect", function(event, ui) { 
 		$("#person-info").html(person_info(ui.item.sap_number, ui.item.dob));

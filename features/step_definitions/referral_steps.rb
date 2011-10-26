@@ -42,3 +42,9 @@ Given /^I have created the following referrals:$/ do |table|
     referral.update_attributes(associations)
   end
 end
+
+When /^I check "([^"]*)" and confirm "([^"]*)"$/ do |check, confirm|
+  When %Q{I check "#{check}"}
+  Then %Q{I should see "#{confirm}"}
+  And %Q{I press "Ok"}
+end

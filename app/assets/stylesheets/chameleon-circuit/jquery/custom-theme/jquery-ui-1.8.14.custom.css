@@ -68,7 +68,8 @@
 ----------------------------------*/
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {  }
 .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { }
-.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { background: #eee; border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; }
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { }
+.ui-menu .ui-state-hover {background: #eee; border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;}
 .ui-state-hover a, .ui-state-hover a:hover { }
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: 1px solid #545a64; font-weight: normal; color: #ffffff; }
 .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { }

@@ -27,3 +27,21 @@ end
 Then /^the "([^"]*)" field should contain today$/ do |field|
   Then %Q{the "#{field}" field should contain "#{Date.today.to_s}"}
 end
+
+Given /^(?:|I am )logged in with "([^"]*)" rights$/ do |rights|
+  steps %Q{
+  Given the following person exists:
+      | id    | first_name  | middle_name | last_name   | date_of_birth |
+      | 100   | John        | V           | Carter      | 1980-03-23    |
+  }
+  steps %Q{
+  And the following user exists:
+      | Id  | Username  | Email                 | Password  | Person  | Track Referrals |
+      | 100 | jcarter   | john.carter@test.com  | abc123    | Id: 100 | #{rights}       |
+  }
+  visit path_to("the login page")
+  fill_in("Username", :with => "jcarter")
+  fill_in("Password", :with => "abc123")
+  click_button("Sign in")
+  page.should have_content("Signed in successfully.")
+end

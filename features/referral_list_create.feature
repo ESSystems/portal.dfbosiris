@@ -1,26 +1,29 @@
 Feature: Show the list of referrals and create a new one
-	As a user with full rights
+	As a user with initiated_and_assigned rights
 	I want to raise an electronic referral
 	In order to schedule appointments for employees
-	
+
 	Background:
-		Given following patient statuses exist:
+		Given I am logged in with "initiated_and_assigned" rights
+		And the following patient statuses exist:
+			| status				|
 			| Off sick				|
 			| Phased return to work	|
 			| At work				|
-		Given following referral reasons exist:
+		And the following referral reasons exist:
+			| reason						|
 			| Prolonged sickness referral 	|
 			| Fitness to work 				|
 			| Fitness to return to work 	|
 			| Functional Assessment 		|
 			| Short term sickness 			|
-		Given following people exist:
+		And the following people exist:
 			| id	| first_name 	| middle_name	| last_name 	| date_of_birth |
 			| 1		| Kishen		| B				| Luitger		|				|
 			| 2		| Valere		| 				| Romanus		| 1980-03-23	|
 			| 3		| Bert			| S.			| Geraldo		|				|
 			| 4		| Allyson		| 				| Ishee			|				|
-		
+
 	@javascript
 	Scenario: Create Valid Referral
 		Given I have no referrals 
@@ -29,7 +32,7 @@ Feature: Show the list of referrals and create a new one
 		And I fill in "Person" with "val"
 		And I choose "Valere Romanus" in the autocomplete list
 		And I select "Off sick" from selectmenu "Patient status"
-		And I check "Patient consent"
+		And I check "Patient consent" and confirm "Please attach a copy of the patient consent!" 
 		And I fill in the following:
 			| Case nature	 			| Off sick for 3 months with a broken ankle. Fell off a ladder at home. 	|
 			| Specific requirements 	| Be gentle.																|
@@ -46,9 +49,9 @@ Feature: Show the list of referrals and create a new one
 	Scenario: Show referrals
 		Given I have no referrals
 		And the following referrals exist:
-			| Person	| Patient status	| Case Nature	| Referral reason 				| Case Reference Number |
-			| Id: 3		| Status: Off sick	| Fell off		| Reason: Long term disease 	| 4321534582			|
-			| Id: 4 	| Status: At work	| Broken hand	| Reason: Short term sickness 	| 0853290543			|
+			| Person	| Patient status	| Case Nature	| Referral reason 				| Case Reference Number | Referrer		|
+			| Id: 3		| Status: Off sick	| Fell off		| Reason: Long term disease 	| 4321534582			| Id: 100		|
+			| Id: 4 	| Status: At work	| Broken hand	| Reason: Short term sickness 	| 0853290543			| Id: 100		|
 		When I go to the list of referrals
 		Then I should see "Bert S. Geraldo"
 		And I should see "Fell off"
@@ -58,7 +61,7 @@ Feature: Show the list of referrals and create a new one
 		And I should see "Broken hand"
 		And I should see "Short term sickness"
 		And I should see "0853290543"
-			
+
 	@javascript
 	Scenario: When choosing a person in the autocomplete list, there should be full name
 		Given I am on the list of referrals 
