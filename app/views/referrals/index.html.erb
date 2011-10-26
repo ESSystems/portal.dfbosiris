@@ -30,9 +30,15 @@
 			  		<td><%= h(referral.referral_reason.reason) %></td>
 			  		<td>
 			  			<ul class="hor-list piped">
-			  				<li><%= link_to "View", referral_path(referral) %></li>
-			  				<li><%= link_to "Edit", edit_referral_path(referral) %></li>
-			  				<li><a href="#">Cancel</a></li>
+			  				<% if can? :show, referral %>
+			  					<li><%= link_to "View", referral_path(referral) %></li>
+			  				<% end %>
+			  				<% if can? :edit, referral %>
+			  					<li><%= link_to "Edit", edit_referral_path(referral) %></li>
+			  				<% end %>
+			  				<% if can? :cancel, referral %>
+			  					<li><%= link_to "Cancel", cancel_referral_path(referral) %></li>
+			  				<% end %>
 			  			</ul>
 			  		</td>
 				</tr>

@@ -7,7 +7,10 @@ class Ability
         can :manage, :all
       elsif user.track_referrals == "initiated_and_assigned"
         can [:index, :create], :all
-        can [:show, :edit, :update, :new, :autocomplete_person_full_name, :followers_suggestions], Referral do |r|
+        can [:edit, :update, :cancel, :autocomplete_person_full_name, :followers_suggestions], Referral do |r|
+          r.try(:referrer) == user
+        end
+        can [:show], Referral do |r|
           r.try(:referrer) == user || r.try(:followers).include?(user)
         end
       end

@@ -33,6 +33,9 @@ class ReferralsController < ApplicationController
     @referral = Referral.new
   end
   
+  def cancel
+  end
+  
   def create
     @referral = Referral.new(params[:referral])
     @referral.referrer = current_user

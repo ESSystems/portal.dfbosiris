@@ -4,8 +4,11 @@ describe ReferralsController do
   
   describe "POST create" do
     let(:referral) { mock_model(Referral).as_null_object }
-    
+
     before do
+      user = Factory.create(:user)
+      sign_in user
+
       Referral.stub(:new).and_return(referral)
     end
     
