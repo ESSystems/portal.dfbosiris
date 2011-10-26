@@ -2,6 +2,9 @@
 	<% if defined?(show_name) and show_name and defined?(person.full_name) and person.full_name != nil %>
 		<span><b>Full name:</b> <%= person.full_name %></span>
 	<% end %>
+	<% if defined?(person.employee) and person.employee != nil and defined?(person.employee.organisation) and person.employee.organisation.organisation_name != nil %>
+		<span><b>Organisation:</b> <%= person.employee.organisation.organisation_name %></span>
+	<% end %>
 	<% if defined?(person.employee) and person.employee != nil %>
 		<span><b>SAP Number:</b> <%= person.employee.sap_number %></span>
 	<% end %>

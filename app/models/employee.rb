@@ -5,4 +5,5 @@ class Employee < ActiveRecord::Base
   belongs_to :client
   belongs_to :department
   belongs_to :job_class
+  belongs_to :organisation, :foreign_key => "client_id"
 end

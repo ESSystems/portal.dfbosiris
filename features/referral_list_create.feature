@@ -17,6 +17,9 @@ Feature: Show the list of referrals and create a new one
 			| Fitness to return to work 	|
 			| Functional Assessment 		|
 			| Short term sickness 			|
+		And the following organisation exists:
+			| Id 	| Organisation Name	|
+			| 1		| My Organisation	|
 		And the following people exist:
 			| id	| first_name 	| middle_name	| last_name 	| date_of_birth |
 			| 1		| Kishen		| B				| Luitger		|				|
@@ -91,6 +94,15 @@ Feature: Show the list of referrals and create a new one
 		And I choose "23 March, 1980" in the autocomplete list
 		Then the field with id "referral_person_id" should contain "2"
 		And I should see "23 March, 1980"
+
+	@javascript
+	Scenario: When choosing a person in the autocomplete list, there should be organisation
+		Given I am on the list of referrals 
+		When I follow "New referral"
+		And I fill in "Person" with "val"
+		And I choose "My Organisation" in the autocomplete list
+		Then the field with id "referral_person_id" should contain "2"
+		And I should see "My Organisation"
 		
 	@javascript
 	Scenario: Show full list of people when pushing a button

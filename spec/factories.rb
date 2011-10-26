@@ -35,6 +35,10 @@ end
 Factory.define :job_class do |f|
 end
 
+Factory.define :organisation do |o|
+  o.OrganisationID Forgery(:basic).number
+end
+
 Factory.define :patient do |f|
   f.association :person
 end

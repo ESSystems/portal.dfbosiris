@@ -76,6 +76,7 @@ class ReferralsController < ApplicationController
       result["id"] = p.id
       result["value"] = p.full_name
       result["label"] = p.full_name
+      result["organisation"] = p.employee.organisation.organisation_name unless p.employee == nil || p.employee.organisation == nil
       result["sap_number"] = p.employee.sap_number unless p.employee == nil
       result["dob"] = "#{p.date_of_birth}"
       result

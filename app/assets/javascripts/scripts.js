@@ -146,11 +146,11 @@ $(document).ready(function(){
   
   if($("#referral_person_full_name").length) {
   	$("#referral_person_full_name").bind( "autocompleteselect", function(event, ui) { 
-		$("#person-info").html(person_info(ui.item.sap_number, ui.item.dob));
+		$("#person-info").html(person_info(ui.item.organisation, ui.item.sap_number, ui.item.dob));
 	})
 	$("#referral_person_full_name").autocomplete().data("autocomplete" )._renderItem = function( ul, item ) {
 		suggestion = item.label;
-		info = person_info(item.sap_number, item.dob);
+		info = person_info(item.organisation, item.sap_number, item.dob);
 		suggestion += info.length != 0 ? "<br />" + info : "";
 		return $( "<li></li>" )
 			.data( "item.autocomplete", item )
@@ -204,8 +204,10 @@ function token_input_existing_values(selector) {
 	return items;
 }
 
-function person_info(sap_number,dob) {
+function person_info(organisation, sap_number, dob) {
 	info = ""
+	if(organisation != undefined)
+		info += "<span><b>Organisation:</b> " + organisation + "</span> ";
 	if(sap_number != undefined)
 		info += "<span><b>SAP Number:</b> " + sap_number + "</span> ";
 	if(dob != "")
