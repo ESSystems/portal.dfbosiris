@@ -27,10 +27,12 @@ class ReferralsController < ApplicationController
   
   def edit
     @referral = Referral.find(params[:id])
+    @allow_edit = @referral.appointment.nil? ? true : false
   end
   
   def new
     @referral = Referral.new
+    @allow_edit = true
   end
   
   def cancel
@@ -50,6 +52,14 @@ class ReferralsController < ApplicationController
   
   def update
     @referral = Referral.find(params[:id])
+    
+    # remove fields that should not be updated if an appointment was created
+    if(!@referral.appointment.nil?)
+      params[:referral].delete_if { |key, value|
+        ["patient_status", "case_nature", "specific_requirements", "advice", "referral_reason", "preferred_date"].index(key) != nil
+      }
+    end
+    
     if @referral.update_attributes(params[:referral])
       flash[:success] = "Referral was successfully updated."
       redirect_to :action => "show"

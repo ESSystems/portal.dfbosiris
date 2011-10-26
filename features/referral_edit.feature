@@ -7,4 +7,4 @@ Feature: Edit referral if it is not yet an appointment
 	
 	Scenario: Upload attachments
 	
-	Scenario: If a referral is an appointment, redirect to "Show referral" page
+	Scenario: If a referral has an appointment, only edit patient consent, attachments and followers

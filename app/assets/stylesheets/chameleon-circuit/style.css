@@ -192,6 +192,8 @@ input.auto {width: auto;}
 select {min-width: 20%}
 select.small {padding:2px 1px}
 
+input[readonly='readonly'], select[readonly='readonly'], textarea[readonly='readonly'] {border:none; background: transparent;}
+
 .infobar {color: #8F8F8F; font-size: 0.833em; display: block; padding-bottom: 3px;}
 
 .nested ul, .nested ol {margin-left: 2em}
