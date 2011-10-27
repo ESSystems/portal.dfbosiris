@@ -8,4 +8,8 @@ class Organisation < ActiveRecord::Base
   def organisation_name=(value)
     self.OrganisationName= value
   end
+  
+  def to_s
+    organisation_name
+  end
 end
