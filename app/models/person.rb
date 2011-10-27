@@ -14,6 +14,11 @@ class Person < ActiveRecord::Base
     where("first_name LIKE ? OR last_name LIKE ?", param, param)
   }
   
+  scope :people_in_organisation, lambda { |organisation_id|
+    joins(:employee).where("nemployees.client_id" => organisation_id) | 
+    joins(:outside_person).where("outside_people.client_id" => organisation_id)
+  }
+  
   def add_outside_person(current_user)
     OutsidePerson.create(:person => self, :referrer => current_user, :organisation_id => current_user.client_id)
   end

@@ -10,7 +10,7 @@ class PeopleController < ApplicationController
   
   def index
     if !current_user.nil?
-      @people = Person.all
+      @people = Person.people_in_organisation(current_user.client_id)
     end
   end
   
