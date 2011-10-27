@@ -41,13 +41,13 @@
 	                    <div id="navclose"></div>
 
 	                    <ul class="sf-menu">
-	                        <li class="active">
+	                        <li class="<%= request.path == "/" ? "active" : "" %>">
 	                            <a href="/">
 	                                <span class="icon"><img src="/assets/chameleon-circuit/menu/dashboard.png" /></span>
 	                                <span class="title">Dashboard</span>
 	                            </a>
 	                        </li>
-	                        <li>
+	                        <li class="<%= params[:controller] == "referrals" && request.path != "/" ? "active" : "" %>">
 	                        	<% if can? :index, @referral %> 
 	                            <a href="/referrals">
 	                                <span class="icon"><img src="/assets/chameleon-circuit/menu/tables.png" /></span>
@@ -60,7 +60,7 @@
 	                                <% end %>
 	                            </ul>
 	                        </li>
-	                        <li>
+	                        <li class="<%= params[:controller] == "people" ? "active" : "" %>">
 	                        	<% if can? :index, @people %> 
 	                            <a href="/people">
 	                                <span class="icon"><img src="/assets/chameleon-circuit/menu/tables.png" /></span>
