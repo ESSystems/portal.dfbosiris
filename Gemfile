@@ -21,6 +21,7 @@ gem 'jquery-rails'
 gem 'formtastic'
 gem 'rails3-jquery-autocomplete'
 gem 'paperclip'
+gem "therubyracer", "~> 0.9.8"
 
 # Use unicorn as the web server
 # gem 'unicorn'
