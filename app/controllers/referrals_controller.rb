@@ -71,7 +71,7 @@ class ReferralsController < ApplicationController
   end
   
   def autocomplete_person_full_name
-    @persons = Person.find_by_full_name(params[:term])
+    @persons = Person.find_by_full_name(params[:term]).people_in_organisation(current_user.client_id)
     @persons.collect! do |p|
       result = {}
       result["id"] = p.id
@@ -88,7 +88,7 @@ class ReferralsController < ApplicationController
   end
   
   def followers_suggestions
-    @followers = User.find_by_full_name(params[:q])
+    @followers = User.find_by_full_name(params[:q]).users_in_organisation(current_user.client_id)
     @followers.collect! do |f|
       result = {}
       result["id"] = f.id

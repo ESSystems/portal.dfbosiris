@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
     param = "%#{search}%"
     joins(:person).where("person.first_name LIKE ? OR person.last_name LIKE ?", param, param)
   }
+  
+  scope :users_in_organisation, lambda { |organisation_id|
+    where("client_id" => organisation_id)
+  }
 
   def display_name
     person.full_name
