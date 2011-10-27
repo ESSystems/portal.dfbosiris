@@ -1,0 +1,49 @@
+<% title "Referrals" %>
+<div class="grid_16 widget first">
+    <div class="widget_title clearfix">
+        <h2>List</h2>
+		<ul>
+			<li><%= link_to "New person", new_person_path, :class => "btn orange right" %></li>
+		</ul>
+    </div>
+    <div class="widget_body">
+		<div class="widget_options clearfix">
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<td>Full name</td>
+					<td style="width: 130px;">Date of birth</td>
+					<td style="width: 120px">County</td>
+					<td style="width: 150px;">Telephone number</td>
+					<td style="width: 150px">Email address</td>
+					<td class="action">Action</td>
+				</tr>
+			</thead>
+			<tbody>
+				<% @people.each do |person| %>
+				<tr>
+					<td><%= h(person.full_name) %></td>
+					<td><%= h(person.date_of_birth) %></td>
+					<td><%= h(person.county) %></td>
+					<td><%= h(person.telephone_number) %></td>
+					<td><%= h(person.email_address) %></td>
+			  		<td>
+			  			<ul class="hor-list piped">
+			  				<% if can? :show, person %>
+			  					<li><%= link_to "View", person_path(person) %></li>
+			  				<% end %>
+			  				<% if can? :edit, person %>
+			  					<li><%= link_to "Edit", edit_person_path(person) %></li>
+			  				<% end %>
+			  				<% if can? :destroy, person %>
+			  					<li><%= link_to "Delete", person, :confirm => "Are you sure you want to delete this person?", :method => :delete %></li>
+			  				<% end %>
+			  			</ul>
+			  		</td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+    </div>
+</div>

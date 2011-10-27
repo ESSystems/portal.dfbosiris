@@ -1,0 +1,7 @@
+<% title "Edit person " << @person.full_name %>
+
+<%= semantic_form_for @person, :url => person_path(@person), :html => {:id => "edit_person"} do |form| %>
+
+<%= render 'form', :form => form %>
+
+<% end %>

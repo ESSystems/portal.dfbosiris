@@ -1,0 +1,7 @@
+<% title "Add person" %>
+
+<%= semantic_form_for @person, :url => people_path, :html => {:id => "new_person", :multipart => true} do |form| %>
+
+<%= render 'form', :form => form %>
+
+<% end %>

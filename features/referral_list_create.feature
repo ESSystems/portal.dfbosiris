@@ -48,7 +48,7 @@ Feature: Show the list of referrals and create a new one
 		And I should see "Valere Romanus"
 		And I should see "Off sick for 3 months with a broken ankle. Fell off a ladder at home."
 		And I should see "Short term sickness"
-	
+
 	Scenario: Show referrals
 		Given I have no referrals
 		And the following referrals exist:
@@ -97,7 +97,10 @@ Feature: Show the list of referrals and create a new one
 
 	@javascript
 	Scenario: When choosing a person in the autocomplete list, there should be organisation
-		Given I am on the list of referrals 
+		Given the following employee exists:
+			| Person 	| sap_number 	| client_id |
+			| Id: 2		| 8001025		| 1			|
+		And I am on the list of referrals 
 		When I follow "New referral"
 		And I fill in "Person" with "val"
 		And I choose "My Organisation" in the autocomplete list

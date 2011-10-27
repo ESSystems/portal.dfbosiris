@@ -43,6 +43,8 @@ h6 {font-size: 1em}
 
 p {margin: 5px 0}
 
+.clr {clear:both;}
+
 /* Header
 -------------------------------------------------------------------*/
 header {background-image: url(/assets/chameleon-circuit/header_bg.png); background-repeat: no-repeat; padding-top: 10px}
@@ -176,7 +178,7 @@ td.action {width:110px;}
 -------------------------------------------------------------------*/
 label, .label {font-weight: bold;}
 
-input[type='text'], input[type='password'], input[type='file'], textarea, select {
+input[type='text'], input[type='password'], input[type='file'], input[type='email'], input[type='tel'], textarea, select {
     background-color: #f6f6f6;
     border: 1px solid #929292;
     border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
@@ -184,9 +186,11 @@ input[type='text'], input[type='password'], input[type='file'], textarea, select
     
 }
 
-input[type='text'] {width: 20%}
-input.medium {width: 33%}
-input.fifty {width: 50%}
+input {width: auto;}
+input.smallest {width: 40px !important;padding:6px 5px !important;}
+input.small {width: 20% !important;padding:6px 5px !important;}
+input.medium {width: 33%;}
+input.fifty {width: 50%;}
 input.large {width: 98.5%; width: -moz-available;}
 input.auto {width: auto;}
 select {min-width: 20%}

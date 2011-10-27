@@ -39,6 +39,7 @@ class ReferralsController < ApplicationController
   end
   
   def create
+    @allow_edit = true
     @referral = Referral.new(params[:referral])
     @referral.referrer = current_user
     if @referral.save

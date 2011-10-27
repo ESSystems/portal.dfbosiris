@@ -114,6 +114,12 @@ $(document).ready(function(){
     
   //jQuery UI Datepicker
   $('.datepicker').datepicker({ dateFormat: 'dd MM, yy' });
+  $('.datepicker-with-menus').datepicker({ 
+    dateFormat: 'dd MM, yy',
+    changeMonth: true,
+    changeYear: true,
+    yearRange: "-100"
+  });
   
   $("tbody tr").hover(
 	function() {

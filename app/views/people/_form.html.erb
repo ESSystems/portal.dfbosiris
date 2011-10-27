@@ -1,0 +1,37 @@
+<%= box_widget "Name" do %>
+	<%= form.inputs do %>
+		<%= form.input :first_name %>
+		<%= form.input :middle_name, :input_html => {:class => "smallest", :maxlength => 4} %>
+		<%= form.input :last_name %>
+	<% end %>
+<% end %>
+
+<%= box_widget "Details" do %>
+	<%= form.inputs do %>
+		<%= form.input :title, :input_html => {:class => "smallest"} %>
+		<%= form.input :date_of_birth, :as => :datepicker, :display_menus => true %>
+		<%= form.input :gender, :as => :radio, :collection => @genders, :wrapper_html => { :class => "one-line-choices" } %>
+	<% end %>
+<% end %>
+
+<%= box_widget "Address" do %>
+	<%= form.inputs do %>
+		<%= form.input :address1 %>
+		<%= form.input :address2 %>
+		<%= form.input :address3 %>
+		<%= form.input :county %>
+		<%= form.input :post_code, :input_html => {:class => "small"} %>
+		<%= form.input :area_code, :input_html => {:class => "small"} %>
+	<% end %>
+<% end %>
+
+<%= box_widget "Submit person" do %>
+	<%= form.inputs do %>
+		<%= form.input :telephone_number %>
+		<%= form.input :extension, :input_html => {:class => "smallest"} %>
+		<%= form.input :email_address %>
+	<% end %>
+	<%= form.buttons do %>
+		<%= form.commit_button :button_html => {:class => "btn large orange auto"} %>
+	<% end %>
+<% end %>

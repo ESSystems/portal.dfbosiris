@@ -199,7 +199,7 @@
 
 /* Selectmenu */
 .ui-selectmenu {height:16px; 20%; display: inline-block; overflow: hidden; position: relative; vertical-align: bottom; border: 1px solid #929292;
-               background-color: #F6F6F6;border-radius: 3px 3px 3px 3px;padding: 6px 5px;
+               background-color: #F6F6F6;border-radius: 3px 3px 3px 3px;padding: 6px 10px 6px 5px;
                 background-image: url(/assets/chameleon-circuit/form/select.png); background-repeat: no-repeat; background-position: right center;
                 text-decoration: none !important;
 }

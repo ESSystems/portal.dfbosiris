@@ -205,8 +205,9 @@ CREATE TABLE `documents` (
   `document_content_type` varchar(255) DEFAULT NULL,
   `document_file_size` int(11) DEFAULT NULL,
   `document_updated_at` datetime DEFAULT NULL,
+  `document_fingerprint` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `employee_department` (
   `person_id` int(11) NOT NULL,
@@ -318,8 +319,9 @@ CREATE TABLE `person` (
   `extension` varchar(10) DEFAULT NULL,
   `gender` varchar(2) DEFAULT NULL,
   `email_address` varchar(100) DEFAULT NULL,
+  `added_by_referrer` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=23979 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=23982 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `recall_list_item_events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -383,14 +385,14 @@ CREATE TABLE `referrals` (
   `case_reference_number` varchar(255) DEFAULT NULL,
   `referrer_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `referrals_followers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `referral_id` int(11) DEFAULT NULL,
   `referrer_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `referrers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -413,7 +415,7 @@ CREATE TABLE `referrers` (
   UNIQUE KEY `index_referrers_on_email` (`email`),
   UNIQUE KEY `index_referrers_on_reset_password_token` (`reset_password_token`),
   UNIQUE KEY `index_referrers_on_username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `schema_migrations` (
   `version` varchar(255) NOT NULL,
@@ -514,3 +516,7 @@ INSERT INTO schema_migrations (version) VALUES ('20111018045237');
 INSERT INTO schema_migrations (version) VALUES ('20111018074734');
 
 INSERT INTO schema_migrations (version) VALUES ('20111018134316');
+
+INSERT INTO schema_migrations (version) VALUES ('20111025154158');
+
+INSERT INTO schema_migrations (version) VALUES ('20111027081101');

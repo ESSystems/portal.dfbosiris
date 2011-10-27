@@ -41,3 +41,9 @@
     padding: 10px 0;
 }
 .formtastic .file-list .inputs:first-child {padding-top:0px;}
+
+.one-line-choices .choice {
+	float: left;
+	width: auto;
+	margin: 0.1em 10px 0.5em;
+} 

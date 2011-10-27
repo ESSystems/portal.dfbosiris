@@ -3,11 +3,20 @@ class Person < ActiveRecord::Base
   
   has_one :patient
   has_one :employee
+  has_one :outside_person
+  has_one :referrer, :through => :outside_person
+  
+  validates :first_name, :presence => true
+  validates :last_name, :presence => true
   
   scope :find_by_full_name, lambda { |search| 
     param = "%#{search}%"
     where("first_name LIKE ? OR last_name LIKE ?", param, param)
   }
+  
+  def add_outside_person(current_user)
+    OutsidePerson.create(:person => self, :referrer => current_user, :organisation_id => current_user.client_id)
+  end
     
   def full_name
     [first_name, middle_name_with_period, last_name].compact.join(' ')
