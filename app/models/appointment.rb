@@ -5,7 +5,11 @@ class Appointment < ActiveRecord::Base
   belongs_to :diary
   
   set_inheritance_column :ruby_type
-
+  
+  scope :overlapping_dates_for_diary, lambda { |diary_id, from_date, to_date|
+    where("diary_id = ? and ? < to_date and from_date < ?", diary_id, from_date, to_date)
+  }
+  
   # getter for the "type" column
   def device_type
     self[:type]
@@ -18,5 +22,10 @@ class Appointment < ActiveRecord::Base
   
   def display_date
     "#{from_date.to_date} from #{from_date.to_s(:hours_and_minutes)} to #{to_date.to_s(:hours_and_minutes)}"
+  end
+  
+  def is_overlapping_another(from_date, to_date)
+    appointments = Appointment.overlapping_dates_for_diary(self.diary_id, from_date, to_date).where("id <> #{self.id}")
+    !appointments.empty?
   end
 end

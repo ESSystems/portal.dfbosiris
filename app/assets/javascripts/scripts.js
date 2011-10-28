@@ -199,6 +199,81 @@ $(document).ready(function(){
         prePopulate: token_input_existing_values(selector)
 	});
   }
+  
+  $("#choose-appointment-date").click(function() {
+  	var appointment_id = $(this).attr("appointment_id");
+  	var start_date = $(this).attr("start_date");
+  	$('#calendar').empty();
+  	$('#calendar').fullCalendar({
+  		header: {
+			left: 'prev,next today',
+			center: 'title',
+			right: 'month,agendaWeek,agendaDay'
+		},
+		editable: true,
+		disableResizing: true,
+		weekends: false,
+		defaultView: 'agendaWeek',
+		allDaySlot: false,
+		allDayDefault: false,
+		minTime: 8,
+		maxTime: 20,
+        events: '/appointments/' + appointment_id + '/calendar_data/',
+        eventClick: function(calEvent, jsEvent, view) {
+        	var $appointment_dialog = $('<div></div>')
+			  	.html(calEvent.description)
+				.dialog({
+					autoOpen: false,
+					title: 'Appointment',
+					modal: true,
+					buttons: {
+						Ok: function() {
+							$(this).dialog( "close" );
+						}
+					}
+				});
+			$appointment_dialog.dialog('open');
+    	},
+    	eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
+    		start_date = event.start;
+    		var sdt = new Date(event.start);
+    		post_start_date = mysql_datetime(sdt);
+    		var edt = new Date(event.end);
+    		post_end_date = mysql_datetime(edt);
+
+	    	$.post('/appointments/' + event.id + "/calendar_update_date/", {from_date: post_start_date, to_date: post_end_date}, function(data) {
+	    		if(data.type == 'overlapping_date') {
+	    			var $booked_dialog = $('<div></div>')
+					  	.html(data.response)
+						.dialog({
+							autoOpen: false,
+							title: 'Overlapping date',
+							modal: true,
+							buttons: {
+								Ok: function() {
+									$(this).dialog( "close" );
+								}
+							}
+						});
+					$booked_dialog.dialog('open');
+					revertFunc();
+	    		} else {
+	    			$('#calendar').fullCalendar( 'refetchEvents', event);
+	    			$("#appointment-date").html(
+	    				$.datepicker.formatDate('dd MM, yy', sdt) + 
+	    				" from " + ('0' + sdt.getHours()).slice(-2) + ":" + ('0' + sdt.getMinutes()).slice(-2) +
+	    				" to " + ('0' + edt.getHours()).slice(-2) + ":" + ('0' + edt.getMinutes()).slice(-2)
+	    			);
+	    		};
+	    	});
+    	},
+    	loading: function(bool) {
+	        if (!bool) {
+	 	       $('#calendar').fullCalendar('gotoDate', new Date(start_date));
+	        }
+        }
+	});
+  });
 });
 
 function token_input_existing_values(selector) {
@@ -225,4 +300,16 @@ function add_fields(link, association, target, content) {
 	var new_id = new Date().getTime();  
     var regexp = new RegExp("new_" + association, "g");  
     $("#" + target).append(content.replace(regexp, new_id));
+}
+
+function mysql_datetime(dt) {
+	var yr = dt.getFullYear();
+	var dy = dt.getDate();
+	var mth = dt.getMonth()+1;
+	var hrs = dt.getHours();
+	var mns = dt.getMinutes();
+	var sds = dt.getSeconds();
+
+    var new_date = yr+'-'+mth+'-'+dy+' '+hrs+':'+mns+':'+sds;
+    return new_date;
 }

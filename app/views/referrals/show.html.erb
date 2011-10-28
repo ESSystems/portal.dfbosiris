@@ -3,8 +3,8 @@
 <% box_extra = link_to "Edit referral", edit_referral_path(@referral), :class => "btn orange right" %>
 <%= box_widget "Referral information", {:body_class => "information"}, [box_extra] do %>
 	<ul>
-		<li><span class="label">Person</span>: <%= @referral.person.full_name %><br /><%= render 'shared/person_information', :person => @referral.person %></li>
-		<li><span class="label">Patient status</span>: <%= @referral.patient_status.status %></li>
+		<li class="full-width"><span class="label">Person</span>: <%= @referral.person.full_name %> - <%= render 'shared/person_information', :person => @referral.person %></li>
+		<li class="clr"><span class="label">Patient status</span>: <%= @referral.patient_status.status %></li>
 		<li><span class="label">Patient consent</span>: <%= @referral.show_patient_consent %></li>
 		<li><span class="label">Referral Reason</span>: <%= @referral.referral_reason.reason %></li>
 		<li><span class="label">Preferred date</span>: <%= @referral.preferred_date %></li>
@@ -22,11 +22,14 @@
 			appointment_message = "You confirmed the appointment for"
 			confirm_extra = ""
 		else
-			appointment_message = "An appointment was created for this referral"
-			confirm_extra = link_to "Confirm appointment", confirm_appointment_path(@referral.appointment), :class => "btn orange right"
+			appointment_message = "An appointment was created for this referral. Please confirm the appointment if the date is convenient or choose another date"
+			confirm_extra = link_to "Choose another date", "#calendar", :class => "btn grey right", :id => "choose-appointment-date", :appointment_id => @referral.appointment.id, :start_date => @referral.appointment.from_date
+			confirm_extra += link_to "Confirm appointment", confirm_appointment_path(@referral.appointment), :class => "btn orange right"
 		end
 	%>
 	<%= box_widget "Appointment", {}, [confirm_extra] do %>
-		<p><%= appointment_message %>: <b><%= @referral.appointment.display_date %></b> with <%= @referral.appointment.diary.name %></p>
+		<p><%= appointment_message %>: <b id="appointment-date"><%= @referral.appointment.display_date %></b> with <b><%= @referral.appointment.diary.name %></b></p>
+		<br />
+		<div id="calendar" name="calendar"></div>
 	<% end %>
 <% end %>

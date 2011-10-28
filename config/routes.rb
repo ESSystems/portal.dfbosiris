@@ -10,6 +10,8 @@ ClinicManagerExtension::Application.routes.draw do
   
   resources :appointments do
     get :confirm_appointment, :on => :member, :as => "confirm"
+    get :calendar_data, :on => :member
+    post :calendar_update_date, :on => :member
   end
   
   resources :people

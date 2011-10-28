@@ -35,7 +35,7 @@ CREATE TABLE `appointments` (
   `diagnosis_id` int(11) DEFAULT NULL,
   `confirmed` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `attendance_reasons` (
   `code` varchar(8) NOT NULL,
@@ -286,6 +286,16 @@ CREATE TABLE `organisations` (
   PRIMARY KEY (`OrganisationID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=170 DEFAULT CHARSET=latin1;
 
+CREATE TABLE `outside_people` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `client_id` int(11) DEFAULT NULL,
+  `person_id` int(11) DEFAULT NULL,
+  `referrer_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
 CREATE TABLE `patient_statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` varchar(255) DEFAULT NULL,
@@ -321,7 +331,7 @@ CREATE TABLE `person` (
   `email_address` varchar(100) DEFAULT NULL,
   `added_by_referrer` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=23982 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=23993 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `recall_list_item_events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -385,7 +395,7 @@ CREATE TABLE `referrals` (
   `case_reference_number` varchar(255) DEFAULT NULL,
   `referrer_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `referrals_followers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -411,6 +421,7 @@ CREATE TABLE `referrers` (
   `updated_at` datetime DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
   `track_referrals` varchar(255) DEFAULT NULL,
+  `client_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_referrers_on_email` (`email`),
   UNIQUE KEY `index_referrers_on_reset_password_token` (`reset_password_token`),
@@ -520,3 +531,7 @@ INSERT INTO schema_migrations (version) VALUES ('20111018134316');
 INSERT INTO schema_migrations (version) VALUES ('20111025154158');
 
 INSERT INTO schema_migrations (version) VALUES ('20111027081101');
+
+INSERT INTO schema_migrations (version) VALUES ('20111027162913');
+
+INSERT INTO schema_migrations (version) VALUES ('20111027164308');

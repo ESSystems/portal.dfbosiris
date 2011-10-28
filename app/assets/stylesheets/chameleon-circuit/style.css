@@ -282,6 +282,7 @@ header .search {
 .information {padding: 5px;}
 .information li {float:left; width: 33%; margin-top: 5px;}
 .information li.new-line {float: none;clear: left}
+.information li.full-width {width: 100%;}
 
 /* Icons */
 .icon {
@@ -310,3 +311,16 @@ header .search {
 }
 #person-info span {color: #666666;}
 #edit_referral #person-info span {margin-left: 10px;}
+
+/* Calendar
+-------------------------------------------------------------------*/
+.unavailable, .unavailable .fc-event-skin {
+	background: #ebc8c8; border: 1px solid #a48c8c;
+    background: -moz-linear-gradient(top, #ebc8c8 0%, #e8c2c2 50%, #e4b5b5 51%, #dfadad 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ebc8c8), color-stop(50%,#e8c2c2), color-stop(51%,#e4b5b5), color-stop(100%,#dfadad));
+    background: -webkit-linear-gradient(top, #ebc8c8 0%,#e8c2c2 50%,#e4b5b5 51%,#dfadad 100%);
+    background: -o-linear-gradient(top, #ebc8c8 0%,#e8c2c2 50%,#e4b5b5 51%,#dfadad 100%);
+    background: -ms-linear-gradient(top, #ebc8c8 0%,#e8c2c2 50%,#e4b5b5 51%,#dfadad 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebc8c8', endColorstr='#dfadad',GradientType=0 );
+    background: linear-gradient(top, #ebc8c8 0%,#e8c2c2 50%,#e4b5b5 51%,#dfadad 100%);
+}
