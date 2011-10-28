@@ -18,7 +18,7 @@
 
 <% if @referral.appointment %>
 	<%
-		if @referral.appointment.confirmed
+		if @referral.appointment.confirmed?
 			appointment_message = "You confirmed the appointment for"
 			confirm_extra = ""
 		else

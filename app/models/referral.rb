@@ -1,4 +1,7 @@
 class Referral < ActiveRecord::Base
+  
+  STATE = %w[new accepted declined]
+  
   attr_accessor :person_full_name
   attr_accessible :referrer_id, :person, :person_id, :patient_status, :patient_status_id, :patient_consent, :case_nature, :specific_requirements, :advice, :referral_reason, :referral_reason_id, :documents_attributes, :preferred_date, :follower_ids
 

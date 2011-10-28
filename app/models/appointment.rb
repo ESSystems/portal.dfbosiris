@@ -1,4 +1,7 @@
 class Appointment < ActiveRecord::Base
+  
+  STATE = %w[new confirmed booked closed rejected]
+  
   belongs_to :referral
   belongs_to :person
   belongs_to :referral_reason
@@ -27,5 +30,13 @@ class Appointment < ActiveRecord::Base
   def is_overlapping_another(from_date, to_date)
     appointments = Appointment.overlapping_dates_for_diary(self.diary_id, from_date, to_date).where("id <> #{self.id}")
     !appointments.empty?
+  end
+  
+  def confirmed?
+    state == "confirmed"
+  end
+  
+  def confirm
+    update_attribute(:state, :confirmed)
   end
 end

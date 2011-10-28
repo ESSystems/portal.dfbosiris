@@ -2,7 +2,7 @@ class AppointmentsController < ApplicationController
   
   def confirm_appointment
     @appointment = Appointment.find(params[:id])
-    if @appointment.update_attribute(:confirmed, true)
+    if @appointment.confirm
       flash[:success] = "Appointment confirmed"
     else
       flash[:error] = "Appointment could not be confirmed"
