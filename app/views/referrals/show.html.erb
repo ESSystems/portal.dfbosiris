@@ -18,19 +18,26 @@
 	<div class="clear"></div>
 <% end %>
 
-<% if @referral.appointment %>
+<% if @show_appointment %>
 	<%
-		if @referral.appointment.confirmed?
-			appointment_message = "You confirmed the appointment for"
-			confirm_extra = ""
-		else
-			appointment_message = "An appointment was created for this referral. Please confirm the appointment if the date is convenient or choose another date"
+		confirm_extra = ""
+		message_start = ""
+		message_end = ""
+		if @show_confirmed
+			message_start = "You confirmed the appointment for"
+		elsif @show_confirm
+			message_start = "An appointment was created for this referral. Please confirm the appointment if the date is convenient or choose another date"
 			confirm_extra = link_to "Choose another date", "#calendar", :class => "btn grey right", :id => "choose-appointment-date", :appointment_id => @referral.appointment.id, :start_date => @referral.appointment.from_date
 			confirm_extra += link_to "Confirm appointment", confirm_appointment_path(@referral.appointment), :class => "btn orange right"
+		elsif @show_attendance
+			message_start = "The appointment on"
+			message_end = "was attended with the result: <b>#{@referral.appointment.attendance.attendance_result}</b>.".html_safe
 		end
 	%>
+
 	<%= box_widget "Appointment", {}, [confirm_extra] do %>
-		<p><%= appointment_message %>: <b id="appointment-date"><%= @referral.appointment.display_date %></b> with <b><%= @referral.appointment.diary.name %></b></p>
+		<p><%= message_start %>: <b id="appointment-date"><%= @referral.appointment.display_date %></b> with <b><%= @referral.appointment.diary.name %></b> <%= message_end %></p>
+		<p><%= "Feedback received: #{@referral.appointment.attendance.attendance_feedback.report}" if @show_feedback %></p>
 		<br />
 		<div id="calendar" name="calendar"></div>
 	<% end %>

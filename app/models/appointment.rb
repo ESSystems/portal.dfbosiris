@@ -6,7 +6,7 @@ class Appointment < ActiveRecord::Base
   belongs_to :person
   belongs_to :referral_reason
   belongs_to :diary
-  
+  belongs_to :attendance
   set_inheritance_column :ruby_type
   
   scope :overlapping_dates_for_diary, lambda { |diary_id, from_date, to_date|
@@ -34,6 +34,10 @@ class Appointment < ActiveRecord::Base
   
   def confirmed?
     state == "confirmed"
+  end
+  
+  def new?
+    state == "new"
   end
   
   def confirm

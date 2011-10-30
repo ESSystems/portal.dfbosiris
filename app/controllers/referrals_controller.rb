@@ -23,6 +23,20 @@ class ReferralsController < ApplicationController
   
   def show
     @referral = Referral.find(params[:id])
+    @show_appointment = false
+    @show_confirmed = false
+    @show_attendance = false
+    
+    if @referral.appointment
+      @show_appointment = true
+      
+      @show_confirmed = @referral.appointment.confirmed?
+      @show_confirm = @referral.appointment.new?
+      if @referral.appointment.attendance
+        @show_attendance = true
+        @show_feedback = true if @referral.appointment.attendance.attendance_feedback 
+      end
+    end
   end
   
   def edit
