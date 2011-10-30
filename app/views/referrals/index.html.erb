@@ -12,7 +12,7 @@
 		<table>
 			<thead>
 				<tr>
-					<td style="width:18px">&nbsp;</td>
+					<td style="width:40px">&nbsp;</td>
 					<td style="width:90px">Case Reference Number</td>
 					<td style="width: 150px;">Person</td>
 					<td>Case nature</td>
@@ -23,7 +23,10 @@
 			<tbody>
 				<% @referrals.each do |referral| %>
 				<tr>
-					<td><%= "<span class=\"icon attachments\" original-title=\"Has attachments\"></span>".html_safe if not referral.documents.empty? %></td>
+					<td>
+						<span class="icon referral-<%= referral.state %>" original-title="Referral is <%= referral.state %>"></span>
+						<%= "<span class=\"icon attachments right\" original-title=\"Has attachments\"></span>".html_safe if not referral.documents.empty? %>
+					</td>
 					<td><%= h(referral.case_reference_number) %></td>
 					<td><%= h(referral.person.full_name) %></td>
 					<td><%= h(referral.short_case_nature) %></td>

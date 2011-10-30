@@ -24,6 +24,8 @@ describe "referrals/index.html.erb" do
           visit referrals_path
         end
         
+        it "sees the referral state"
+        
         it "should show case reference number" do
           page.should have_content(@referral.case_reference_number)
         end
@@ -65,6 +67,8 @@ describe "referrals/index.html.erb" do
           visit referrals_path
         end
         
+        it "doesn't see the referral state"
+        
         it "doesn't show the referral" do
           page.should_not have_link("View", :href => referral_path(@referral))
         end
@@ -85,6 +89,8 @@ describe "referrals/index.html.erb" do
 
           visit referrals_path
         end
+        
+        it "sees the referral state"
 
         it "shows referrals" do
           page.should have_link("View", :href => referral_path(@referral))

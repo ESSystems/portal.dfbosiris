@@ -293,10 +293,19 @@ header .search {
 	background-position: 4px 4px;
 }
 .icon.attachments {
-	background-image: url(/assets/chameleon-circuit/fugue/paper-clip-small.png)
+	background-image: url(/assets/chameleon-circuit/fugue/paper-clip.png)
 }
 .icon.list {
 	background-image: url(/assets/chameleon-circuit/fugue/book-open-list.png)
+}
+.icon.referral-accepted {
+	background-image: url(/assets/chameleon-circuit/fugue/reports-stack.png)
+}
+.icon.referral-new {
+	background-image: url(/assets/chameleon-circuit/fugue/report--plus.png)
+}
+.icon.referral-declined {
+	background-image: url(/assets/chameleon-circuit/fugue/report--minus.png)
 }
 
 #show-all-people {
