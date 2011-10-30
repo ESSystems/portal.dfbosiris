@@ -9,12 +9,13 @@
 		<li><span class="label">Patient consent</span>: <%= @referral.show_patient_consent %></li>
 		<li><span class="label">Referral Reason</span>: <%= @referral.referral_reason.reason %></li>
 		<li><span class="label">Preferred date</span>: <%= @referral.preferred_date %></li>
+		<li class="full-width"><span class="label">Case nature</span>: <%= @referral.case_nature %></li>
+		<li class="full-width"><span class="label">Specific requirements</span>: <%= @referral.specific_requirements %></li>
+		<li class="full-width"><span class="label">Advice</span>: <%= @referral.advice %></li>
+		<li><span class="label">Documents</span>: <%= show_documents @referral.documents %></li>
+		<li><span class="label">Followers</span>: <%= show_followers @referral.followers %></li>
 	</ul>	
 	<div class="clear"></div>
-	<p><span class="label">Case nature</span>: <%= @referral.case_nature %></p>
-	<p><span class="label">Specific requirements</span>: <%= @referral.specific_requirements %></p>
-	<p><span class="label">Advice</span>: <%= @referral.advice %></p>
-	<p><span class="label">Documents</span>: <%= show_documents @referral.documents %></p>
 <% end %>
 
 <% if @referral.appointment %>

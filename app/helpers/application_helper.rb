@@ -49,5 +49,14 @@ module ApplicationHelper
     end
     result.html_safe
   end
+  
+  def show_followers(followers)
+    result = ''
+    followers.each do |f|
+      result << ", " if result.length != 0
+      result << f.person.full_name
+    end
+    result
+  end
 
 end
