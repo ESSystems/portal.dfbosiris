@@ -12,6 +12,7 @@ class Referral < ActiveRecord::Base
   has_many :documents, :as => :attachable, :dependent => :destroy
   has_one :appointment
   has_and_belongs_to_many :followers, :class_name => 'User', :join_table => 'referrals_followers', :association_foreign_key => "referrer_id", :autosave => true
+  has_one :declination
 
   validates :referrer, :presence => true
   validates :person, :presence => true
