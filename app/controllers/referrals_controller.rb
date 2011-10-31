@@ -26,6 +26,7 @@ class ReferralsController < ApplicationController
     @show_appointment = false
     @show_confirmed = false
     @show_attendance = false
+    @show_all_appointments = false
     
     if @referral.appointments.count > 1
       @show_all_appointments = true

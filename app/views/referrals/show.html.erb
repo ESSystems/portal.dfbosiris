@@ -58,7 +58,7 @@
 				<td><%= a.from_date %></td>
 				<td><%= a.to_date %></td>
 				<td><%= a.diary.name %></td>
-				<td><%= a.attendance.attendance_feedback.report if a.attendance %></td>
+				<td><%= a.attendance.attendance_feedback.report if !a.attendance.nil? and !a.attendance.attendance_feedback.nil? %></td>
 			</tr>
 			<% end %>
 		</tbody>
