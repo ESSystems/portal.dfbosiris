@@ -41,4 +41,27 @@
 		<br />
 		<div id="calendar" name="calendar"></div>
 	<% end %>
+<% elsif @show_all_appointments %>
+	<%= box_widget "Appointments list" do %>
+	<table>
+		<thead>
+			<tr>
+				<td>From</td>
+				<td>To</td>
+				<td>With</td>
+				<td>Feedback</td>
+			</tr>
+		</thead>
+		<tbody>
+			<% @referral.appointments.each do |a| %>
+			<tr>
+				<td><%= a.from_date %></td>
+				<td><%= a.to_date %></td>
+				<td><%= a.diary.name %></td>
+				<td><%= a.attendance.attendance_feedback.report if a.attendance %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<% end %>
 <% end %>

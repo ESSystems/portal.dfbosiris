@@ -10,7 +10,7 @@ class Referral < ActiveRecord::Base
   belongs_to :patient_status
   belongs_to :referral_reason
   has_many :documents, :as => :attachable, :dependent => :destroy
-  has_one :appointment
+  has_many :appointments
   has_and_belongs_to_many :followers, :class_name => 'User', :join_table => 'referrals_followers', :association_foreign_key => "referrer_id", :autosave => true
   has_one :declination
 
@@ -51,7 +51,11 @@ class Referral < ActiveRecord::Base
     cn << "..." if case_nature.length > 150
     cn
   end
-
+  
+  def appointment
+    appointments.first
+  end
+  
   private
 
   def generate_case_reference_number
