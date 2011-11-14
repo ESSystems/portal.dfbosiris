@@ -38,7 +38,7 @@ class Referral < ActiveRecord::Base
     initiated(referrer_id) | assigned(referrer_id)
   }
   
-  default_scope order("created_at DESC")
+  #default_scope order("created_at DESC")
 
   def person_full_name
     person.full_name unless person.nil?

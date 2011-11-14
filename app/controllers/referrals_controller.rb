@@ -6,6 +6,8 @@ class ReferralsController < ApplicationController
   
   load_and_authorize_resource
   
+  helper_method :sort_column, :sort_direction
+  
   def init_options
     @patient_statuses = PatientStatus.all
     @referral_reasons = ReferralReason.all
@@ -13,10 +15,11 @@ class ReferralsController < ApplicationController
 
   def index
     if !current_user.nil?
+      ordered_referral = Referral.order(sort_column + ' ' + sort_direction)
       if current_user.track_referrals == "all"
-        @referrals = Referral.page(params[:page])
+        @referrals = ordered_referral.page(params[:page])
       elsif current_user.track_referrals == "initiated_and_assigned"
-        @referrals = Referral.initiated_and_assigned(current_user.id).page(params[:page])
+        @referrals = ordered_referral.initiated_and_assigned(current_user.id).page(params[:page])
       end
     end
   end
@@ -115,5 +118,15 @@ class ReferralsController < ApplicationController
     respond_to do |format|
       format.json { render :json => @followers }
     end
+  end
+  
+  private
+  
+  def sort_column
+    Referral.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ?  params[:direction] : "desc"
   end
 end

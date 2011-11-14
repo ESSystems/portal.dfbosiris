@@ -161,6 +161,19 @@ nav ul li.active {opactiy: 0.2}
 table {width: 100%}
 caption {background: #525252;color: #FFFFFF;font-weight: bold;line-height: 2em;}
 thead th, thead td {color:#777; font-size: 0.917em; font-weight: bold; vertical-align: middle; padding: 10px 5px}
+thead .current {
+  padding-left: 18px;
+  background-repeat: no-repeat;
+}
+thead .asc { 
+  background-image: url("/assets/chameleon-circuit/custom/arrows-vertical.png");
+  background-position: left 0px; 
+}
+
+thead .desc { 
+  background-image: url("/assets/chameleon-circuit/custom/arrows-vertical.png");
+  background-position: left -16px; 
+}
 td {text-align: left; padding: 5px; vertical-align: middle}
 tbody tr.odd, li.odd {background:#f7f7f7}
 tbody tr.even, li.even {background:#ededed}
