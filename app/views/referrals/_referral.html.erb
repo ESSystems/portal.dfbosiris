@@ -7,6 +7,7 @@
 	<td><%= h(referral.person.full_name) %></td>
 	<td><%= h(referral.short_case_nature) %></td>
 	<td><%= h(referral.referral_reason.reason) %></td>
+	<td><%= h(referral.created_at.to_date) %></td>
 	<td>
 		<ul class="hor-list piped">
 			<% if can? :show, referral %>
