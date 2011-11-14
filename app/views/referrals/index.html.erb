@@ -20,33 +20,12 @@
 					<td class="action">Action</td>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="referrals">
 				<% @referrals.each do |referral| %>
-				<tr>
-					<td>
-						<span class="icon referral-<%= referral.state %>" original-title="Referral is <%= referral.state %>"></span>
-						<%= "<span class=\"icon attachments right\" original-title=\"Has attachments\"></span>".html_safe if not referral.documents.empty? %>
-					</td>
-					<td><%= h(referral.case_reference_number) %></td>
-					<td><%= h(referral.person.full_name) %></td>
-					<td><%= h(referral.short_case_nature) %></td>
-			  		<td><%= h(referral.referral_reason.reason) %></td>
-			  		<td>
-			  			<ul class="hor-list piped">
-			  				<% if can? :show, referral %>
-			  					<li><%= link_to "View", referral_path(referral) %></li>
-			  				<% end %>
-			  				<% if can? :edit, referral %>
-			  					<li><%= link_to "Edit", edit_referral_path(referral) %></li>
-			  				<% end %>
-			  				<% if can? :cancel, referral %>
-			  					<li><%= link_to "Cancel", cancel_referral_path(referral) %></li>
-			  				<% end %>
-			  			</ul>
-			  		</td>
-				</tr>
+					<%= render 'referral', :referral => referral %>
 				<% end %>
 			</tbody>
 		</table>
+		<div id="referrals-paginator"><%= paginate @referrals, :remote => true %></div>
     </div>
 </div>

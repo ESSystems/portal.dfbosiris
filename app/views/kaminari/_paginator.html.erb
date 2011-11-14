@@ -7,7 +7,7 @@
     paginator:     the paginator that renders the pagination tags inside
 -%>
 <%= paginator.render do -%>
-	<ul class="pagination">
+	<ul class="pagination right">
 		<li class="<%= "disabled" if current_page.first? %>"><%= first_page_tag %></li>
 		<li class="<%= "disabled" if current_page.first? %>"><%= prev_page_tag %></li>
 	    <% each_page do |page| -%>
@@ -19,5 +19,6 @@
 	    <% end -%>
 	    <li class="<%= "disabled" if current_page.last? %>"><%= next_page_tag %></li>
 		<li class="<%= "disabled" if current_page.last? %>"><%= last_page_tag %></li>
-</ul>
+	</ul>
+	<div style="clear:both;"></div>
 <% end -%>

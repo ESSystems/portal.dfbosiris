@@ -14,9 +14,9 @@ class ReferralsController < ApplicationController
   def index
     if !current_user.nil?
       if current_user.track_referrals == "all"
-        @referrals = Referral.all
+        @referrals = Referral.page(params[:page])
       elsif current_user.track_referrals == "initiated_and_assigned"
-        @referrals = Referral.initiated_and_assigned(current_user.id)
+        @referrals = Referral.initiated_and_assigned(current_user.id).page(params[:page])
       end
     end
   end

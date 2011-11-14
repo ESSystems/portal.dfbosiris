@@ -25,7 +25,6 @@
 				<% end %>
 			</tbody>
 		</table>
-		<div id="<%= type %>-paginator" class="right"><%= paginate people, :params => {:type => type}, :remote => true %></div>
-		<div class="clear"></div>
+		<div id="<%= type %>-paginator"><%= paginate people, :params => {:type => type}, :remote => true %></div>
     </div>
 </div>
