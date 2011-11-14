@@ -114,8 +114,9 @@ nav ul li.active {opactiy: 0.2}
 }
 .pagination li a {color: #666}
 .pagination li a:hover {text-decoration: none}
-.pagination li.active, .pagination li.active a {color: #111}
+.pagination li.active, .pagination li.active a, .pagination .current {color: #111}
 .pagination li.disabled, .pagination li.disabled a {cursor: default; color: #aaa}
+.pagination .first {margin-left:0px;}
 
 /* Widgets
 -------------------------------------------------------------------*/

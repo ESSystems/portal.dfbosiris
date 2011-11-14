@@ -1,0 +1,31 @@
+<div class="grid_16 widget first">
+    <div class="widget_title clearfix">
+        <h2><%= title %></h2>
+		<ul>
+			<li><%= link_to("New person", new_person_path, :class => "btn orange right") if show_new_link %></li>
+		</ul>
+    </div>
+    <div class="widget_body">
+		<div class="widget_options clearfix">
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<td>Full name</td>
+					<td style="width: 130px;">Date of birth</td>
+					<td style="width: 120px">County</td>
+					<td style="width: 150px;">Telephone number</td>
+					<td style="width: 150px">Email address</td>
+					<td class="action">Action</td>
+				</tr>
+			</thead>
+			<tbody id="<%= type %>">
+				<% people.each do |person| %>
+					<%= render 'person', :person => person %>
+				<% end %>
+			</tbody>
+		</table>
+		<div id="<%= type %>-paginator" class="right"><%= paginate people, :params => {:type => type}, :remote => true %></div>
+		<div class="clear"></div>
+    </div>
+</div>

@@ -10,7 +10,20 @@ class PeopleController < ApplicationController
   
   def index
     if !current_user.nil?
-      @people = Person.people_in_organisation(current_user.client_id)
+      #@people = Person.people_in_organisation(current_user.client_id).page(params[:page])
+      @type = params[:type] == nil ? "" : params[:type]
+
+      case @type
+      when "employees"
+        @employees = Person.employees_in_organisation(current_user.client_id).page(params[:page]).per(15)
+        @outside_people = nil
+      when "outside_people"
+        @employees = nil
+        @outside_people = Person.outside_people_in_organisation(current_user.client_id).page(params[:page]).per(15)
+      else
+        @employees = Person.employees_in_organisation(current_user.client_id).page(1).per(15)
+        @outside_people = Person.outside_people_in_organisation(current_user.client_id).page(1).per(15)
+      end
     end
   end
   

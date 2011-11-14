@@ -14,7 +14,9 @@ ClinicManagerExtension::Application.routes.draw do
     post :calendar_update_date, :on => :member
   end
   
-  resources :people
+  resources :people do
+    get 'page/:page', :action => :index, :on => :collection
+  end
   
   root :to => "referrals#index"
 end

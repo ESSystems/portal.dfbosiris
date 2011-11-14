@@ -1,0 +1,12 @@
+<% unless @employees.nil? %>
+$('#employees').html('<%= escape_javascript render(@employees) %>');
+$('#employees-paginator').html('<%= escape_javascript(paginate(@employees, :remote => true).to_s) %>');
+<% end %>
+
+<% unless @outside_people.nil? %>
+$('#outside-people').html('<%= escape_javascript render(@outside_people) %>');
+$('#outside-people-paginator').html('<%= escape_javascript(paginate(@outside_people, :remote => true).to_s) %>');
+<% end %>
+
+$("table:not(.simple) tr:nth-child(odd)").addClass("odd"); // Table Odd/Even
+$("table:not(.simple) tr:nth-child(even)").addClass("even"); // Table Odd/Even

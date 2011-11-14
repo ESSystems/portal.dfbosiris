@@ -15,9 +15,18 @@ class Person < ActiveRecord::Base
   }
   
   scope :people_in_organisation, lambda { |organisation_id|
-    joins(:employee).where("nemployees.client_id" => organisation_id) | 
+    employees_in_organisation | outside_people_in_organisation
+  }
+  
+  scope :employees_in_organisation, lambda { |organisation_id|
+    joins(:employee).where("nemployees.client_id" => organisation_id)
+  }
+  
+  scope :outside_people_in_organisation, lambda {|organisation_id|
     joins(:outside_person).where("outside_people.client_id" => organisation_id)
   }
+  
+  default_scope order("last_name")
   
   def add_outside_person(current_user)
     OutsidePerson.create(:person => self, :referrer => current_user, :organisation_id => current_user.client_id)
