@@ -15,7 +15,7 @@ class Person < ActiveRecord::Base
   }
   
   scope :people_in_organisation, lambda { |organisation_id|
-    employees_in_organisation | outside_people_in_organisation
+    employees_in_organisation(organisation_id) | outside_people_in_organisation(organisation_id)
   }
   
   scope :employees_in_organisation, lambda { |organisation_id|
