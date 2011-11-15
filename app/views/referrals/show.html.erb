@@ -46,18 +46,18 @@
 	<table>
 		<thead>
 			<tr>
-				<td>From</td>
-				<td>To</td>
-				<td>With</td>
+				<td style="width:230px;">Date</td>
+				<td style="width:200px;">With</td>
+				<td style="width:170px;">Result</td>
 				<td>Feedback</td>
 			</tr>
 		</thead>
 		<tbody>
 			<% @referral.appointments.each do |a| %>
 			<tr>
-				<td><%= a.from_date %></td>
-				<td><%= a.to_date %></td>
+				<td><%= a.display_date %></td>
 				<td><%= a.diary.name %></td>
+				<td><%= a.attendance.attendance_result if !a.attendance.nil? and !a.attendance.attendance_result.nil? %></td>
 				<td><%= a.attendance.attendance_feedback.report if !a.attendance.nil? and !a.attendance.attendance_feedback.nil? %></td>
 			</tr>
 			<% end %>
