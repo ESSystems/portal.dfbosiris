@@ -141,6 +141,8 @@ $(document).ready(function(){
 		buttons: {
 			Ok: function() {
 				$(this).dialog( "close" );
+				jump_to("#referral-file-to-upload");
+				$("#referral-file-to-upload").trigger("click");
 			}
 		}
 	});
@@ -312,4 +314,10 @@ function mysql_datetime(dt) {
 
     var new_date = yr+'-'+mth+'-'+dy+' '+hrs+':'+mns+':'+sds;
     return new_date;
+}
+
+function jump_to(id) {
+    var new_position = $(id).offset();
+    window.scrollTo(new_position.left, (new_position.top - 100));
+    return false;
 }
