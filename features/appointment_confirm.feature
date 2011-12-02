@@ -4,7 +4,8 @@ Feature: Confirm appointment or change appointment date
 	In order to fit my availability
 
 	Background:
-		Given the following patient status exists:
+		Given I am logged in with "initiated_and_assigned" rights
+		And the following patient status exists:
 			| Off sick	|
 		And the following referral reason exists:
 			| Prolonged sickness referral 	|

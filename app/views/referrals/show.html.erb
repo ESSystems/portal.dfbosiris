@@ -58,7 +58,14 @@
 				<td><%= a.display_date %></td>
 				<td><%= a.diary.name %></td>
 				<td><%= a.attendance.attendance_result if !a.attendance.nil? and !a.attendance.attendance_result.nil? %></td>
-				<td><%= a.attendance.attendance_feedback.report if !a.attendance.nil? and !a.attendance.attendance_feedback.nil? %></td>
+				<td>
+					<% if !a.attendance.nil? and !a.attendance.attendance_feedback.nil? %>
+						<b>Report:</b> <%= a.attendance.attendance_feedback.report  %>
+						<% unless a.attendance.attendance_feedback.documents.empty? %>
+							<br /><b>Attachments:</b> <%= show_documents(a.attendance.attendance_feedback.documents, true) %>
+						<% end %>
+					<% end %>
+				</td>
 			</tr>
 			<% end %>
 		</tbody>

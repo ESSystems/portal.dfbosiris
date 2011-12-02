@@ -38,14 +38,15 @@ module ApplicationHelper
     end
   end
   
-  def show_documents(documents)
+  def show_documents(documents, osiris = false)
     html_options = {}
     result = ''
     documents.each do |d|
       result << ", " if result.length != 0
-      title = d.title == "" ? d.document_file_name : d.title
+      title = d.title == "" || d.title.nil? ? d.document_file_name : d.title
       html_options["original-title"] = d.description != "" ? d.description : nil
-      result << link_to(title , d.document.url, html_options)
+      url = osiris ? d.osiris_url : d.document.url
+      result << link_to(title , url, html_options)
     end
     result.html_safe
   end

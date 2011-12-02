@@ -29,13 +29,27 @@ CREATE TABLE `appointments` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   `case_nature` text,
+  `case_reference_number` varchar(255) DEFAULT NULL,
   `attendance_id` int(11) DEFAULT NULL,
   `referral_id` int(11) DEFAULT NULL,
+  `referrer_full_name` varchar(255) DEFAULT NULL,
+  `referrer_phone` varchar(255) DEFAULT NULL,
+  `referrer_email` varchar(255) DEFAULT NULL,
   `referral_reason_id` int(11) NOT NULL,
   `diagnosis_id` int(11) DEFAULT NULL,
-  `confirmed` tinyint(1) DEFAULT NULL,
+  `state` enum('new','confirmed','booked','closed','rejected') NOT NULL DEFAULT 'new',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `attendance_feedback` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `attendance_id` int(11) DEFAULT NULL,
+  `report` text,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `attendance_reasons` (
   `code` varchar(8) NOT NULL,
@@ -79,7 +93,7 @@ CREATE TABLE `attendances` (
   `is_hidden` tinyint(1) NOT NULL DEFAULT '0',
   `no_work_contact` enum('N','Y') DEFAULT 'N',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `client` (
   `ClientID` int(11) NOT NULL DEFAULT '0',
@@ -137,6 +151,15 @@ CREATE TABLE `clinic_staff_member` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+CREATE TABLE `declinations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `referral_id` int(11) NOT NULL,
+  `reason` text NOT NULL,
+  `created` datetime NOT NULL,
+  `created_by` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
 CREATE TABLE `departments` (
   `ClientID` int(11) DEFAULT NULL,
   `DepartmentCode` varchar(32) NOT NULL,
@@ -191,7 +214,7 @@ CREATE TABLE `diary_restrictions` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `documents` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -207,7 +230,7 @@ CREATE TABLE `documents` (
   `document_updated_at` datetime DEFAULT NULL,
   `document_fingerprint` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `employee_department` (
   `person_id` int(11) NOT NULL,
@@ -272,7 +295,7 @@ CREATE TABLE `nemployees` (
   KEY `sup_salary_number` (`sup_salary_number`),
   KEY `sup_sap_number` (`sup_sap_number`),
   KEY `sup_sap_number_2` (`sup_sap_number`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=14405 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `organisations` (
   `OrganisationID` int(11) NOT NULL AUTO_INCREMENT,
@@ -294,7 +317,7 @@ CREATE TABLE `outside_people` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `patient_statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -302,7 +325,7 @@ CREATE TABLE `patient_statuses` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `patients` (
   `PersonID` int(11) NOT NULL DEFAULT '0',
@@ -331,7 +354,7 @@ CREATE TABLE `person` (
   `email_address` varchar(100) DEFAULT NULL,
   `added_by_referrer` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=23993 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=31136 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `recall_list_item_events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -378,7 +401,7 @@ CREATE TABLE `referral_reasons` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `referrals` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -394,15 +417,16 @@ CREATE TABLE `referrals` (
   `updated_at` datetime DEFAULT NULL,
   `case_reference_number` varchar(255) DEFAULT NULL,
   `referrer_id` int(11) DEFAULT NULL,
+  `state` enum('new','accepted','declined') NOT NULL DEFAULT 'new',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `referrals_followers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `referral_id` int(11) DEFAULT NULL,
   `referrer_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `referrers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -426,12 +450,12 @@ CREATE TABLE `referrers` (
   UNIQUE KEY `index_referrers_on_email` (`email`),
   UNIQUE KEY `index_referrers_on_reset_password_token` (`reset_password_token`),
   UNIQUE KEY `index_referrers_on_username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `schema_migrations` (
   `version` varchar(255) NOT NULL,
   UNIQUE KEY `unique_schema_migrations` (`version`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `sec_category` (
   `id` int(11) NOT NULL DEFAULT '0',
@@ -535,3 +559,7 @@ INSERT INTO schema_migrations (version) VALUES ('20111027081101');
 INSERT INTO schema_migrations (version) VALUES ('20111027162913');
 
 INSERT INTO schema_migrations (version) VALUES ('20111027164308');
+
+INSERT INTO schema_migrations (version) VALUES ('20111028173640');
+
+INSERT INTO schema_migrations (version) VALUES ('20111030104101');
