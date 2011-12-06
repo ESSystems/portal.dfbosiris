@@ -19,12 +19,6 @@
 		<% else %>
 			<%= form.input :patient_status, :as => :string, :input_html => {:readonly => true} %>
 		<% end %>
-		
-		<li class="input">
-			<%= form.label :patient_consent, :class => "label" %>
-			<%= form.check_box :patient_consent %>
-		</li>
-		<% #= form.input :patient_consent, :as => :boolean %>
 	<% end %>
 <% end %>
 
