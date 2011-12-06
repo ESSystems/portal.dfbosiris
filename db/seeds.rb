@@ -14,6 +14,13 @@ CSV.foreach("#{Rails.root}/db/data/patient_statuses.csv") do |row|
 end
 puts "finished importing patient status data."
 
+# import operational priorities data from operational_priority csv file
+puts "importing operational priority data..."
+CSV.foreach("#{Rails.root}/db/data/operational_priorities.csv") do |row|
+  OperationalPriority.find_or_create_by_operational_priority row[0]
+end
+puts "finished importing operational priority data."
+
 # create test users
 puts "creating test users..."
 hr_person = Person.find_or_initialize_by_email_address("hresources@test.com")

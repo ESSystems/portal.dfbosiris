@@ -8,10 +8,12 @@
 		<li class="clr"><span class="label">Patient status</span>: <%= @referral.patient_status.status %></li>
 		<li><span class="label">Patient consent</span>: <%= @referral.show_patient_consent %></li>
 		<li><span class="label">Referral Reason</span>: <%= @referral.referral_reason.reason %></li>
-		<li><span class="label">Preferred date</span>: <%= @referral.preferred_date %></li>
+		<li><span class="label">Date sickness absence started</span>: <%= @referral.sickness_started %></li>
+		<li><span class="label">Date current sicknote expires</span>: <%= @referral.sicknote_expires %></li>
+		<li><span class="label">Operational Priority</span>: <%= @referral.operational_priority %></li>
 		<li class="full-width"><span class="label">Case nature</span>: <%= @referral.case_nature %></li>
-		<li class="full-width"><span class="label">Specific requirements</span>: <%= @referral.specific_requirements %></li>
-		<li class="full-width"><span class="label">Advice</span>: <%= @referral.advice %></li>
+		<li class="full-width"><span class="label">Job information</span>: <%= @referral.job_information %></li>
+		<li class="full-width"><span class="label">History</span>: <%= @referral.history %></li>
 		<li><span class="label">Documents</span>: <%= show_documents @referral.documents %></li>
 		<li><span class="label">Followers</span>: <%= show_followers @referral.followers %></li>
 	</ul>	

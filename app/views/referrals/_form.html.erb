@@ -32,17 +32,29 @@
 	<%= form.inputs do %>
 		<% if @allow_edit %>
 			<%= form.input :case_nature, :as => :text, :hint => "Describe what is wrong with the patient" %>
-			<%= form.input :specific_requirements, :as => :text, :hint => "Does the patient require disabled access or morning appointments? Only speaks Spanish? Anything else similar" %>
-			<%= form.input :advice, :as => :text, :hint => "Advice already given to the patient which may be relevant" %>
+			<%= form.input :job_information, :as => :text, :hint => "Please give details of current job rotation" %>
+			<%= form.input :history, :as => :text, :hint => "Advice already given to the patient which may be relevant" %>
 		<% else %>
 			<%= form.input :case_nature, :as => :text, :input_html => {:readonly => true} %>
-			<%= form.input :specific_requirements, :as => :text, :input_html => {:readonly => true} %>
-			<%= form.input :advice, :as => :text, :input_html => {:readonly => true} %>
+			<%= form.input :job_information, :as => :text, :input_html => {:readonly => true} %>
+			<%= form.input :history, :as => :text, :input_html => {:readonly => true} %>
 		<% end %>
 	<% end %>
 <% end %>
 
-<%= box_widget "Attachments" do %>
+<%= box_widget "If person is currently off sick please complete" do %>
+	<%= form.inputs do %>
+		<% if @allow_edit %>
+			<%= form.input :sickness_started, :as => :datepicker, :label => "Date sickness absence started" %>
+			<%= form.input :sicknote_expires, :as => :datepicker, :label => "Date current sicknote expires" %>
+		<% else %>
+			<%= form.input :sickness_started, :as => :string, :input_html => {:readonly => true} %>
+			<%= form.input :sicknote_expires, :as => :string, :input_html => {:readonly => true} %>
+		<% end %>
+	<% end %>
+<% end %>
+
+<%= box_widget "Attach referral letter and any supporting documents below" do %>
 	<%= form.inputs :class => "nested-attributes" do %>
 		<li class="string input">
 			<%= label_tag :referral_person_full_name, 'Attached files'.html_safe, :class => "label" %>
@@ -74,10 +86,10 @@
 	<%= form.inputs do %>
 		<% if @allow_edit %>
 			<%= form.input :referral_reason, :collection => @referral_reasons.map {|u| [u.reason, u.id]} %>
-			<%= form.input :preferred_date, :as => :datepicker %>
+			<%= form.input :operational_priority, :collection => @operational_priorities.map {|u| [u.operational_priority, u.id]} %>
 		<% else %>
 			<%= form.input :referral_reason, :as => :string, :input_html => {:readonly => true} %>
-			<%= form.input :preferred_date, :as => :string, :input_html => {:readonly => true} %>
+			<%= form.input :operational_priority, :as => :string, :input_html => {:readonly => true} %>
 		<% end %>
 		<%= form.input :followers, :input_html => {:id => "cmx-token-input", :class => "clean", :suggestions_url => followers_suggestions_referrals_path}, :include_blank => true, :hint => "Add other people that can track this referral" %>
 	<% end %>

@@ -11,6 +11,7 @@ class ReferralsController < ApplicationController
   def init_options
     @patient_statuses = PatientStatus.all
     @referral_reasons = ReferralReason.all
+    @operational_priorities = OperationalPriority.all
   end
 
   def index
