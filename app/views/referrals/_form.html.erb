@@ -33,7 +33,7 @@
 		<% if @allow_edit %>
 			<%= form.input :case_nature, :as => :text, :hint => "Describe what is wrong with the patient" %>
 			<%= form.input :job_information, :as => :text, :hint => "Please give details of current job rotation" %>
-			<%= form.input :history, :as => :text, :hint => "Advice already given to the patient which may be relevant" %>
+			<%= form.input :history, :as => :text, :hint => "Please detail background to case" %>
 		<% else %>
 			<%= form.input :case_nature, :as => :text, :input_html => {:readonly => true} %>
 			<%= form.input :job_information, :as => :text, :input_html => {:readonly => true} %>
