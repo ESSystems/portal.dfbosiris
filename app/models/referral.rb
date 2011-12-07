@@ -3,7 +3,7 @@ class Referral < ActiveRecord::Base
   STATE = %w[new accepted declined]
   
   attr_accessor :person_full_name
-  attr_accessible :referrer_id, :person, :person_id, :patient_status, :patient_status_id, :patient_consent, 
+  attr_accessible :referrer_id, :person, :person_id, :patient_status, :patient_status_id, 
                   :case_nature, :job_information, :history, :referral_reason, :referral_reason_id, :documents_attributes, 
                   :operational_priority, :operational_priority_id, :follower_ids, :sickness_started, :sicknote_expires
 
@@ -47,10 +47,6 @@ class Referral < ActiveRecord::Base
 
   def person_full_name
     person.full_name unless person.nil?
-  end
-
-  def show_patient_consent
-    patient_consent ? "yes" : "no"
   end
 
   def short_case_nature
