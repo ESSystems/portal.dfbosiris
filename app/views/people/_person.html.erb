@@ -2,8 +2,14 @@
 	<td><%= h(person.full_name) %></td>
 	<td><%= h(person.date_of_birth) %></td>
 	<td><%= h(person.county) %></td>
-	<td><%= h(person.telephone_number) %></td>
-	<td><%= h(person.email_address) %></td>
+	<td><%= h(person.telephone_number) %><br /><%= h(person.email_address) %></td>
+	<td>
+		<% if !person.employee.nil? %>
+			<%= h(person.employee.organisation) %>
+		<% elsif !person.outside_person.nil? %>
+			<%= h(person.outside_person.organisation) %>
+		<% end%>
+	</td>
 	<td>
 		<ul class="hor-list piped">
 			<% if can? :show, person %>

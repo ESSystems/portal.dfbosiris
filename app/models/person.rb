@@ -9,6 +9,8 @@ class Person < ActiveRecord::Base
   validates :first_name, :presence => true
   validates :last_name, :presence => true
   
+  accepts_nested_attributes_for :outside_person
+  
   scope :find_by_full_name, lambda { |search| 
     param = "%#{search}%"
     where("first_name LIKE ? OR last_name LIKE ?", param, param)
@@ -23,15 +25,17 @@ class Person < ActiveRecord::Base
   }
   
   scope :outside_people_in_organisation, lambda {|organisation_id|
-    joins(:outside_person).where("outside_people.client_id" => organisation_id)
+    joins(:outside_person).joins(:referrer).where("referrers.client_id" => organisation_id)
   }
   
   default_scope order("last_name")
   
   def add_outside_person(current_user)
-    OutsidePerson.create(:person => self, :referrer => current_user, :organisation_id => current_user.client_id)
+    self.added_by_referrer = true
+    self.outside_person.person = self
+    self.outside_person.referrer = current_user
   end
-    
+  
   def full_name
     [first_name, middle_name_with_period, last_name].compact.join(' ')
   end

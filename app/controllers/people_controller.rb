@@ -6,6 +6,7 @@ class PeopleController < ApplicationController
   
   def init_options
     @genders = %w( M F )
+    @organisations = Organisation.all
   end
   
   def index
@@ -37,6 +38,7 @@ class PeopleController < ApplicationController
   
   def new
     @person = Person.new
+    @person.build_outside_person(:organisation_id => current_user.client_id)
   end
   
   def destroy
@@ -51,9 +53,8 @@ class PeopleController < ApplicationController
   
   def create
     @person = Person.new(params[:person])
-    @person.added_by_referrer = true
+    @person.add_outside_person(current_user)
     if @person.save
-      @person.add_outside_person(current_user)
       flash[:success] = "New person created."
       redirect_to :action => "index"
     else
