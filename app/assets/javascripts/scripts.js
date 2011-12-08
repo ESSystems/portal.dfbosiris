@@ -153,6 +153,9 @@ $(document).ready(function(){
   })
   
   if($("#referral_person_full_name").length) {
+  	$("#referral_person_full_name").bind( "autocompletecreate", function(event, ui) { 
+		ui.maxRows = 5;
+	})
   	$("#referral_person_full_name").bind( "autocompleteselect", function(event, ui) { 
 		$("#person-info").html(person_info(ui.item.organisation, ui.item.sap_number, ui.item.dob));
 	})
@@ -165,7 +168,7 @@ $(document).ready(function(){
 			.append( "<a>" + suggestion + "</a>" )
 			.appendTo( ul );
 	};
-	
+	/*
 	$("#show-all-people").click(function() {
   		var input = $("#referral_person_full_name");
 		if (input.autocomplete( "widget" ).is( ":visible" ) ) {
@@ -175,9 +178,9 @@ $(document).ready(function(){
 		
 		input.autocomplete('option', 'source', input.attr('data-autocomplete'));
 		input.autocomplete('option', 'minLength', 0);
-		input.autocomplete("search", "");
+		input.autocomplete("search", "   ");
 		input.focus();
-  	});
+  	});*/
   }
   
   // Token input should be a select for this to work
