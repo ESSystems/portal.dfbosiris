@@ -20,7 +20,11 @@ class ReferralsController < ApplicationController
       if current_user.track_referrals == "all"
         @referrals = ordered_referral.page(params[:page])
       elsif current_user.track_referrals == "initiated_and_assigned"
-        @referrals = ordered_referral.initiated_and_assigned(current_user.id).page(params[:page])
+        # does not work with pagination:
+        # @referrals = ordered_referral.initiated_and_assigned(current_user.id).page(params[:page])
+        
+        # Use Kaminari's array handler
+        @referrals = Kaminari.paginate_array(ordered_referral.initiated_and_assigned(current_user.id)).page(params[:page])
       end
     end
   end
