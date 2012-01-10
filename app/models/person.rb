@@ -12,8 +12,16 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :outside_person
   
   scope :find_by_full_name, lambda { |search| 
-    param = "%#{search}%"
-    where("first_name LIKE ? OR last_name LIKE ?", param, param)
+    split_search = search.split(' ')
+    logger.debug "Split search full name size: #{split_search.length}"
+    if split_search.length == 1
+      param = "%#{search.strip}%"
+      where("first_name LIKE ? OR last_name LIKE ?", param, param)
+    else
+      where("first_name LIKE ? AND last_name LIKE ? OR first_name LIKE ? AND last_name LIKE ?", 
+        "%#{split_search[0]}%", "%#{split_search[1]}%",
+        "%#{split_search[1]}%", "%#{split_search[0]}%")
+    end
   }
   
   scope :people_in_organisation, lambda { |organisation_id|
