@@ -6,7 +6,7 @@ class PeopleController < ApplicationController
   
   def init_options
     @genders = %w( M F )
-    @organisations = Organisation.all
+    @organisations = Organisation.order_by_name('asc').all;
   end
   
   def index
