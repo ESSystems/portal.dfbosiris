@@ -96,7 +96,7 @@ class ReferralsController < ApplicationController
   end
   
   def autocomplete_person_full_name
-    @persons = Person.limit(20).find_by_full_name(params[:term]).people_in_organisation(current_user.client_id)
+    @persons = Person.find_by_full_name(params[:term]).limit(30).people_in_organisation(current_user.client_id)
     @persons.collect! do |p|
       result = {}
       result["id"] = p.id
