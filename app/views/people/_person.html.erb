@@ -6,8 +6,8 @@
 	<td>
 		<% if !person.employee.nil? %>
 			<%= h(person.employee.organisation) %>
-		<% elsif !person.outside_person.nil? %>
-			<%= h(person.outside_person.organisation) %>
+		<% elsif !person.patient.nil? %>
+			<%= h(person.patient.organisation) %>
 		<% end%>
 	</td>
 	<td>

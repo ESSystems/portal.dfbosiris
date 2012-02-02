@@ -38,7 +38,7 @@ class PeopleController < ApplicationController
   
   def new
     @person = Person.new
-    @person.build_outside_person(:organisation_id => current_user.client_id)
+    @person.build_patient(:organisation_id => current_user.client_id)
   end
   
   def destroy

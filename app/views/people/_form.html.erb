@@ -27,7 +27,7 @@
 
 <%= box_widget "Submit person" do %>
 	<%= form.inputs do %>
-		<%= form.semantic_fields_for :outside_person do |op| %>
+		<%= form.semantic_fields_for :patient do |op| %>
 			<%= op.input :id, :as => :hidden %>
 			<%= op.input :organisation, :collection => @organisations.map {|o| [o.organisation_name, o.id]} %>
 		<% end %>

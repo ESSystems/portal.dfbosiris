@@ -1,15 +1,14 @@
 class Person < ActiveRecord::Base
   set_table_name "person"
   
-  has_one :patient
+  has_one :patient, :foreign_key => :PersonID
   has_one :employee
-  has_one :outside_person
-  has_one :referrer, :through => :outside_person
+  has_one :referrer, :through => :patient
   
   validates :first_name, :presence => true
   validates :last_name, :presence => true
   
-  accepts_nested_attributes_for :outside_person
+  accepts_nested_attributes_for :patient
   
   scope :find_by_full_name, lambda { |search| 
     split_search = search.split(' ')
@@ -33,15 +32,15 @@ class Person < ActiveRecord::Base
   }
   
   scope :outside_people_in_organisation, lambda {|organisation_id|
-    joins(:outside_person).joins(:referrer).where("referrers.client_id" => organisation_id)
+    joins(:patient).joins(:referrer).where("referrers.client_id" => organisation_id)
   }
   
   default_scope order("last_name")
   
   def add_outside_person(current_user)
     self.added_by_referrer = true
-    self.outside_person.person = self
-    self.outside_person.referrer = current_user
+    self.patient.person = self
+    self.patient.referrer = current_user
   end
   
   def full_name
