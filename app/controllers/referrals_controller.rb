@@ -82,7 +82,7 @@ class ReferralsController < ApplicationController
     # remove fields that should not be updated if an appointment was created
     if(!@referral.appointment.nil?)
       params[:referral].delete_if { |key, value|
-        ["patient_status", "case_nature", "specific_requirements", "advice", "referral_reason"].index(key) != nil
+        ["patient_status", "case_nature", "specific_requirements", "advice", "referral_reason", "operational_priority"].index(key) != nil
       }
     end
     
