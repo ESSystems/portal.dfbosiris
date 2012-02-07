@@ -96,7 +96,7 @@ class ReferralsController < ApplicationController
   end
   
   def autocomplete_person_full_name
-    @persons = Person.find_by_full_name(params[:term]).limit(30).people_in_organisation(current_user.client_id)
+    @persons = Person.find_by_full_name(params[:term]).limit(20).people_in_organisation(current_user.client_id)
     @persons.collect! do |p|
       result = {}
       result["id"] = p.id
@@ -104,8 +104,8 @@ class ReferralsController < ApplicationController
       result["label"] = p.full_name
       if p.employee != nil && p.employee.organisation != nil
         result["organisation"] = p.employee.organisation.organisation_name
-      elsif p.outside_person != nil && p.outside_person.organisation != nil
-        result["organisation"] = p.outside_person.organisation.organisation_name
+      elsif p.patient != nil && p.patient.organisation != nil
+        result["organisation"] = p.patient.organisation.organisation_name
       end
       result["sap_number"] = p.employee.sap_number unless p.employee == nil
       result["dob"] = "#{p.date_of_birth}"
