@@ -32,7 +32,7 @@
 		                        <img src="/assets/ioh-avatar.jpg" alt="" />
 		                        <strong class="username">Welcome, <a href="#"><%= current_user.person.full_name %></a></strong>
 		                        <ul class="piped">
-		                            <li><a href="#">My Account</a></li>
+		                            <li><%= link_to "My account", edit_user_path(current_user) %></li>
 		                            <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
 		                        </ul>
 		                    </div>

@@ -1,0 +1,94 @@
+<%= box_widget "Access details" do %>
+	<%= form.inputs do %>
+		<li class="input">
+			<%= form.label :username, :class => "label" %>
+			<%= @user.username %>
+		</li>
+		<%= form.input :email, :hint => "Email address where you want to receive notifications" %>
+		<%= form.input :password, :input_html => {:class => "small", :autocomplete => 'off'} %>
+		<%= form.input :password_confirmation, :input_html => {:class => "small"} %>
+		<% #= form.input :current_password, :input_html => {:class => "small"} %>
+		<li id="user_current_password_input" class="password input optional stringish odd">
+			<%= form.label :current_password, ("Current password" << "<abbr title=\"required\">*</abbr>").html_safe, :class => "label" %>
+			<%= form.password_field :current_password, :class => "small" %>
+			<% if !@user.errors.empty? %>
+				<ul class="errors">
+					<% @user.errors[:current_password].each do |e| %>
+						<li><%= e %></li>
+					<% end %>
+				</ul>
+			<% end %>
+		</li>
+	<% end %>
+	<%= form.buttons do %>
+		<%= form.commit_button :button_html => {:class => "btn large orange auto"} %>
+	<% end %>
+<% end %>
+
+<%= box_widget "Personal information" do %>
+	<li class="input">
+		<%= form.label :organisation_name, :class => "label" %>
+		<%= @user.organisation.organisation_name %>
+	</li>
+	<li class="input">
+		<%= form.label :title, :class => "label" %>
+		<%= @user.person.title %>
+	</li>
+	<li class="input">
+		<%= form.label :first_name, :class => "label" %>
+		<%= @user.person.first_name %>
+	</li>
+	<li class="input">
+		<%= form.label :middle_name, :class => "label" %>
+		<%= @user.person.middle_name %>
+	</li>
+	<li class="input">
+		<%= form.label :last_name, :class => "label" %>
+		<%= @user.person.last_name %>
+	</li>
+	<li class="input">
+		<%= form.label :date_of_birth, :class => "label" %>
+		<%= @user.person.date_of_birth %>
+	</li>
+	<li class="input">
+		<%= form.label :address1, :class => "label" %>
+		<%= @user.person.address1 %>
+	</li>
+	<li class="input">
+		<%= form.label :address2, :class => "label" %>
+		<%= @user.person.address2 %>
+	</li>
+	<li class="input">
+		<%= form.label :address3, :class => "label" %>
+		<%= @user.person.address3 %>
+	</li>
+	<li class="input">
+		<%= form.label :county, :class => "label" %>
+		<%= @user.person.county %>
+	</li>
+	<li class="input">
+		<%= form.label :post_code, :class => "label" %>
+		<%= @user.person.post_code %>
+	</li>
+	<li class="input">
+		<%= form.label :area_code, :class => "label" %>
+		<%= @user.person.area_code %>
+	</li>
+	<li class="input">
+		<%= form.label :telephone_number, :class => "label" %>
+		<%= @user.person.telephone_number %>
+	</li>
+	<li class="input">
+		<%= form.label :extension, :class => "label" %>
+		<%= @user.person.extension %>
+	</li>
+	<li class="input">
+		<%= form.label :gender, :class => "label" %>
+		<%= @user.person.gender %>
+	</li>
+	<li class="input">
+		<%= form.label :email_address, :class => "label" %>
+		<%= @user.person.email_address %>
+		<p class="inline-hints">Your personal email address</p>
+	</li>
+<% end %>

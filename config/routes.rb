@@ -1,6 +1,7 @@
 ClinicManagerExtension::Application.routes.draw do
   
   devise_for :users
+  resources :users
 
   resources :referrals do
     get :autocomplete_person_full_name, :on => :collection

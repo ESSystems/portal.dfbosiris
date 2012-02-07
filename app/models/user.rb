@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   REFERRALS_TRACKING = %w[all initiated_and_assigned]
 
   belongs_to :person
+  belongs_to :organisation, :foreign_key => "client_id"
 
   # Include default devise modules. Others available are:
   # :registerable, :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
