@@ -18,13 +18,13 @@ class ReferralsController < ApplicationController
     if !current_user.nil?
       ordered_referral = Referral.order(sort_column + ' ' + sort_direction)
       if current_user.track_referrals == "all"
-        @referrals = ordered_referral.page(params[:page])
+        @referrals = ordered_referral.referrals_in_organisation(current_user.client_id).page(params[:page])
       elsif current_user.track_referrals == "initiated_and_assigned"
         # does not work with pagination:
         # @referrals = ordered_referral.initiated_and_assigned(current_user.id).page(params[:page])
         
         # Use Kaminari's array handler
-        @referrals = Kaminari.paginate_array(ordered_referral.initiated_and_assigned(current_user.id)).page(params[:page])
+        @referrals = Kaminari.paginate_array(ordered_referral.referrals_in_organisation(current_user.client_id).initiated_and_assigned(current_user.id)).page(params[:page])
       end
     end
   end
@@ -96,7 +96,7 @@ class ReferralsController < ApplicationController
   end
   
   def autocomplete_person_full_name
-    @persons = Person.find_by_full_name(params[:term]).limit(20).people_in_organisation(current_user.client_id)
+    @persons = Person.find_by_full_name(params[:term]).limit(30).people_in_organisation(current_user.client_id)
     @persons.collect! do |p|
       result = {}
       result["id"] = p.id

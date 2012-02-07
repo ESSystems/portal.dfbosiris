@@ -1,0 +1,26 @@
+<% title "Updates" %>
+<div class="grid_16 widget first">
+    <div class="widget_title clearfix">
+        <h2>List</h2>
+    </div>
+    <div class="widget_body">
+		<div class="widget_options clearfix">
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<td>Message</td>
+					<td style="width: 100px;">Email sent</td>
+					<td style="width: 180px;">Email sent at</td>
+					<td class="action">Action</td>
+				</tr>
+			</thead>
+			<tbody id="notifications">
+				<% @notifications.each do |notification| %>
+					<%= render 'notification', :notification => notification %>
+				<% end %>
+			</tbody>
+		</table>
+		<div id="notifications-paginator"><%= paginate @notifications, :remote => true %></div>
+    </div>
+</div>

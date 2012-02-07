@@ -1,0 +1,60 @@
+<% title "Dashboard" %>
+<div class="grid_16 widget first">
+    <div class="widget_title clearfix">
+        <h2>Latest Updates</h2>
+		<ul>
+			<li><%= link_to "View all notifications", notifications_path, :class => "btn grey right" %></li>
+		</ul>
+    </div>
+    <div class="widget_body">
+		<div class="widget_options clearfix">
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<td>Message</td>
+					<td style="width: 100px;">Email sent</td>
+					<td style="width: 180px;">Email sent at</td>
+					<td class="action">Action</td>
+				</tr>
+			</thead>
+			<tbody id="notifications">
+				<% @notifications.each do |notification| %>
+					<%= render 'notifications/notification', :notification => notification %>
+				<% end %>
+			</tbody>
+		</table>
+    </div>
+</div>
+
+<div class="grid_16 widget first">
+    <div class="widget_title clearfix">
+        <h2>Referrals</h2>
+		<ul>
+			<li><%= link_to "New referral", new_referral_path, :class => "btn orange right" %></li>
+			<li><%= link_to "View all referrals", referrals_path, :class => "btn grey right" %></li>
+		</ul>
+    </div>
+    <div class="widget_body">
+		<div class="widget_options clearfix">
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<td style="width:40px">&nbsp;</td>
+					<td style="width:90px">Case Reference Number</td>
+					<td style="width: 110px;">Person</td>
+					<td>Case nature</td>
+					<td style="width: 140px;">Referral Reason</td>
+					<td style="width: 110px;">Created at</td>
+					<td class="action">Action</td>
+				</tr>
+			</thead>
+			<tbody id="referrals">
+				<% @referrals.each do |referral| %>
+					<%= render 'referrals/referral', :referral => referral %>
+				<% end %>
+			</tbody>
+		</table>
+    </div>
+</div>

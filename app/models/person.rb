@@ -31,6 +31,7 @@ class Person < ActiveRecord::Base
     joins(:employee).where("nemployees.client_id" => organisation_id)
   }
   
+  # returns people added by referrers in organisation
   scope :outside_people_in_organisation, lambda {|organisation_id|
     joins(:patient).joins(:referrer).where("referrers.client_id" => organisation_id)
   }

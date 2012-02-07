@@ -45,6 +45,8 @@ p {margin: 5px 0}
 
 .clr {clear:both;}
 
+.unread {font-weight:bold;}
+
 /* Header
 -------------------------------------------------------------------*/
 header {background-image: url(/assets/chameleon-circuit/header_bg.png); background-repeat: no-repeat; padding-top: 10px}
@@ -180,7 +182,7 @@ tbody tr.even, li.even {background:#ededed}
 
 table.simple td:first-child {padding-left: 10px}
 
-table .piped, table .piped a {color:#777; font-size: 0.917em;}
+table .piped, table .piped a, a.action {color:#777; font-size: 0.917em;}
 
 .simple thead {border-bottom: 1px solid #d4d4d4}
 

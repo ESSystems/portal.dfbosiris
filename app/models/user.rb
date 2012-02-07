@@ -29,4 +29,15 @@ class User < ActiveRecord::Base
   def display_name
     person.full_name
   end
+  
+  def unread_notifications
+    number = 0
+
+    result = connection.execute "SELECT COUNT(*) FROM notifications n WHERE n.read = 0 AND n.target_id = #{self.id}"
+    result.each{ |res|
+      number = res[0] if res != nil
+    }
+    
+    number
+  end
 end

@@ -19,5 +19,8 @@ ClinicManagerExtension::Application.routes.draw do
     get 'page/:page', :action => :index, :on => :collection
   end
   
-  root :to => "referrals#index"
+  match "notifications/read/:id" => "notifications#read"
+  match "notifications" => "notifications#index"
+  
+  root :to => "users#dashboard"
 end

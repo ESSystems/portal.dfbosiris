@@ -50,7 +50,7 @@
 	                        <li class="<%= params[:controller] == "referrals" && request.path != "/" ? "active" : "" %>">
 	                        	<% if can? :index, @referral %> 
 	                            <a href="/referrals">
-	                                <span class="icon"><img src="/assets/chameleon-circuit/menu/tables.png" /></span>
+	                                <span class="icon"><img src="/assets/chameleon-circuit/menu/pages.png" /></span>
 	                                <span class="title">Referrals</span>
 	                            </a>
 	                            <% end %>
@@ -72,6 +72,17 @@
 	                                <li><a href="/people/new" class="styleswitcher" rel="new">Add new</a></li>
 	                                <% end %>
 	                            </ul>
+	                        </li>
+	                        <li class="<%= params[:controller] == "notifications" ? "active" : "" %>">
+	                        	<% if can? :index, @notification %> 
+	                            <a href="/notifications">
+	                            	<% if current_user.unread_notifications != 0 %>
+	                            	<span class="notification"><%= current_user.unread_notifications %></span>
+	                            	<% end %>
+	                                <span class="icon"><img src="/assets/chameleon-circuit/menu/msg.png" /></span>
+	                                <span class="title">Notifications</span>
+	                            </a>
+	                            <% end %>
 	                        </li>
 	                    </ul>
 	                    </div>

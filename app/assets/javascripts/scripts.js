@@ -184,7 +184,7 @@ $(document).ready(function(){
   }
   
   // Token input should be a select for this to work
-  if($("#cmx-token-input").length) {
+ if($("#cmx-token-input").length) {
   	selector = "#cmx-token-input";
   	suggestions_url = $(selector).attr("suggestions_url");
   	$(selector).tokenInput(suggestions_url, {
@@ -279,6 +279,24 @@ $(document).ready(function(){
         }
 	});
   });
+
+	$(".notification-message a.action").click(function() {
+		var action = $(this);
+		
+		action.parent().toggle();
+		action.parent().siblings().toggle('slow');
+		
+		var notification_id = action.attr("notification-id")
+		
+		if(notification_id != undefined) {
+			$.post('/notifications/read/' + notification_id, {}, function(success) {
+	    		if(success) {
+	    			action.removeAttr("notification-id");
+	    			action.parents("tr").removeClass("unread");
+	    		}
+	    	});
+		}
+	});
 });
 
 function token_input_existing_values(selector) {

@@ -43,6 +43,10 @@ class Referral < ActiveRecord::Base
     initiated(referrer_id) | assigned(referrer_id)
   }
   
+  scope :referrals_in_organisation, lambda { |organisation_id|
+    joins(:referrer).where("referrers.client_id" => organisation_id)
+  }
+  
   #default_scope order("created_at DESC")
 
   def person_full_name

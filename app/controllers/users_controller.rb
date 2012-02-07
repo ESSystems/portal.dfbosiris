@@ -1,5 +1,20 @@
 class UsersController < ApplicationController
 
+  load_and_authorize_resource
+  
+  def dashboard
+    if !current_user.nil?
+      ordered_referral = Referral.order("created_at DESC").limit(5)
+      if current_user.track_referrals == "all"
+        @referrals = ordered_referral
+      elsif current_user.track_referrals == "initiated_and_assigned"
+        @referrals = ordered_referral.initiated_and_assigned(current_user.id)
+      end
+      
+      @notifications = Notification.associated_notifications("Referrer", current_user.id).limit(5)
+    end
+  end
+  
   def edit
     @user = User.find(current_user)
   end
@@ -7,16 +22,6 @@ class UsersController < ApplicationController
   def update
     @user = User.find(current_user.id)
     success = false
-    
-    # if params[:user][:password] == ''
-      # if @user.update_without_password(params[:user])
-        # success = true
-      # end
-    # else
-      # if @user.update_with_password(params[:user])
-        # success = true
-      # end
-    # end
     
     if @user.update_with_password(params[:user])
       flash[:success] = "Your account was successfully updated."

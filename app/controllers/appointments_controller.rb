@@ -1,5 +1,7 @@
 class AppointmentsController < ApplicationController
   
+  load_and_authorize_resource
+  
   def confirm_appointment
     @appointment = Appointment.find(params[:id])
     if @appointment.confirm

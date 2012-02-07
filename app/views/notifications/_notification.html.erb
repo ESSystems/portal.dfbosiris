@@ -1,0 +1,22 @@
+<tr class="<%= notification.read ? '' : 'unread' %>">
+	<td class="notification-message">
+		<div>
+			<%= notification.short_message %>
+			<a href="#" onclick="return false;" class="action" <%= notification.read ? "" : "notification-id=\"#{notification.id}\"".html_safe %>>View more</a>
+		</div>
+		<div style="display:none;">
+			<%= html_message notification.message %>
+			<br />
+			<a href="#" onclick="return false;" class="action">View less</a>
+		</div>
+	</td>
+	<td><%= notification.email_sent ? "Yes" : "No" %></td>
+	<td><%= h(notification.email_sent_date) %></td>
+	<td>
+		<ul class="hor-list piped">
+			<% if can? :delete, notification %>
+				<li><%= link_to "Delete", delete_notification_path(notification) %></li>
+			<% end %>
+		</ul>
+	</td>
+</tr>

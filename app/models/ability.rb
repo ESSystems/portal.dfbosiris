@@ -21,6 +21,8 @@ class Ability
       can [:destroy], Person do |p|
         Appointment.find_by_person_id(p.id).nil? && Referral.find_by_person_id(p.id).nil? && p.try(:referrer) == user 
       end
+      can [:dashboard, :edit, :update], User
+      can [:index, :read], Notification
     end
   end
 end
