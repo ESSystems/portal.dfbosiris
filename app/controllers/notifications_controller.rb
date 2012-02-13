@@ -8,7 +8,7 @@ class NotificationsController < ApplicationController
 
   def read
     @notification = Notification.find(params[:id])
-    success = @notification.update_attribute("read", true)
+    success = @notification.update_attributes :read => true, :read_date => Time.now.to_s(:db)
     
     respond_to do |format|
       format.json {render :json => success}

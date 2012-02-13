@@ -11,8 +11,8 @@ class Notification < ActiveRecord::Base
   end
   
   def short_message
-    m = message.slice(0..100)
-    m << "..." if message.length > 100
+    m = message.slice(0..150)
+    m << "..." if message.length > 150
     m
   end
 end

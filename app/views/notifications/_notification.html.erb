@@ -12,11 +12,4 @@
 	</td>
 	<td><%= notification.email_sent ? "Yes" : "No" %></td>
 	<td><%= h(notification.email_sent_date) %></td>
-	<td>
-		<ul class="hor-list piped">
-			<% if can? :delete, notification %>
-				<li><%= link_to "Delete", delete_notification_path(notification) %></li>
-			<% end %>
-		</ul>
-	</td>
 </tr>
