@@ -2,6 +2,14 @@ $(document).ready(function(){
   //Table Odd/Even styles
    $("table:not(.simple) tr:nth-child(odd)").addClass("odd"); // Table Odd/Even
    $("table:not(.simple) tr:nth-child(even)").addClass("even"); // Table Odd/Even
+   $("tbody tr").hover(
+   	function() {
+    	$(this).addClass("highlight");
+   	},
+   	function() {
+    	$(this).removeClass("highlight");
+   	}
+  );
    
    // Ol Odd/Even
    $("form ol li.input:odd").addClass("odd"); // Ol Odd/Even
@@ -120,15 +128,6 @@ $(document).ready(function(){
     changeYear: true,
     yearRange: "-100"
   });
-  
-  $("tbody tr").hover(
-	function() {
-    	$(this).addClass("highlight");
-   	},
-   	function() {
-    	$(this).removeClass("highlight");
-   	}
-  )
   
   $('[original-title]').tipsy();
   
