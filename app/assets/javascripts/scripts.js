@@ -214,6 +214,16 @@ $(document).ready(function(){
 			center: 'title',
 			right: 'month,agendaWeek,agendaDay'
 		},
+		columnFormat: {
+    		month: 'dddd',
+    		week: "ddd d/M",
+    		day: 'dddd, d/M'
+		},
+		titleFormat: {
+		    month: 'MMMM yyyy',
+		    week: "d[ MMM][ yyyy]{ '&#8212;' d MMM yyyy}",
+		    day: 'dddd, d MMM, yyyy'
+		},
 		editable: true,
 		disableResizing: true,
 		weekends: false,

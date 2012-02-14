@@ -23,6 +23,7 @@ class Ability
       end
       can [:dashboard, :edit, :update], User
       can [:index, :read], Notification
+      can [:confirm_appointment], Appointment
     end
   end
 end
