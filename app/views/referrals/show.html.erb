@@ -37,7 +37,7 @@
 	%>
 
 	<%= box_widget "Appointment", {}, [confirm_extra] do %>
-		<p><%= message_start %>: <b id="appointment-date"><%= @referral.appointment.display_date %></b> with <b><%= @referral.appointment.diary.name %></b> <%= message_end %></p>
+		<p><%= message_start %>: <b id="appointment-date"><%= @referral.appointment.display_date %></b> <%= "with <b>#{@referral.appointment.diary.name}</b>".html_safe if @referral.appointment.diary %> <%= message_end %></p>
 		<p><%= "Feedback received: #{@referral.appointment.attendance.attendance_feedback.report}" if @show_feedback %></p>
 		<br />
 		<div id="calendar" name="calendar"></div>
