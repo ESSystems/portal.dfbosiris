@@ -79,7 +79,7 @@
 <%= box_widget "Submit referral" do %>
 	<%= form.inputs do %>
 		<% if @allow_edit %>
-			<%= form.input :referral_reason, :collection => @referral_reasons.map {|u| [u.reason, u.id]} %>
+			<%= form.input :referral_reason, :collection => @referral_reasons.map {|u| [u.reason, u.id]}, :input_html => {:style => "width:315px;"} %>
 			<%= form.input :operational_priority, :collection => @operational_priorities.map {|u| [u.operational_priority, u.id]} %>
 		<% else %>
 			<%= form.input :referral_reason, :as => :string, :input_html => {:readonly => true} %>
