@@ -23,6 +23,7 @@ class Referral < ActiveRecord::Base
   validates :job_information, :presence => true
   validates :person_id, :presence => true
   validates :case_nature, :presence => true
+  validates :history, :presence => true
   validates :referral_reason, :presence => true
   validates :operational_priority, :presence => true
   validates :case_reference_number, :presence => true
