@@ -1,6 +1,6 @@
 class Referral < ActiveRecord::Base
   
-  STATE = %w[new accepted declined]
+  STATE = %w[new accepted declined closed]
   
   attr_accessor :person_full_name
   attr_accessible :referrer_id, :person, :person_id, :patient_status, :patient_status_id, 
@@ -15,7 +15,7 @@ class Referral < ActiveRecord::Base
   has_many :documents, :as => :attachable, :dependent => :destroy
   has_many :appointments
   has_and_belongs_to_many :followers, :class_name => 'User', :join_table => 'referrals_followers', :association_foreign_key => "referrer_id", :autosave => true
-  has_one :declination
+  has_many :declinations
 
   validates :referrer, :presence => true
   validates :person, :presence => true
@@ -62,6 +62,26 @@ class Referral < ActiveRecord::Base
   
   def appointment
     appointments.first
+  end
+  
+  def close
+    update_attribute(:state, :closed)
+  end
+  
+  def closed?
+    state == "closed"
+  end
+  
+  def declined?
+    state == "declined"
+  end
+  
+  def decline
+    self.state = "declined"
+  end
+  
+  def renew
+    self.state = "new"
   end
   
   private

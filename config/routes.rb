@@ -7,6 +7,7 @@ ClinicManagerExtension::Application.routes.draw do
     get :autocomplete_person_full_name, :on => :collection
     get :followers_suggestions, :on => :collection
     get :cancel, :on => :member
+    get :accept_declination_and_close, :on => :member
   end
   
   resources :appointments do

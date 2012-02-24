@@ -289,7 +289,7 @@ $(document).ready(function(){
 	});
   });
 
-	$(".notification-message a.action").click(function() {
+	$(".notification-message a.action").live('click', function() {
 		var action = $(this);
 		
 		action.parent().toggle();

@@ -1,9 +1,9 @@
 <% title "View referral for " << @referral.person.full_name << " / " << @referral.case_reference_number %>
 
-<% box_extra = link_to "Edit referral", edit_referral_path(@referral), :class => "btn orange right" %>
+<% box_extra = @submit_referral ? link_to("Edit referral", edit_referral_path(@referral), :class => "btn orange right") : "" %>
 <%= box_widget "Referral information", {:body_class => "information"}, [box_extra] do %>
 	<ul>
-		<li class="full-width"><span class="label">State</span>: <%= @referral.state %> <%= %Q/because "#{@referral.declination}" / if !@referral.declination.nil? %></li>
+		<li class="full-width"><span class="label">State</span>: <%= @referral.state %></li>
 		<li class="full-width"><span class="label">Person</span>: <%= @referral.person.full_name %> - <%= render 'shared/person_information', :person => @referral.person %></li>
 		<li class="clr"><span class="label">Patient status</span>: <%= @referral.patient_status.status %></li>
 		<li><span class="label">Referral Reason</span>: <%= @referral.referral_reason.reason %></li>
@@ -67,6 +67,39 @@
 						<% end %>
 					<% end %>
 				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<% end %>
+<% end %>
+
+<% if @show_declinations %>
+	<%
+		declinations_extra = []
+		if @resubmit_referral
+			declinations_extra.push(link_to("Resubmit referral", edit_referral_path(@referral), :class => "btn orange right"))
+		end
+		if @accept_declination_and_close
+			declinations_extra.push(link_to("Accept declination and close referral", accept_declination_and_close_referral_path(@referral), :accept_declination_and_close => true, :confirm => "Are you sure you want to close this referral?", :class => "btn grey right"))
+		end
+	%>
+
+	<%= box_widget "Declinations", {}, declinations_extra do %>
+	<table>
+		<thead>
+			<tr>
+				<td style="width:230px;">Date</td>
+				<td style="width:200px;">User</td>
+				<td>Reason</td>
+			</tr>
+		</thead>
+		<tbody>
+			<% @referral.declinations.each do |d| %>
+			<tr>
+				<td><%= d.created %></td>
+				<td><%= d.person.full_name %></td>
+				<td><%= d.reason %></td>
 			</tr>
 			<% end %>
 		</tbody>

@@ -325,6 +325,9 @@ header .search {
 .icon.referral-declined {
 	background-image: url(/assets/chameleon-circuit/fugue/report--minus.png)
 }
+.icon.referral-closed {
+	background-image: url(/assets/chameleon-circuit/fugue/report-paper.png)
+}
 
 #show-all-people {
 	position:relative;
