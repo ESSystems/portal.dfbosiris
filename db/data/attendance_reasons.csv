@@ -1,0 +1,10 @@
+ADHO,Treatment Room,0
+CALL,Call Out,0
+DIAR,Diary Appointment,0
+MEDI,Medical,0
+TELE,Tele Consultation,0
+x,Diary Appointment OH Physician,1
+ISOC,Diary Appointment Isocom,1
+COUN,Diary Appointment Counsellor,1
+PHYS,Diary Appointment Physiotherapy,1
+NURS,Diary Appointment Nurse,1
