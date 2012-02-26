@@ -290,7 +290,6 @@ header .search {
     padding: 3px 20px 3px 3px;
     background: url(/assets/chameleon-circuit/custom/search_s.png) no-repeat 98% center #fff !important;
     box-shadow: 0 1px 1px #BBBBBB inset; -moz-box-shadow: 0 1px 1px #BBBBBB inset; -webkit-box-shadow: 0 1px 1px #BBBBBB inset;
-    float: right;
 }
 
 .widget_options .search {padding: 3px 5px}

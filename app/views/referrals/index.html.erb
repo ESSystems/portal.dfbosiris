@@ -8,6 +8,13 @@
     </div>
     <div class="widget_body">
 		<div class="widget_options clearfix">
+			<%= form_tag referrals_path, :remote => true, :method => "get", :id => "search-form" do %>
+				<div class="dataTables_filter">
+					Search: 
+					<%= submit_tag "Search", :class => "small grey right" %>
+					<input type="text" name="search" id="search">
+				</div>
+			<% end %>
 		</div>
 		<table>
 			<thead>

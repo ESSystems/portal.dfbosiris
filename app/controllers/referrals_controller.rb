@@ -83,15 +83,22 @@ class ReferralsController < ApplicationController
   
   def index
     if !current_user.nil?
-      ordered_referral = Referral.order(sort_column + ' ' + sort_direction)
+      referrals = Referral
+      
+      if params[:search]
+        referrals = referrals.search params[:search]
+      end
+      
+      ordered_referrals = referrals.order(sort_column + ' ' + sort_direction)
+      
       if current_user.track_referrals == "all"
-        @referrals = ordered_referral.referrals_in_organisation(current_user.client_id).page(params[:page])
+        @referrals = ordered_referrals.referrals_in_organisation(current_user.client_id).page(params[:page])
       elsif current_user.track_referrals == "initiated_and_assigned"
         # does not work with pagination:
-        # @referrals = ordered_referral.initiated_and_assigned(current_user.id).page(params[:page])
+        # @referrals = ordered_referrals.initiated_and_assigned(current_user.id).page(params[:page])
         
         # Use Kaminari's array handler
-        @referrals = Kaminari.paginate_array(ordered_referral.referrals_in_organisation(current_user.client_id).initiated_and_assigned(current_user.id)).page(params[:page])
+        @referrals = Kaminari.paginate_array(ordered_referrals.referrals_in_organisation(current_user.client_id).initiated_and_assigned(current_user.id)).page(params[:page])
       end
     end
   end

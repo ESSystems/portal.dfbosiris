@@ -98,7 +98,7 @@ button.green:hover, .btn.green:hover, input.green:hover {
     
   
 
- button.grey, .btn.grey, input.grey {
+ button.grey, .btn.grey, input.grey, input.grey[type="submit"] {
     background: #e1e1e1; /* Old browsers */
     background: -moz-linear-gradient(top, #e1e1e1 0%, #d2d2d2 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e1e1e1), color-stop(100%,#d2d2d2)); /* Chrome,Safari4+ */
@@ -123,7 +123,7 @@ button.green:hover, .btn.green:hover, input.green:hover {
     text-align: center;
     text-shadow: 0 1px 0 #eee;
   }
-  button.grey:hover, .btn.grey:hover, input.grey:hover {
+  button.grey:hover, .btn.grey:hover, input.grey:hover, input.grey[type="submit"]:hover {
     background: #d7d7d7; /* Old browsers */
     background: -moz-linear-gradient(top, #d7d7d7 0%, #dadada 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d7d7d7), color-stop(100%,#dadada)); /* Chrome,Safari4+ */
@@ -450,7 +450,8 @@ button, .btn, input[type=button], input[type=submit],.ui-button {
 .medium {font-size: 1em; padding: 5px !important;vertical-align: sub;}
 .large {font-size: 1.083em; padding: 7px 10px !important;vertical-align: sub;}
 
-.widget_options .small {}
+.widget_options input.small {padding:2px !important;}
+.widget_options .dataTables_filter input {float:inherit !important;}
 
 /* Other buttons
 -------------------------------------------------------------------*/

@@ -306,7 +306,21 @@ $(document).ready(function(){
 	    	});
 		}
 	});
+	
+	$("#search").keyup(function() {
+		typewatch(function () {
+    		$('#search-form').submit();
+  		}, 1000);
+	});
 });
+
+var typewatch = (function(){
+  var timer = 0;
+  return function(callback, ms){
+    clearTimeout (timer);
+    timer = setTimeout(callback, ms);
+  }  
+})();
 
 function token_input_existing_values(selector) {
 	existing_values = $(selector).val();

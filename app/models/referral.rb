@@ -48,6 +48,24 @@ class Referral < ActiveRecord::Base
     joins(:referrer).where("referrers.client_id" => organisation_id)
   }
   
+  scope :search, lambda { |query|
+    param = "%#{query.strip}%"
+    query_string = <<-eos
+      person.first_name LIKE ? OR person.last_name LIKE ? 
+      OR referral_reasons.reason LIKE ? 
+      OR case_reference_number LIKE ? 
+      OR case_nature LIKE ?
+    eos
+
+    joins(:person).joins(:referral_reason).where(
+      query_string,
+      param, param,
+      param,
+      param,
+      param
+    )
+  }
+
   #default_scope order("created_at DESC")
 
   def person_full_name
