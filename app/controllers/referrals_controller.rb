@@ -130,6 +130,7 @@ class ReferralsController < ApplicationController
       @show_all_appointments = true
     elsif @referral.appointment
       @show_appointment = true
+      @extjs_calendar_url = "http://" << OSIRIS_SERVER_NAME << "/cmx/confirm_appointment/#{@referral.appointment.id}/#{current_user.id}"
       
       @show_confirmed = @referral.appointment.confirmed?
       @show_confirm = @referral.appointment.new?

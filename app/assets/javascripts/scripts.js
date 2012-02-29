@@ -207,86 +207,10 @@ $(document).ready(function(){
   $("#choose-appointment-date").click(function() {
   	var appointment_id = $(this).attr("appointment_id");
   	var start_date = $(this).attr("start_date");
-  	$('#calendar').empty();
-  	$('#calendar').fullCalendar({
-  		header: {
-			left: 'prev,next today',
-			center: 'title',
-			right: 'month,agendaWeek,agendaDay'
-		},
-		columnFormat: {
-    		month: 'dddd',
-    		week: "ddd d/M",
-    		day: 'dddd, d/M'
-		},
-		titleFormat: {
-		    month: 'MMMM yyyy',
-		    week: "d[ MMM][ yyyy]{ '&#8212;' d MMM yyyy}",
-		    day: 'dddd, d MMM, yyyy'
-		},
-		editable: true,
-		disableResizing: true,
-		weekends: false,
-		defaultView: 'agendaWeek',
-		allDaySlot: false,
-		allDayDefault: false,
-		minTime: 8,
-		maxTime: 20,
-        events: '/appointments/' + appointment_id + '/calendar_data/',
-        eventClick: function(calEvent, jsEvent, view) {
-        	var $appointment_dialog = $('<div></div>')
-			  	.html(calEvent.description)
-				.dialog({
-					autoOpen: false,
-					title: 'Appointment',
-					modal: true,
-					buttons: {
-						Ok: function() {
-							$(this).dialog( "close" );
-						}
-					}
-				});
-			$appointment_dialog.dialog('open');
-    	},
-    	eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
-    		start_date = event.start;
-    		var sdt = new Date(event.start);
-    		post_start_date = mysql_datetime(sdt);
-    		var edt = new Date(event.end);
-    		post_end_date = mysql_datetime(edt);
-
-	    	$.post('/appointments/' + event.id + "/calendar_update_date/", {from_date: post_start_date, to_date: post_end_date}, function(data) {
-	    		if(data.type == 'overlapping_date') {
-	    			var $booked_dialog = $('<div></div>')
-					  	.html(data.response)
-						.dialog({
-							autoOpen: false,
-							title: 'Overlapping date',
-							modal: true,
-							buttons: {
-								Ok: function() {
-									$(this).dialog( "close" );
-								}
-							}
-						});
-					$booked_dialog.dialog('open');
-					revertFunc();
-	    		} else {
-	    			$('#calendar').fullCalendar( 'refetchEvents', event);
-	    			$("#appointment-date").html(
-	    				$.datepicker.formatDate('dd MM, yy', sdt) + 
-	    				" from " + ('0' + sdt.getHours()).slice(-2) + ":" + ('0' + sdt.getMinutes()).slice(-2) +
-	    				" to " + ('0' + edt.getHours()).slice(-2) + ":" + ('0' + edt.getMinutes()).slice(-2)
-	    			);
-	    		};
-	    	});
-    	},
-    	loading: function(bool) {
-	        if (!bool) {
-	 	       $('#calendar').fullCalendar('gotoDate', new Date(start_date));
-	        }
-        }
-	});
+  	
+  	$('#extjs-calendar').empty();
+  	var extjs_calendar_url = $('#extjs-calendar').attr("extjs-calendar-url");
+  	$('#extjs-calendar').append('<iframe src="' + extjs_calendar_url + '"></iframe>');
   });
 
 	$(".notification-message a.action").live('click', function() {
