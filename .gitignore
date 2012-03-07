@@ -10,3 +10,4 @@ database.yml
 .sass-cache/
 .project
 public/system/documents/*
+public/assets/*

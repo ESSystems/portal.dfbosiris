@@ -8,22 +8,6 @@ Version: 1.1
 
 /* Structure
 -------------------------------------------------------------------*/
-@import url(reset.css);
-@import url(global.css);
-@import url(typography.css);
-@import url(buttons.css);
-@import url(jqueryui.css);
-@import url(jquery.cleditor.css);
-@import url(iphonecheckbox.css);
-@import url(superfish.css);
-@import url(fullcalendar.css);
-@import url(colorbox.css);
-@import url(uploadify.css);
-@import url(tipsy.css);
-/*@import url(jquery.pnotify.default.css);*/
-
-@import url(config.css);
-
 html {font-size: 100%;}
 body {font-size: .75em;line-height: 1.5; background: url(/assets/chameleon-circuit/bg.png) repeat;}
 
@@ -224,7 +208,7 @@ span.vanadium-advice {margin-left: 15px}
 span.vanadium-invalid {background: url("/assets/chameleon-circuit/fugue/cross.png") no-repeat scroll left center transparent; padding:1px 0 1px 18px}
 
 .upload {display: inline}
-.realupload {position: relative;left: -21%;opacity:0;-moz-opacity:0;filter:alpha(opacity:0);z-index:2;width:20%;}
+.realupload {position: relative;left: -21%;opacity:0;-moz-opacity:0;filter:alpha(opacity=0);z-index:2;width:20%;}
 .fakeupload {background-image:url(/assets/chameleon-circuit/form/selectfile.png);background-position: 100% 50%;background-repeat:no-repeat;}
 
 .inputHighlight {color: #959595 !important}
