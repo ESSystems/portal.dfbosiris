@@ -1,4 +1,29 @@
 $(document).ready(function(){
+	// $('body').bind('showStandBy', function() {
+		// overlay = $('<div id="stand-by-indicator-overlay" />');
+		// overlay.height($(document).height());
+		// overlay.width($(document).width());
+		// overlay.css("z-index", getZMax() + 1000);
+// 		
+		// indicator = $('<div id="stand-by-indicator"></div>');
+		// indicator.offset({ top: $(window).height() / 2 + $(window).scrollTop(), left: ($(window).width() + $(window).scrollLeft()) / 2 });
+		// overlay.append(indicator);
+// 		
+		// $("body").append(overlay);
+  	// });
+//   	
+  	// $('body').bind('hideStandBy', function() {
+  		// $('#stand-by-indicator-overlay').remove();
+  	// });
+// 	
+	// $(document).on("ajax:before", '[data-remote="true"]', function() {
+		// $.event.trigger('showStandBy');
+	// });
+// 	
+	// $(document).on("ajax:complete", '[data-remote="true"]', function() {
+		// $.event.trigger('hideStandBy');
+	// });
+	
   //Table Odd/Even styles
    $("table:not(.simple) tr:nth-child(odd)").addClass("odd"); // Table Odd/Even
    $("table:not(.simple) tr:nth-child(even)").addClass("even"); // Table Odd/Even
@@ -151,14 +176,23 @@ $(document).ready(function(){
   	}
   })
   
-  if($("#referral_person_full_name").length) {
+	if($("#referral_person_full_name").length) {
+		// $("#referral_person_full_name").bind( "autocompletesearch", function(event, ui) {
+			// $(this).blur();
+			// $.event.trigger('showStandBy');
+		// });
+		// $("#referral_person_full_name").bind( "autocompleteopen", function(event, ui) {
+			// $(this).focus();
+			// $.event.trigger('hideStandBy');
+		// });
+  	
   	$("#referral_person_full_name").bind( "autocompletecreate", function(event, ui) { 
 		ui.maxRows = 5;
 	})
   	$("#referral_person_full_name").bind( "autocompleteselect", function(event, ui) { 
 		$("#person-info").html(person_info(ui.item.organisation, ui.item.sap_number, ui.item.dob));
 	})
-	$("#referral_person_full_name").autocomplete().data("autocomplete" )._renderItem = function( ul, item ) {
+	$("#referral_person_full_name").autocomplete({ delay: 500 }).data("autocomplete" )._renderItem = function( ul, item ) {
 		suggestion = item.label;
 		info = person_info(item.organisation, item.sap_number, item.dob);
 		suggestion += info.length != 0 ? "<br />" + info : "";
@@ -288,4 +322,13 @@ function jump_to(id) {
     var new_position = $(id).offset();
     window.scrollTo(new_position.left, (new_position.top - 100));
     return false;
+}
+
+function getZMax() {
+	zmax = 0;
+	$('*').each(function() {
+		var cur = parseInt($(this).css('zIndex'));
+		zmax = cur > zmax ? $(this).css('zIndex') : zmax; 
+	});
+	return zmax;
 }

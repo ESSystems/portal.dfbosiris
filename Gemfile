@@ -44,7 +44,7 @@ group :development, :test do
   gem 'forgery'
   gem 'guard-rspec'
   gem 'guard-cucumber'
-  gem 'spork', '~> 0.9.0.rc'
+  gem 'spork'
   gem 'guard-spork'
 
   # Pretty printed test output
@@ -54,6 +54,6 @@ group :development, :test do
 
   if RUBY_PLATFORM.downcase.include?("darwin")
   	gem 'rb-fsevent'
-  	#gem 'growl_notify'
+  	gem 'growl'
   end
 end

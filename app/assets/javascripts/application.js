@@ -8,7 +8,6 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require autocomplete-rails
-//= require scripts
 //= require chameleon-circuit/jquery.cleditor.min
 //= require chameleon-circuit/jquery.colorbox-min
 //= require chameleon-circuit/jquery.dataTables.min
@@ -19,3 +18,4 @@
 //= require chameleon-circuit/superfish
 //= require chameleon-circuit/fullcalendar.min
 //= require jquery.tokeninput
+//= require scripts
