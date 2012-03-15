@@ -36,7 +36,9 @@ end
 puts "finished importing referrer type data."
 
 case Rails.env
+  # call this with: rake db:seed :env=development
   when "development"
+    
   # create test users
   puts "creating test users..."
   hr_person = Person.find_or_initialize_by_email_address("hresources@test.com")
