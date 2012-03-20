@@ -38,8 +38,10 @@ CREATE TABLE `appointments` (
   `referral_reason_id` int(11) NOT NULL,
   `diagnosis_id` int(11) DEFAULT NULL,
   `state` enum('new','confirmed','booked','closed','rejected') NOT NULL DEFAULT 'new',
+  `new_or_review` varchar(10) DEFAULT NULL,
+  `referrer_type_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=143 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=155 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `attendance_feedback` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -314,7 +316,7 @@ CREATE TABLE `notifications` (
   `read_date` datetime DEFAULT NULL,
   `problems` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=306 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=320 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `operational_priorities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -372,7 +374,7 @@ CREATE TABLE `person` (
   `email_address` varchar(100) DEFAULT NULL,
   `added_by_referrer` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=31200 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=31201 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `recall_list_item_events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -437,8 +439,9 @@ CREATE TABLE `referrals` (
   `sickness_started` date DEFAULT NULL,
   `sicknote_expires` date DEFAULT NULL,
   `operational_priority_id` varchar(255) DEFAULT NULL,
+  `person_department_name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `referrals_followers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -446,6 +449,14 @@ CREATE TABLE `referrals_followers` (
   `referrer_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `referrer_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `referrers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -465,11 +476,12 @@ CREATE TABLE `referrers` (
   `username` varchar(255) DEFAULT NULL,
   `track_referrals` varchar(255) DEFAULT NULL,
   `client_id` int(11) DEFAULT NULL,
+  `referrer_type_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_referrers_on_email` (`email`),
   UNIQUE KEY `index_referrers_on_reset_password_token` (`reset_password_token`),
   UNIQUE KEY `index_referrers_on_username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `schema_migrations` (
   `version` varchar(255) NOT NULL,
@@ -608,3 +620,13 @@ INSERT INTO schema_migrations (version) VALUES ('20120224183341');
 INSERT INTO schema_migrations (version) VALUES ('20120225104319');
 
 INSERT INTO schema_migrations (version) VALUES ('20120228110815');
+
+INSERT INTO schema_migrations (version) VALUES ('20120315063605');
+
+INSERT INTO schema_migrations (version) VALUES ('20120315112747');
+
+INSERT INTO schema_migrations (version) VALUES ('20120315115154');
+
+INSERT INTO schema_migrations (version) VALUES ('20120315121842');
+
+INSERT INTO schema_migrations (version) VALUES ('20120320064354');

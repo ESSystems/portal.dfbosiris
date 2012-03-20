@@ -1,14 +1,16 @@
 class Person < ActiveRecord::Base
+  
   set_table_name "person"
+  
+  default_scope order("last_name")
   
   has_one :patient, :foreign_key => :PersonID
   has_one :employee
   has_one :referrer, :through => :patient
   
-  validates :first_name, :presence => true
-  validates :last_name, :presence => true
-  
-  accepts_nested_attributes_for :patient
+  scope :employees_in_organisation, lambda { |organisation_id|
+    joins(:employee).where("nemployees.client_id" => organisation_id)
+  }
   
   scope :find_by_full_name, lambda { |search| 
     split_search = search.split(' ')
@@ -23,20 +25,19 @@ class Person < ActiveRecord::Base
     end
   }
   
-  scope :people_in_organisation, lambda { |organisation_id|
-    employees_in_organisation(organisation_id) | outside_people_in_organisation(organisation_id)
-  }
-  
-  scope :employees_in_organisation, lambda { |organisation_id|
-    joins(:employee).where("nemployees.client_id" => organisation_id)
-  }
-  
   # returns people added by referrers in organisation
   scope :outside_people_in_organisation, lambda {|organisation_id|
     joins(:patient).joins(:referrer).where("referrers.client_id" => organisation_id)
   }
   
-  default_scope order("last_name")
+  scope :people_in_organisation, lambda { |organisation_id|
+    employees_in_organisation(organisation_id) | outside_people_in_organisation(organisation_id)
+  }
+  
+  validates :first_name, :presence => true
+  validates :last_name, :presence => true
+  
+  accepts_nested_attributes_for :patient
   
   def add_outside_person(current_user)
     self.added_by_referrer = true

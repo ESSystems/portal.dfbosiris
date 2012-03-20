@@ -47,6 +47,7 @@ class ReferralsController < ApplicationController
     @allow_edit = true
     @referral = Referral.new(params[:referral])
     @referral.referrer = current_user
+    @referral.person_department_name = "#{Department.get_name @referral.person_id}" if @referral.person_id
     if @referral.save
       flash[:success] = "New referral created."
       redirect_to :action => "index"

@@ -1,23 +1,39 @@
 require 'spec_helper'
 
 describe ReferralsController do
-  
+  include Devise::TestHelpers
+
   describe "POST create" do
-    let(:referral) { mock_model(Referral).as_null_object }
+    
+    let(:referral) {
+      Factory.stub(:referral).as_null_object
+    }
+
+    let(:referral_attributes) {
+      Factory.attributes_for(:referral, :referrer => Factory(:user))
+    }
+    
+    let(:user) {
+      Factory.create(:user)
+    }
 
     before do
-      user = Factory.create(:user)
       sign_in user
 
       Referral.stub(:new).and_return(referral)
     end
-    
+
     it "creates a new referral" do
       Referral.should_receive(:new).and_return(referral)
       post :create
     end
-    
+
     it "should assign the current user as the referrer"
+
+    it "sets the person's department as the department at referral time" do
+      post :create
+      pending "person department in referral"
+    end
     
     context "when the referral saves successfully" do
       before do
@@ -42,7 +58,7 @@ describe ReferralsController do
       
       it "assigns @referral" do
         post :create
-        assigns[:referral].should eq(referral)
+        assigns[:referral].should eq(referral_attributes)
       end
       
       it "renders the new template" do
