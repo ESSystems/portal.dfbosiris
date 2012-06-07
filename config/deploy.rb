@@ -16,7 +16,7 @@ set :deploy_via, :remote_cache
 set :branch, "production"
 
 set :rvm_type, :system
-set :rvm_ruby_string, "ruby-1.9.2-head@cmx"
+set :rvm_ruby_string, "ruby-1.9.2-p318@cmx"
 
 set :bundle_without , [:development , :test, :darwin]
 
