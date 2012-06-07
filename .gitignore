@@ -11,3 +11,4 @@ database.yml
 .project
 public/system/documents/*
 public/assets/*
+*.sublime-*

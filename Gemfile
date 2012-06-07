@@ -1,17 +1,14 @@
 source 'http://rubygems.org'
 
-gem 'rails', "~> 3.1.0"
-
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
+gem 'rails'
 
 gem 'mysql2'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', "~> 3.1.0.rc"
-  gem 'coffee-rails', "~> 3.1.0.rc"
+  gem 'sass-rails'
+  gem 'coffee-rails'
   gem 'uglifier'
 end
 
@@ -25,18 +22,12 @@ gem "therubyracer", "~> 0.9.8"
 gem 'kaminari'
 gem 'airbrake'
 
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
-
 group :development, :test do
   gem 'factory_girl_rails'
+  gem 'capistrano'
+  gem 'capistrano-ext'
   gem 'capybara'
+  gem 'rvm-capistrano'
   gem 'rspec-rails'
   gem 'cucumber-rails'
   gem 'launchy'
@@ -44,16 +35,15 @@ group :development, :test do
   gem 'forgery'
   gem 'guard-rspec'
   gem 'guard-cucumber'
+  gem 'pry'
   gem 'spork'
   gem 'guard-spork'
-
-  # Pretty printed test output
   gem 'turn', '< 0.8.3'
 
   gem 'simplecov'
+end
 
-  if RUBY_PLATFORM.downcase.include?("darwin")
-  	gem 'rb-fsevent'
-  	gem 'growl'
-  end
+group :test, :darwin do
+  gem 'rb-fsevent'
+  gem 'growl'
 end
