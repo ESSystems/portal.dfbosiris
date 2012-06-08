@@ -1,3 +1,5 @@
-Factory.define :patient do |f|
-  f.association :person
+FactoryGirl.define do
+	factory :patient do
+		person
+	end
 end

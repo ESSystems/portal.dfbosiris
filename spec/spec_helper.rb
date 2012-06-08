@@ -5,7 +5,6 @@ Spork.prefork do
   SimpleCov.start 'rails'
   
   ENV["RAILS_ENV"] ||= 'test'
-  Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'capybara/rails'

@@ -1,3 +1,5 @@
-Factory.define :referral_reason do |f|
-  f.reason Forgery(:lorem_ipsum).words(6)
+FactoryGirl.define do
+	factory :referral_reason do
+		reason Forgery(:lorem_ipsum).words(6)
+	end
 end

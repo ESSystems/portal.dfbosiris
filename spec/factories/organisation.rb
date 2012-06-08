@@ -1,3 +1,5 @@
-Factory.define :organisation do |o|
-  o.OrganisationID Forgery(:basic).number
+FactoryGirl.define do
+	factory :organisation do
+		OrganisationID Forgery(:basic).number
+	end
 end

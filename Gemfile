@@ -4,8 +4,6 @@ gem 'rails'
 
 gem 'mysql2'
 
-# Gems used only for assets and not required
-# in production environments by default.
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
@@ -29,21 +27,23 @@ group :development, :test do
   gem 'capybara'
   gem 'rvm-capistrano'
   gem 'rspec-rails'
-  gem 'cucumber-rails'
   gem 'launchy'
   gem 'database_cleaner'
   gem 'forgery'
   gem 'guard-rspec'
-  gem 'guard-cucumber'
   gem 'pry'
-  gem 'spork'
+  gem 'spork', '~> 1.0rc'
   gem 'guard-spork'
   gem 'turn', '< 0.8.3'
-
-  gem 'simplecov'
 end
 
 group :test, :darwin do
   gem 'rb-fsevent'
   gem 'growl'
+end
+
+group :test do
+  gem 'cucumber-rails'
+  gem 'guard-cucumber'
+  gem 'simplecov'
 end

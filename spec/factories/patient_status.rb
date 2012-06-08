@@ -1,3 +1,5 @@
-Factory.define :patient_status do |f|
-  f.status Forgery(:lorem_ipsum).words(3)
+FactoryGirl.define do
+	factory :patient_status do
+		status Forgery(:lorem_ipsum).words(3)
+	end
 end

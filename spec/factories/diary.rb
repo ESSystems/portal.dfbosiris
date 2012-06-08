@@ -1,9 +1,11 @@
-Factory.define :diary do |d|
-  d.name Forgery(:name).full_name
-  d.appointment_length 0
-  d.available_days 0
-  d.color_id 21
-  d.start_time "00:00:00"
-  d.end_time "00:00:00"
-  d.owner_id 0
+FactoryGirl.define do
+	factory :diary do
+		name Forgery(:name).full_name
+  		appointment_length 0
+  		available_days 0
+  		color_id 21
+  		start_time "00:00:00"
+  		end_time "00:00:00"
+  		owner_id 0
+  	end
 end

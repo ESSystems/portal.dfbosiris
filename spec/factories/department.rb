@@ -1,2 +1,4 @@
-Factory.define :department do |f|
+FactoryGirl.define do
+	factory :department do
+	end
 end

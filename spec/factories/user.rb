@@ -1,7 +1,9 @@
-Factory.define :user do |u|
-  u.association :person
-  u.username { Forgery(:basic).text(:at_least => 6) }
-  u.email { Forgery(:internet).email_address }
-  u.password Forgery(:basic).password(:at_least => 6)
-  u.track_referrals "all"
+FactoryGirl.define do
+	factory :user do
+		person
+		username { Forgery(:basic).text(:at_least => 6) }
+		email { Forgery(:internet).email_address }
+		password Forgery(:basic).password(:at_least => 6)
+		track_referrals "all"
+	end
 end
