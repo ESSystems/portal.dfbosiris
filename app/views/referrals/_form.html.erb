@@ -13,9 +13,9 @@
 				<%= render 'shared/person_information', :person => @referral.person, :show_name => true %>
 			<% end %>
 		</li>
-		
+
 		<% if @allow_edit %>
-			<%= form.input :patient_status, :collection => @patient_statuses.map {|u| [u.status, u.id]} %>
+			<%= form.input :patient_status, :label => "Person status", :collection => @patient_statuses.map {|u| [u.status, u.id]} %>
 		<% else %>
 			<%= form.input :patient_status, :as => :string, :input_html => {:readonly => true} %>
 		<% end %>

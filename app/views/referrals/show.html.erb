@@ -5,7 +5,7 @@
 	<ul>
 		<li class="full-width"><span class="label">State</span>: <%= @referral.state %></li>
 		<li class="full-width"><span class="label">Person</span>: <%= @referral.person.full_name %> - <%= render 'shared/person_information', :person => @referral.person %></li>
-		<li class="clr"><span class="label">Patient status</span>: <%= @referral.patient_status.status %></li>
+		<li class="clr"><span class="label">Person status</span>: <%= @referral.patient_status.status %></li>
 		<li><span class="label">Referral Reason</span>: <%= @referral.referral_reason.reason %></li>
 		<li><span class="label">Operational Priority</span>: <%= @referral.operational_priority %></li>
 		<li><span class="label">Date sickness absence started</span>: <%= @referral.sickness_started %></li>

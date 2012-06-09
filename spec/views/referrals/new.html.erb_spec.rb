@@ -37,6 +37,14 @@ describe "referrals/new.html.erb" do
   it "should render a select for patient status" do
     page.should have_selector(form_selector + "//select[@name='referral[patient_status_id]']")
   end
+
+  it "patient_status label is 'Person status'" do
+    page.should have_content("Person status")
+  end
+
+  it "patient_status label is not 'Patient status'" do
+    page.should_not have_content("Patient status")
+  end
   
   it "should render a text area for nature of case" do
     page.should have_selector(form_selector + "//textarea[@name='referral[case_nature]']")

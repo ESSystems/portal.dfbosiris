@@ -13,7 +13,7 @@ describe "referrals/show.html.erb" do
       create(:referral)
     end
     
-    describe "show referral information" do
+    describe "shows referral information" do
       before do
         assign(:referral, referral)
       
@@ -32,8 +32,18 @@ describe "referrals/show.html.erb" do
       
       it "should show patient's date of birth"
       
-      it "should show patient's status"
-      
+      it "shows patient's status" do
+        page.should have_content(referral.patient_status.status)
+      end
+
+      it "patient_status label is 'Person status'" do
+        page.should have_content("Person status")
+      end
+
+      it "patient_status label is not 'Patient status'" do
+        page.should_not have_content("Patient status")
+      end
+
       it "should show patient's consent"
       
       it "should show full case nature" do
