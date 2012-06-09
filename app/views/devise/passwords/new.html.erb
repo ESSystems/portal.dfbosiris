@@ -1,12 +1,17 @@
-<h2>Forgot your password?</h2>
+<% title "Forgot your password?" %>
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
+<%= box_widget "Reset your password" do %>
+	<%= semantic_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |form| %>
+		<%= form.inputs do %>
+			<%= form.input :email %>
+		<% end %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.submit "Send me reset password instructions" %></div>
+		<%= form.actions do %>
+			<%= form.button "Send me reset password instructions", :button_html => {:class => "btn large orange auto"} %>
+		<% end %>
+	<% end %>
 <% end %>
 
-<%= render :partial => "devise/shared/links" %>
+<%= box_widget "Other options" do %>
+	<%= render :partial => "devise/shared/links" %>
+<% end %>

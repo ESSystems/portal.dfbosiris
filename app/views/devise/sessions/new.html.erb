@@ -6,8 +6,10 @@
   <%= f.password_field :password %>
 
   <div style="margin-top:10px">
+    <div class="left" style="margin-top:10px">
+      <%= render :partial => "devise/shared/links" %>
+    </div>
   	<%= f.submit "Sign in", :class => "right" %>
   </div>
 <% end %>
 <div class="clear"></div>
-<%= render :partial => "devise/shared/links" %>
