@@ -1,3 +1,3 @@
 class AttendanceReason < ActiveRecord::Base
-  set_primary_key :code
+  self.primary_key = :code
 end

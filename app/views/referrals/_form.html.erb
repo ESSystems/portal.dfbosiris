@@ -87,7 +87,7 @@
 		<% end %>
 		<%= form.input :followers, :input_html => {:id => "cmx-token-input", :class => "clean", :suggestions_url => followers_suggestions_referrals_path}, :include_blank => true, :hint => "Add other people that can track this referral" %>
 	<% end %>
-	<%= form.buttons do %>
-		<%= form.commit_button :label => @submit_label, :button_html => {:class => "btn large orange auto"} %>
+	<%= form.actions do %>
+		<%= form.button :label => @submit_label, :button_html => {:class => "btn large orange auto"} %>
 	<% end %>
 <% end%>

@@ -1,5 +1,5 @@
 class Organisation < ActiveRecord::Base
-  set_primary_key :OrganisationID
+  self.primary_key = :OrganisationID
   
   scope :order_by_name, lambda { |order|
     order("OrganisationName #{order}")

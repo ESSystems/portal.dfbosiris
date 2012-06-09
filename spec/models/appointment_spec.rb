@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Appointment do
   describe "display date" do
     let(:appointment) do
-      Factory.create(:appointment)
+      create(:appointment)
     end
   
     it "should show appointment date" do
@@ -19,36 +19,38 @@ describe Appointment do
     end
   end
 
+  it "confirm"
+
   # TODO check steps definitions to test corectly the feature  
   describe "find overlapping dates" do
     let(:appointment) do
-      Factory.create(:appointment, :diary_id => 2002, :from_date => Time.now - (60*60*24), :to_date => Time.now - (60*60*23))
+      create(:appointment, :diary_id => 20002, :from_date => Time.now - (60*60*24), :to_date => Time.now - (60*60*23))
     end
     
     let(:booked_appointment) do
-      Factory.create(:appointment, :diary_id => 20002)
+      create(:appointment, :diary_id => 20002)
     end
 
     context "returns empty" do
-      it "start date is before booked start date and end date is after booked start date" do
+      it "when start date is before booked start date and end date is after booked start date" do
         from_date = booked_appointment.from_date - (60 * 15)
         to_date = booked_appointment.from_date + (60 * 30)
-        appointment.is_overlapping_another(from_date, to_date).should == true
+        appointment.is_overlapping_another(from_date, to_date).should be_true
       end
       
-      it "start date is after booked start date and end date is after booked end date" do
+      it "when start date is after booked start date and end date is after booked end date" do
         from_date = booked_appointment.from_date + (60 * 15)
         to_date = booked_appointment.to_date + (60 * 45)
         appointment.is_overlapping_another(from_date, to_date).should == true
       end
       
-      it "start date is after booked start date and end date is before booked end date" do
+      it "when start date is after booked start date and end date is before booked end date" do
         from_date = booked_appointment.from_date + (60 * 15)
         to_date = booked_appointment.to_date - (60 * 15)
         appointment.is_overlapping_another(from_date, to_date).should == true
       end
       
-      it "start date is before booked start date and end date is after booked end date" do
+      it "when start date is before booked start date and end date is after booked end date" do
         from_date = booked_appointment.from_date - (60 * 15)
         to_date = booked_appointment.to_date + (60 * 45)
         appointment.is_overlapping_another(from_date, to_date).should == true

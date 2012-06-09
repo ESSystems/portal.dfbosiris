@@ -11,29 +11,29 @@ $(document).ready(function(){
 // 		
 		// $("body").append(overlay);
   	// });
-//   	
-  	// $('body').bind('hideStandBy', function() {
-  		// $('#stand-by-indicator-overlay').remove();
-  	// });
-// 	
+//
+    // $('body').bind('hideStandBy', function() {
+      // $('#stand-by-indicator-overlay').remove();
+    // });
+//
 	// $(document).on("ajax:before", '[data-remote="true"]', function() {
 		// $.event.trigger('showStandBy');
 	// });
-// 	
+//
 	// $(document).on("ajax:complete", '[data-remote="true"]', function() {
 		// $.event.trigger('hideStandBy');
 	// });
 	
   //Table Odd/Even styles
-   $("table:not(.simple) tr:nth-child(odd)").addClass("odd"); // Table Odd/Even
-   $("table:not(.simple) tr:nth-child(even)").addClass("even"); // Table Odd/Even
-   $("tbody tr").hover(
-   	function() {
-    	$(this).addClass("highlight");
-   	},
-   	function() {
-    	$(this).removeClass("highlight");
-   	}
+  $("table:not(.simple) tr:nth-child(odd)").addClass("odd"); // Table Odd/Even
+  $("table:not(.simple) tr:nth-child(even)").addClass("even"); // Table Odd/Even
+  $("tbody tr").hover(
+    function() {
+      $(this).addClass("highlight");
+    },
+    function() {
+      $(this).removeClass("highlight");
+    }
   );
    
    // Ol Odd/Even

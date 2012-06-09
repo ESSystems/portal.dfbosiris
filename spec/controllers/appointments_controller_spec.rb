@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe AppointmentsController do
-  
+
+  login_user
+
   let(:appointment) do
     mock_model(Appointment, :id => 1, :referral_id => 2)
   end
@@ -14,12 +16,12 @@ describe AppointmentsController do
     context "when the appointment saves successfully" do
       before do
         appointment.stub(:update_attribute).and_return(true)
+        appointment.stub(:confirm).and_return(true)
       end
       
-      it "should set appointment confirmed true" do
-        appointment.stub(:confirmed).and_return(true)
+      it "calls appointment confirm" do
+        appointment.should_receive(:confirm)
         get :confirm_appointment, :id => appointment.id
-        appointment.confirmed.should be_true
       end
       
       it "should redirect to associated referral page" do
@@ -36,6 +38,7 @@ describe AppointmentsController do
     context "when the appointment fails to save" do
       before do
         appointment.stub(:update_attribute).and_return(false)
+        appointment.stub(:confirm).and_return(false)
       end
       
       it "should redirect to associated referral page" do

@@ -1,6 +1,6 @@
 class Person < ActiveRecord::Base
   
-  set_table_name "person"
+  self.table_name = "person"
   
   default_scope order("last_name")
   

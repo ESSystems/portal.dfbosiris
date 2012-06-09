@@ -18,7 +18,7 @@ describe "referrals/index.html.erb" do
       
       context "when the user created a referral" do
         before do
-          @referral = Factory.create(:referral, :referrer => @logged_in_user)
+          @referral = create(:referral, :referrer => @logged_in_user)
           assign(:referrals, [@referral])
           
           visit referrals_path
@@ -61,7 +61,7 @@ describe "referrals/index.html.erb" do
 
       context "when the user didn't create a referral and is not a follower of a referral" do
         before do
-          @referral = Factory.create(:referral)
+          @referral = create(:referral)
           assign(:referrals, [@referral])
           
           visit referrals_path
@@ -84,7 +84,7 @@ describe "referrals/index.html.erb" do
 
       context "when the user is a follower of a referral" do
         before do
-          @referral = Factory.create(:referral, :followers => [@logged_in_user])
+          @referral = create(:referral, :followers => [@logged_in_user])
           assign(:referrals, [@referral])
 
           visit referrals_path

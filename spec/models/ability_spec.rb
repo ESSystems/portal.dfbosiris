@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe Ability do
 
-  let(:user) { Factory.create(:user, :track_referrals => "initiated_and_assigned") }
-  let(:referral) { Factory.create(:referral) }
+  let(:user) { create(:user, :track_referrals => "initiated_and_assigned") }
+  let(:referral) { create(:referral) }
 
   describe "for authenticated user" do
     

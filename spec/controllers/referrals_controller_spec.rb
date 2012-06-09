@@ -1,25 +1,26 @@
 require 'spec_helper'
 
 describe ReferralsController do
-  include Devise::TestHelpers
+  login_user
 
   describe "POST create" do
     
+    let!(:person) { create :person }
+
     let(:referral) {
-      Factory.stub(:referral).as_null_object
+      mock_model(Referral, :person => person).as_null_object
     }
 
-    let(:referral_attributes) {
-      Factory.attributes_for(:referral, :referrer => Factory(:user))
+    let!(:referral_attributes) {
+      build(:referral).attributes
     }
     
-    let(:user) {
-      Factory.create(:user)
+    let!(:user) {
+      create(:user)
     }
 
     before do
-      sign_in user
-
+      Department.stub(:get_name).and_return( "Dept" )
       Referral.stub(:new).and_return(referral)
     end
 
@@ -58,7 +59,7 @@ describe ReferralsController do
       
       it "assigns @referral" do
         post :create
-        assigns[:referral].should eq(referral_attributes)
+        assigns[:referral].should eq(referral)
       end
       
       it "renders the new template" do
@@ -70,7 +71,7 @@ describe ReferralsController do
   end
   
   describe "PUT update" do
-    let(:referral) {Factory(:referral)}
+    let(:referral) { build(:referral) }
     
     it "should not modify the user that created the referral, i.e. referrer_id"
 

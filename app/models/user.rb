@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  set_table_name "referrers"
-
+  self.table_name = "referrers"
+  
   REFERRALS_TRACKING = %w[all initiated_and_assigned]
 
   belongs_to :person

@@ -1,4 +1,5 @@
 class Appointment < ActiveRecord::Base
+  self.inheritance_column = :ruby_type
   
   STATE = %w[new confirmed booked closed rejected]
   
@@ -7,7 +8,6 @@ class Appointment < ActiveRecord::Base
   belongs_to :referral_reason
   belongs_to :diary
   belongs_to :attendance
-  set_inheritance_column :ruby_type
   
   scope :overlapping_dates_for_diary, lambda { |diary_id, from_date, to_date|
     where("diary_id = ? and ? < to_date and from_date < ?", diary_id, from_date, to_date)

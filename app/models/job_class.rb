@@ -1,4 +1,4 @@
 class JobClass < ActiveRecord::Base
-  set_primary_key :JobClassCode
+  self.primary_key = :JobClassCode
   
 end

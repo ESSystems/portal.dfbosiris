@@ -1,10 +1,16 @@
 require 'spec_helper'
 
 describe "referrals/show.html.erb" do
+
+  include Devise::TestHelpers
+
+  before do
+    login_user
+  end
   
   describe "referral page" do
     let(:referral) do
-      Factory(:referral)
+      create(:referral)
     end
     
     describe "show referral information" do
@@ -57,24 +63,25 @@ describe "referrals/show.html.erb" do
     
     describe "show appointment information" do
       let(:appointment) do
-        Factory(:appointment, :referral => referral)
+        create(:appointment, :referral => referral)
+      end
+
+      before do
+        referral.appointments << appointment
       end
       
-      it "should show doctor name" do
-        referral.appointment = appointment
+      it "shows doctor name" do
         visit referral_path(referral)
         page.should have_content("with #{appointment.diary.name}")
       end
       
-      it "should show that an appointment was created if one exists" do
-        referral.appointment = appointment
+      it "shows that an appointment was created if one exists" do
         visit referral_path(referral)
-        page.should have_content("An appointment was created for this referral: " << appointment.display_date)
+        page.should have_content("An appointment was created for this referral. Please confirm the appointment if the date is convenient or choose another date")
       end
       
       it "should show that appointment was confirmed if it was" do
-        appointment.confirmed = true
-        referral.appointment = appointment
+        appointment.confirm
         visit referral_path(referral)
         page.should have_content("You confirmed the appointment for: " << appointment.display_date)
       end
@@ -82,18 +89,20 @@ describe "referrals/show.html.erb" do
     
     describe "show appointment confirmation options" do
       let(:appointment) do
-        Factory(:appointment, :referral => referral)
+        create(:appointment, :referral => referral)
+      end
+
+      before do
+        referral.appointments << appointment
       end
 
       it "should show a link to confirm the appointment" do
-        referral.appointment = appointment
         visit referral_path(referral)
         page.should have_link("Confirm appointment", :href => confirm_appointment_path(appointment))
       end
       
       it "should not show a link to confirm the appointment if it's already confirmed" do
-        appointment.confirmed = true
-        referral.appointment = appointment
+        appointment.confirm
         visit referral_path(referral)
         page.should_not have_link("Confirm appointment", :href => confirm_appointment_path(appointment))
       end

@@ -1,5 +1,5 @@
 class Employee < ActiveRecord::Base
-  set_table_name "nemployees"
+  self.table_name = "nemployees"
   
   belongs_to :person
   belongs_to :client

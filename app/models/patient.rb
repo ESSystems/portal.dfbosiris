@@ -1,5 +1,5 @@
 class Patient < ActiveRecord::Base
-  set_primary_key :PersonID
+  self.primary_key = :PersonID
 
   belongs_to :organisation, :foreign_key => :ResponsibleOrganisationID
   belongs_to :person, :foreign_key => :PersonID
