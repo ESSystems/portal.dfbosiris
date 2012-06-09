@@ -26,7 +26,7 @@
 	<%= form.inputs do %>
 		<% if @allow_edit %>
 			<%= form.input :case_nature, :as => :text, :hint => "Describe what is wrong with the patient" %>
-			<%= form.input :job_information, :as => :text, :hint => "Please give details of current job rotation" %>
+			<%= form.input :job_information, :as => :text, :hint => "Please give details of current job/rotation" %>
 			<%= form.input :history, :as => :text, :hint => "Please detail background to case" %>
 		<% else %>
 			<%= form.input :case_nature, :as => :text, :input_html => {:readonly => true} %>
@@ -40,7 +40,7 @@
 	<%= form.inputs do %>
 		<% if @allow_edit %>
 			<%= form.input :sickness_started, :as => :datepicker, :label => "Date sickness absence started" %>
-			<%= form.input :sicknote_expires, :as => :datepicker, :label => "Date current sicknote expires" %>
+			<%= form.input :sicknote_expires, :as => :datepicker, :label => "Date current fit note expires" %>
 		<% else %>
 			<%= form.input :sickness_started, :as => :string, :input_html => {:readonly => true} %>
 			<%= form.input :sicknote_expires, :as => :string, :input_html => {:readonly => true} %>

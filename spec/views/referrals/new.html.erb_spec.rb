@@ -59,7 +59,7 @@ describe "referrals/new.html.erb" do
   end
 
   it "should render a hint for job information" do
-    page.should have_content("Please give details of current job rotation")
+    page.should have_content("Please give details of current job/rotation")
   end
   
   it "should render a text area for history" do
@@ -76,6 +76,10 @@ describe "referrals/new.html.erb" do
 
   it "should render a text field to enter a person's date sicknote expires" do
     page.should have_selector(form_selector + "//input[@type='text' and @name='referral[sicknote_expires]']")
+  end
+
+  it "should render a label for sicknote_expires" do
+    page.find(form_selector + "//label[@for='referral_sicknote_expires']").should have_content("Date current fit note expires")
   end
   
   it "should render a select for referral reason" do
