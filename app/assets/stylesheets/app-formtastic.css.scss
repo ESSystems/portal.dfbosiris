@@ -1,9 +1,15 @@
 .formtastic textarea {
 	padding: 5px;
 }
-.formtastic .input {
-	padding: 5px;
-	margin: 0;
+.formtastic {
+	.input {
+		padding: 5px;
+		margin: 0;
+
+		.label {
+			padding-top:0.4em;
+		}
+	}
 }
 .formtastic button[type=submit] {
 	margin: 8px 2px;
