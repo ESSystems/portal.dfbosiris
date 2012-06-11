@@ -14,7 +14,15 @@ body {font-size: .75em;line-height: 1.5; background: url(/assets/chameleon-circu
 a {text-decoration: none; color: #004a80; cursor: pointer;}
 a:hover {text-decoration: underline}
 
-#actualbody {background: #f1f1f1; border: 1px solid #c2c2c5; border-radius: 0 0 5px 5px; -webkit-border-radius: 0 0 5px 5px; -moz-border-radius: 0 0 5px 5px; padding: 10px 0; margin-bottom: 70px;}
+#actualbody {
+  background: #f1f1f1; 
+  border: 1px solid #c2c2c5; 
+  -webkit-border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px; 
+  padding: 10px 0; 
+  margin-bottom: 70px;
+}
 
 /* Typography
 -------------------------------------------------------------------*/
@@ -36,16 +44,21 @@ p {margin: 5px 0}
 header {background-image: url(/assets/chameleon-circuit/header_bg.png); background-repeat: no-repeat; padding-top: 10px}
 
 nav {
-     background-image: url("/assets/chameleon-circuit/menu/bg-r.png"); background-repeat: no-repeat; background-position: top right;
+     background-image: url("/assets/chameleon-circuit/menu/bg-r.png"); 
+     background-repeat: no-repeat; 
+     background-position: top right;
     -moz-border-radius-topleft: 3px;
     -moz-border-radius-topright: 3px;
-    -moz-border-radius-bottomright: 0px;
-    -moz-border-radius-bottomleft: 0px;
-    -webkit-border-radius: 3px 3px 0px 0px;
-    border-radius: 3px 3px 0px 0px; 
+    -moz-border-radius-bottomright: 0;
+    -moz-border-radius-bottomleft: 0;
+    -webkit-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0; 
     margin-top: 25px;
 }
-#navcontainer {background: url("/assets/chameleon-circuit/menu/bg.png") repeat-x scroll left top; margin-right: 3px}
+#navcontainer {
+  background: url("/assets/chameleon-circuit/menu/bg.png") repeat-x scroll left top; 
+  margin-right: 3px;
+}
 
 #logo {
     background: url(/assets/chameleon-circuit/logo.png) no-repeat;
@@ -112,14 +125,14 @@ nav ul li.active {opactiy: 0.2}
 }
 
 .widget_title {
-    -moz-border-radius-topleft: 4px;-moz-border-radius-topright: 0px;-moz-border-radius-bottomright: 0px;-moz-border-radius-bottomleft: 0px;
-    -webkit-border-radius: 4px 0px 0px 0px; border-radius: 4px 0px 0px 0px;
+    -moz-border-radius-topleft: 4px;-moz-border-radius-topright: 0;-moz-border-radius-bottomright: 0;-moz-border-radius-bottomleft: 0;
+    -webkit-border-radius: 4px 0 0 0; border-radius: 4px 0 0 0;
     margin-right: 4px;
     background: url(/assets/chameleon-circuit/menu/title.png) top left;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset; -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset; -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset;
 }
 
-.widget_title h2 {font-size: 1.2em; color: #fff; text-shadow: 0 -1px 0px #000; display: inline; line-height: 2.3em; padding: 0 10px; font-weight: normal}
+.widget_title h2 {font-size: 1.2em; color: #fff; text-shadow: 0 -1px 0 #000; display: inline; line-height: 2.3em; padding: 0 10px; font-weight: normal}
 .widget_title ul {float: right;}
 .widget_title ul li {float:left; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;margin: 5px;}
 
@@ -135,7 +148,7 @@ nav ul li.active {opactiy: 0.2}
 .widget_title .ui-tabs-selected a {color: #fff;}
 
 .ui-toolbar input[type='text'], .ui-toolbar input[type='password'], .ui-toolbar input[type='file'], .ui-toolbar textarea, .ui-toolbar select,
-.widget_options input[type='text'], .widget_options input[type='password'], .widget_options input[type='file'], .widget_options textarea, .widget_options select {margin-bottom: 0px}
+.widget_options input[type='text'], .widget_options input[type='password'], .widget_options input[type='file'], .widget_options textarea, .widget_options select {margin-bottom: 0}
     
 .widget_body {border-radius:0 0 4px 4px;-moz-border-radius:0 0 3px 3px; background: #fff; padding: 5px 5px 10px; border: 1px solid #c1c1c1;}
 .widget_options {background: #f7f7f7; border-bottom: 1px solid #d4d4d4; padding: 10px}
@@ -153,7 +166,7 @@ thead .current {
 }
 thead .asc { 
   background-image: url("/assets/chameleon-circuit/custom/arrows-vertical.png");
-  background-position: left 0px; 
+  background-position: left 0; 
 }
 
 thead .desc { 
@@ -360,6 +373,6 @@ iframe {
   filter: alpha(opacity = 60);
   zoom: 1;
   position:absolute;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
 }
