@@ -50,5 +50,5 @@ ClinicManagerExtension::Application.configure do
   config.active_support.deprecation = :notify
   
    # TODO replace with production environment host
-  config.action_mailer.default_url_options = { :host => 'localhost' }
+  config.action_mailer.default_url_options = { :host => 'portal.clinic-ms.co.uk' }
 end

@@ -50,5 +50,5 @@ ClinicManagerExtension::Application.configure do
   config.active_support.deprecation = :notify
   
    # TODO replace with production environment host
-  config.action_mailer.default_url_options = { :host => 'localhost' }
+  config.action_mailer.default_url_options = { :host => 'cmx.develop.tripledub.co.uk' }
 end
