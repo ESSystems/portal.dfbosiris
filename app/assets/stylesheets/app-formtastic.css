@@ -1,9 +1,15 @@
+.formtastic textarea {
+	padding: 5px;
+}
 .formtastic .input {
 	padding: 5px;
 	margin: 0;
 }
+.formtastic button[type=submit] {
+	margin: 8px 2px;
+}
 .formtastic .buttons {
-	padding: 0px;
+	padding: 0;
 }
 .formtastic .button {
 	padding: 5px 5px 5px 25%;
@@ -31,7 +37,10 @@
     margin: 0 25%;
 }
 .formtastic .input .nested-attributes li {width: 48%; float:left;}
-.formtastic .nested-attributes .inputs li.odd, .formtastic .nested-attributes .inputs li.even {background: transparent;}
+.formtastic .nested-attributes .inputs li.odd, 
+.formtastic .nested-attributes .inputs li.even {
+	background: transparent;
+}
 .formtastic .nested-attributes li label {width: 100%;}
 .formtastic .nested-attributes .file-list .input {padding: 1px; margin: 0;}
 .formtastic .file-list {padding-left: 25%;}

@@ -94,7 +94,7 @@ class ReferralsController < ApplicationController
       ordered_referrals = referrals.order(sort_column + ' ' + sort_direction)
       
       if current_user.track_referrals == "all"
-        @referrals = ordered_referrals.referrals_in_organisation(current_user.client_id).page(params[:page])
+        @referrals = ordered_referrals.referrals_in_organisation(current_user.client_id).public_and_owned(current_user.id).page(params[:page])
       elsif current_user.track_referrals == "initiated_and_assigned"
         # does not work with pagination:
         # @referrals = ordered_referrals.initiated_and_assigned(current_user.id).page(params[:page])

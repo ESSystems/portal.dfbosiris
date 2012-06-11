@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     if !current_user.nil?
       ordered_referral = Referral.order("created_at DESC").limit(5)
       if current_user.track_referrals == "all"
-        @referrals = ordered_referral
+        @referrals = ordered_referral.public_and_owned(current_user.id)
       elsif current_user.track_referrals == "initiated_and_assigned"
         @referrals = ordered_referral.initiated_and_assigned(current_user.id)
       end

@@ -85,9 +85,19 @@
 			<%= form.input :referral_reason, :as => :string, :input_html => {:readonly => true} %>
 			<%= form.input :operational_priority, :as => :string, :input_html => {:readonly => true} %>
 		<% end %>
-		<%= form.input :followers, :input_html => {:id => "cmx-token-input", :class => "clean", :suggestions_url => followers_suggestions_referrals_path}, :include_blank => true, :hint => "Add other people that can track this referral" %>
+		<li class="string input">
+			<%= label_tag :private, 'Private referral'.html_safe, :class => "label" %>
+			<%= form.check_box :private %>
+			<p class="inline-hints">Only you and IOH staff will be able to see and follow this referral</p>
+		</li>
+		<% followers_class = @referral.private? ? "hidden" : "" %>
+		<%= form.input 	:followers, 
+						:input_html => {:id => "cmx-token-input", :class => "clean", :suggestions_url => followers_suggestions_referrals_path}, 
+						:wrapper_html => {:class => followers_class},
+						:include_blank => true, 
+						:hint => "Add other people that can track this referral" %>
 	<% end %>
 	<%= form.actions do %>
-		<%= form.button :label => @submit_label, :button_html => {:class => "btn large orange auto"} %>
+		<%= form.action :submit, :as => :button, :label => @submit_label, :button_html => {:class => "btn large orange auto"} %>
 	<% end %>
 <% end%>

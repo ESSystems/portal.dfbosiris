@@ -9,5 +9,6 @@ FactoryGirl.define do
     operational_priority
     case_reference_number Forgery(:basic).encrypt
     association :referrer, :factory => :user
+    private false
   end
 end

@@ -24,6 +24,7 @@ Spork.prefork do
 
     config.include FactoryGirl::Syntax::Methods
     config.include Devise::TestHelpers, :type => :controller
+    config.include UserSessionHelper
     config.extend ControllerMacros, :type => :controller
     
     config.mock_with :rspec
@@ -39,8 +40,6 @@ Spork.prefork do
     config.treat_symbols_as_metadata_keys_with_true_values = true  
     config.filter_run :focus => true  
     config.run_all_when_everything_filtered = true
-    
-    config.include UserSessionHelper
     
     config.before(:suite) do
       DatabaseCleaner.strategy = :transaction
@@ -59,4 +58,14 @@ end
 
 Spork.each_run do
   FactoryGirl.reload
+  
+  # reload all the models
+  Dir["#{Rails.root}/app/models/**/*.rb"].each do |model|
+    load model
+  end
+  
+  # reload all the controllers
+  Dir["#{Rails.root}/app/controllers/**/*.rb"].each do |controller|
+    load controller
+  end
 end

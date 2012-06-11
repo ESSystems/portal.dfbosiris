@@ -71,7 +71,9 @@ describe ReferralsController do
   end
   
   describe "PUT update" do
-    let(:referral) { build(:referral) }
+    let(:referral) {
+      mock_model(Referral, :appointment => nil)
+    }
     
     it "should not modify the user that created the referral, i.e. referrer_id"
 
@@ -80,7 +82,42 @@ describe ReferralsController do
     end
     
     context "when the referral fails to save" do
-      it "renders the edit template"
+      before do
+        Referral.stub(:find).and_return(referral)
+        referral.stub(:declined?).and_return(false)
+      end
+
+      it "renders edit when referral doesn't update" do
+        referral.stub(:update_attributes).and_return false
+        put :update
+        response.should render_template("edit")
+      end
+    end
+  end
+
+  describe "index" do
+    context "when the user can track all referrals" do
+      before do
+        subject.current_user.track_referrals = 'all'
+      end
+
+      it "views public referrals" do
+        referral = create(:referral, :private => false, :referrer => create(:user))
+        get :index
+        assigns[:referrals].should include(referral)
+      end 
+
+      it "doesn't view private referrals" do
+        referral = create(:referral, :private => true)
+        get :index
+        assigns[:referrals].should_not include(referral)
+      end
+
+      it "views own referrals" do
+        referral = create(:referral, :private => false, :referrer => subject.current_user)
+        get :index
+        assigns[:referrals].should include(referral)
+      end
     end
   end
   

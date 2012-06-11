@@ -94,7 +94,11 @@ describe "referrals/new.html.erb" do
     page.should have_selector(form_selector + "//button[@id='referral-file-to-upload']")
   end
   
-  it "should render fields to upload other referrers" do
+  it "should render a checkbox to make a referral private" do
+    page.should have_selector(form_selector + "//input[@type='checkbox' and @name='referral[private]']")
+  end
+
+  it "should render fields to assign other referrers" do
     page.should have_selector(form_selector + "//select[@name='referral[follower_ids][]']", :count => 1)
   end
   

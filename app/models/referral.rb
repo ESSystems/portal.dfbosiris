@@ -5,7 +5,8 @@ class Referral < ActiveRecord::Base
   attr_accessor :person_full_name
   attr_accessible :referrer_id, :person, :person_id, :person_department_name, :patient_status, :patient_status_id, 
                   :case_nature, :job_information, :history, :referral_reason, :referral_reason_id, :documents_attributes, 
-                  :operational_priority, :operational_priority_id, :follower_ids, :sickness_started, :sicknote_expires
+                  :operational_priority, :operational_priority_id, :follower_ids, :sickness_started, :sicknote_expires,
+                  :private
 
   belongs_to :referrer, :class_name => 'User', :foreign_key => "referrer_id"
   belongs_to :person
@@ -42,6 +43,10 @@ class Referral < ActiveRecord::Base
   
   scope :initiated_and_assigned, lambda { |referrer_id|
     initiated(referrer_id) | assigned(referrer_id)
+  }
+
+  scope :public_and_owned, lambda { |user_id|
+    where("referrals.private = 0 OR referrals.private = 1 AND referrals.referrer_id = ?", user_id)
   }
   
   scope :referrals_in_organisation, lambda { |organisation_id|
@@ -96,6 +101,10 @@ class Referral < ActiveRecord::Base
   
   def decline
     self.state = "declined"
+  end
+
+  def is_private?
+    self.private ? "Yes" : "No"
   end
   
   def renew
