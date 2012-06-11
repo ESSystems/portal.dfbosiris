@@ -67,7 +67,7 @@ nav {
 
 nav ul {float:right}
 nav ul li {float: left;}
-nav ul li a {color: #929292; padding: 18px 10px; font-weight: bold; font-size: 0.9em}
+nav ul li a {color: #929292; padding: 18px 10px; font-size: 0.9em}
 nav ul li a:hover {text-decoration: none}
 nav ul li.sep {border-left: 1px solid #000}
 nav ul li a.ui-tabs-selected, nav ul li a:hover {color:#fff}
