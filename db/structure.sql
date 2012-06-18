@@ -43,7 +43,7 @@ CREATE TABLE `appointments` (
   `referrer_type_id` int(11) DEFAULT NULL,
   `referrer_name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=194 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=203 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `attendance_feedback` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -53,7 +53,7 @@ CREATE TABLE `attendance_feedback` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `attendance_reasons` (
   `code` varchar(8) NOT NULL,
@@ -98,7 +98,7 @@ CREATE TABLE `attendances` (
   `is_hidden` tinyint(1) NOT NULL DEFAULT '0',
   `no_work_contact` enum('N','Y') DEFAULT 'N',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `client` (
   `ClientID` int(11) NOT NULL DEFAULT '0',
@@ -237,7 +237,7 @@ CREATE TABLE `documents` (
   `document_updated_at` datetime DEFAULT NULL,
   `document_fingerprint` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `employee_department` (
   `person_id` int(11) NOT NULL,
@@ -318,7 +318,7 @@ CREATE TABLE `notifications` (
   `read_date` datetime DEFAULT NULL,
   `problems` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=360 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=383 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `operational_priorities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -392,7 +392,7 @@ CREATE TABLE `recall_list_item_events` (
   `invite_date` date NOT NULL,
   `comments` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `recall_list_items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -406,7 +406,7 @@ CREATE TABLE `recall_list_items` (
   KEY `recall_list_id` (`recall_list_id`),
   KEY `employee_id` (`employee_id`),
   KEY `recall_list_id_2` (`recall_list_id`,`person_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `recall_lists` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -450,7 +450,7 @@ CREATE TABLE `referrals` (
   KEY `updated_by` (`updated_by`),
   KEY `created_at` (`created_at`),
   KEY `state` (`state`)
-) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `referrals_followers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
