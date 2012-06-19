@@ -72,13 +72,18 @@ describe ReferralsController do
   
   describe "PUT update" do
     let(:referral) {
-      mock_model(Referral, :appointment => nil)
+      create(:referral, :referrer => create(:user))
     }
     
     it "should not modify the user that created the referral, i.e. referrer_id"
 
     context "when the referral saves successfully" do
-      it "redirects to referral view page"
+      it "redirects to referral view page" do
+        Referral.stub(:find).and_return(referral)
+        referral.stub(:update_attributes).and_return true
+        put :update, :id => 10
+        response.should redirect_to(:controller => 'referrals', :action => 'show', :id => 10)
+      end
     end
     
     context "when the referral fails to save" do
@@ -89,7 +94,7 @@ describe ReferralsController do
 
       it "renders edit when referral doesn't update" do
         referral.stub(:update_attributes).and_return false
-        put :update
+        put :update, :id => 10
         response.should render_template("edit")
       end
     end

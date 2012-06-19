@@ -10,7 +10,7 @@ guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAIL
   watch(%r{features/support/}) { :cucumber }
 end
 
-guard 'rspec', :version => 2, :cli => '--colour --drb --format progress --fail-fast', :all_on_start => true, :all_after_pass => false do
+guard 'rspec', :version => 2, :cli => '--colour --drb --format progress --fail-fast', :all_on_start => false, :all_after_pass => false do
   watch(%r{^spec/.+_spec\.rb$})
   watch('spec/spec_helper.rb')  { "spec/" }
   #watch('spec')
@@ -29,7 +29,7 @@ guard 'rspec', :version => 2, :cli => '--colour --drb --format progress --fail-f
   watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_spec.rb" }
 end
 
-guard 'cucumber', :all_on_start => true, :all_after_pass => false do
+guard 'cucumber', :all_on_start => false, :all_after_pass => false do
   watch(%r{^features/.+\.feature$})
   watch(%r{^features/support/.+$})          { 'features' }
   watch(%r{^features/step_definitions/(.+)_steps\.rb$}) { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'features' }

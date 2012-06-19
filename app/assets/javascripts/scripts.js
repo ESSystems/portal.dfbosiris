@@ -269,6 +269,7 @@ $(document).ready(function() {
   if ($("#cmx-token-input").length) {
     selector = "#cmx-token-input";
     suggestions_url = $(selector).attr("suggestions_url");
+    existing_values = $(selector).val();
     $(selector).tokenInput(suggestions_url, {
       theme: "facebook",
       preventDuplicates: true,
@@ -282,6 +283,9 @@ $(document).ready(function() {
       },
       onDelete: function(item) {
         $(selector + " option[value='" + item.id + "']").removeAttr('selected');
+      },
+      onReady: function() {
+        $(selector).val(existing_values); // ensure existing values don't get overwritten
       },
       prePopulate: token_input_existing_values(selector)
     });

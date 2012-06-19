@@ -46,6 +46,14 @@ describe Referral do
     
   it "should show '...' only if case nature is longer than 150 characters"
 
+  it "has no followers when private is set to true" do
+    referral = build(:referral)
+    referral.followers << create(:user)
+    referral.private = true
+    referral.save
+    referral.followers.should be_empty
+  end
+
   describe "scope public_and_owned" do
     context "when the user has 'all' track rights" do
       let(:user) { build(:user, :track_referrals => "all") }

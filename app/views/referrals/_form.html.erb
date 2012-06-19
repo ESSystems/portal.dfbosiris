@@ -88,8 +88,14 @@
 		<li class="string input">
 			<%= label_tag :private, 'Private referral'.html_safe, :class => "label" %>
 			<%= form.check_box :private %>
-			<p class="inline-hints">Only you and IOH staff will be able to see and follow this referral</p>
+			<p class="inline-hints">Only you and IOH staff will be able to see and follow this referral. All followers will be removed.</p>
 		</li>
+		<!-- <li class="string input">
+			<%= label_tag :followers_tokeninput, 'Followers', :class => "label" %>
+			<%= form.select :followers, followers_suggestions_referrals_path, {}, :class => "clean" %>
+			<%= text_field_tag :followers_tokeninput, '', :id => "cmx-token-input", :suggestions_url => followers_suggestions_referrals_path %>
+			<p class="inline-hints">Add other people that can track this referral</p>
+		</li> -->
 		<% followers_class = @referral.private? ? "hidden" : "" %>
 		<%= form.input 	:followers, 
 						:input_html => {:id => "cmx-token-input", :class => "clean", :suggestions_url => followers_suggestions_referrals_path}, 

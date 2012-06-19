@@ -8,6 +8,8 @@ class Referral < ActiveRecord::Base
                   :operational_priority, :operational_priority_id, :follower_ids, :sickness_started, :sicknote_expires,
                   :private
 
+  before_save :allow_followers
+
   belongs_to :referrer, :class_name => 'User', :foreign_key => "referrer_id"
   belongs_to :person
   belongs_to :patient_status
@@ -81,6 +83,12 @@ class Referral < ActiveRecord::Base
     cn = case_nature.slice(0..150)
     cn << "..." if case_nature.length > 150
     cn
+  end
+
+  def allow_followers
+    if self.private?
+      self.followers = []
+    end
   end
   
   def appointment
