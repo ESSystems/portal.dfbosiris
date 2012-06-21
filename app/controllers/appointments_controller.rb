@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
-  
+
   load_and_authorize_resource
-  
+
   def confirm_appointment
     @appointment = Appointment.find(params[:id])
     if @appointment.confirm
@@ -11,7 +11,7 @@ class AppointmentsController < ApplicationController
     end
     redirect_to :controller => "referrals", :action => "show", :id => @appointment.referral_id
   end
-  
+
   def calendar_data
     @new_appointment = Appointment.find(params[:id])
     @appointments = Appointment.where(:diary_id => @new_appointment.diary.id)
@@ -28,7 +28,7 @@ class AppointmentsController < ApplicationController
       format.json { render :json => @appointments }
     end
   end
-  
+
   def calendar_update_date
     response = {}
     @appointment = Appointment.find(params[:id])
@@ -44,9 +44,9 @@ class AppointmentsController < ApplicationController
       format.json { render :json => response }
     end
   end
-  
+
   private
-  
+
   def calendar_event(id, title, description, startDate, endDate, className, editable)
     result = {}
     result["id"] = id

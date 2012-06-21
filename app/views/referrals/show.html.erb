@@ -1,6 +1,8 @@
 <% title "View referral for " << @referral.person.full_name << " / " << @referral.case_reference_number %>
 
-<% box_extra = @submit_referral ? link_to("Edit referral", edit_referral_path(@referral), :class => "btn orange right") : "" %>
+<%
+box_extra = ""
+box_extra = link_to("Edit referral", edit_referral_path(@referral), :class => "btn orange right") if @submit_referral && can?(:edit, @referral) %>
 <%= box_widget "Referral information", {:body_class => "information"}, [box_extra] do %>
 	<ul>
 		<li class="full-width"><span class="label">State</span>: <%= @referral.state %></li>
@@ -16,7 +18,7 @@
 		<li><span class="label">Documents</span>: <%= show_documents @referral.documents %></li>
 		<li><span class="label">Private</span>: <%= @referral.is_private? %></li>
 		<li><span class="label">Followers</span>: <%= show_followers @referral.followers %></li>
-	</ul>	
+	</ul>
 	<div class="clear"></div>
 <% end %>
 
@@ -26,11 +28,14 @@
 		message_start = ""
 		message_end = ""
 		if @show_confirmed
-			message_start = "You confirmed the appointment for"
+			message_start = "Appointment confirmed for"
 		elsif @show_confirm
 			message_start = "An appointment was created for this referral. Please confirm the appointment if the date is convenient or choose another date"
-			confirm_extra = link_to "Choose another date", "#calendar", :class => "btn grey right", :id => "choose-appointment-date", :appointment_id => @referral.appointment.id, :start_date => @referral.appointment.from_date
-			confirm_extra += link_to "Confirm appointment", confirm_appointment_path(@referral.appointment), :class => "btn orange right"
+			confirm_extra = ""
+			if can? :confirm_appointment, @referral.appointment
+				confirm_extra = link_to "Choose another date", "#calendar", :class => "btn grey right", :id => "choose-appointment-date", :appointment_id => @referral.appointment.id, :start_date => @referral.appointment.from_date
+				confirm_extra += link_to "Confirm appointment", confirm_appointment_path(@referral.appointment), :class => "btn orange right"
+			end
 		elsif @show_attendance
 			message_start = "The appointment on"
 			message_end = "was updated with the result: <b>#{@referral.appointment.attendance.attendance_result}</b>.".html_safe
@@ -79,10 +84,10 @@
 <% if @show_declinations %>
 	<%
 		declinations_extra = []
-		if @resubmit_referral
+		if @resubmit_referral && can?(:edit, @referral)
 			declinations_extra.push(link_to("Resubmit referral", edit_referral_path(@referral), :class => "btn orange right"))
 		end
-		if @accept_declination_and_close
+		if @accept_declination_and_close && can?(:accept_declination_and_close, @referral)
 			declinations_extra.push(link_to("Accept declination and close referral", accept_declination_and_close_referral_path(@referral), :accept_declination_and_close => true, :confirm => "Are you sure you want to close this referral?", :class => "btn grey right"))
 		end
 	%>

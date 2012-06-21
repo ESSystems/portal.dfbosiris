@@ -3,18 +3,19 @@ class Ability
 
   def initialize(user)
     unless user.nil?
-      can [:index, :new, :create], :all
+      can [:index, :new, :create, :autocomplete_person_full_name, :followers_suggestions], :all
+
+      can [:edit, :update, :show, :cancel, :accept_declination_and_close], Referral do |r|
+        r.try(:referrer) == user
+      end
 
       if user.track_referrals == "all"
-        can [:manage, :show], Referral do |r|
+        can [:show], Referral do |r|
           r.try(:private) == false || r.try(:private) == true && r.try(:referrer) == user
         end
       elsif user.track_referrals == "initiated_and_assigned"
-        can [:edit, :update, :cancel, :autocomplete_person_full_name, :followers_suggestions], Referral do |r|
-          r.try(:referrer) == user
-        end
         can [:show], Referral do |r|
-          r.try(:referrer) == user || r.try(:followers).include?(user)
+          r.try(:referrer) == user || r.try(:followers).include?(user) && r.try(:private) == false
         end
       end
 
@@ -23,15 +24,16 @@ class Ability
         p.try(:referrer) == user
       end
       can [:destroy], Person do |p|
-        Appointment.find_by_person_id(p.id).nil? && Referral.find_by_person_id(p.id).nil? && p.try(:referrer) == user 
+        Appointment.find_by_person_id(p.id).nil? && Referral.find_by_person_id(p.id).nil? && p.try(:referrer) == user
       end
-      
+
       can [:dashboard, :edit, :update], User
-      
+
       can [:index, :read], Notification
-      
-      can [:confirm_appointment], Appointment
-      can [:calendar_data], Appointment
+
+      can [:confirm_appointment, :calendar_data, :calendar_update_date], Appointment do |a|
+        a.try(:referral).referrer == user
+      end
     end
   end
 end
