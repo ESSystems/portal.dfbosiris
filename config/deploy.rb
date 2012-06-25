@@ -36,6 +36,10 @@ namespace :deploy do
     run "touch #{File.join(current_path,'tmp','restart.txt')}"
   end
 
+  task :symlink_database_yaml do
+    run "cd #{release_path}/config; ln -s #{shared_path}/config/database.yml database.yml"
+  end
+
   task :symlink_downloads_path do
     run "cd #{release_path}; ln -s #{shared_path}/downloads downloads"
   end
@@ -43,15 +47,12 @@ namespace :deploy do
   task :symlink_system_path do
     run "cd #{current_path}/public; rm -rf system; ln -s #{shared_path}/public/system system"
   end
-
-  task :symlink_database_yaml do
-    run "cd #{release_path}/config; ln -s #{shared_path}/config/database.yml database.yml"
-  end
 end
 
 after "deploy:setup" , "deploy:create_shared_paths"
-after "deploy:symlink", "deploy:symlink_downloads_path", "deploy:symlink_system_path"
+after "deploy:symlink", "deploy:symlink_system_path"
 before "deploy:finalize_update" , "deploy:symlink_database_yaml"
+after "deploy:finalize_update", "deploy:symlink_downloads_path"
 
 after "deploy", "deploy:migrate"
 
