@@ -37,13 +37,16 @@ CREATE TABLE `appointments` (
   `referrer_email` varchar(255) DEFAULT NULL,
   `referral_reason_id` int(11) NOT NULL,
   `diagnosis_id` int(11) DEFAULT NULL,
-  `state` enum('new','confirmed','booked','closed','rejected') NOT NULL DEFAULT 'new',
+  `state` varchar(16) NOT NULL DEFAULT 'new',
   `in_collision` tinyint(1) NOT NULL DEFAULT '0',
   `new_or_review` varchar(10) DEFAULT NULL,
   `referrer_type_id` int(11) DEFAULT NULL,
   `referrer_name` varchar(100) DEFAULT NULL,
+  `deleted_by` int(11) NOT NULL,
+  `deleted_on` datetime DEFAULT NULL,
+  `deleted_reason` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=204 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=216 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `attendance_feedback` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -53,7 +56,7 @@ CREATE TABLE `attendance_feedback` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `attendance_reasons` (
   `code` varchar(8) NOT NULL,
@@ -84,11 +87,11 @@ CREATE TABLE `attendances` (
   `clinic_staff_id` int(11) DEFAULT NULL,
   `seen_at_time` datetime DEFAULT NULL,
   `diary_entry_id` int(11) DEFAULT NULL,
-  `work_related_absence` enum('N','Y') DEFAULT 'N',
-  `review_attendance` enum('N','Y') DEFAULT 'N',
+  `work_related_absence` varchar(1) DEFAULT 'N',
+  `review_attendance` varchar(1) DEFAULT 'N',
   `transport_type_code` varchar(8) DEFAULT NULL,
-  `work_discomfort` enum('N','Y') DEFAULT 'N',
-  `accident_report_complete` enum('N','Y') DEFAULT 'N',
+  `work_discomfort` varchar(1) DEFAULT 'N',
+  `accident_report_complete` varchar(1) DEFAULT 'N',
   `contact_id` float DEFAULT NULL,
   `attendance_time` datetime DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -96,9 +99,9 @@ CREATE TABLE `attendances` (
   `employee_id` int(11) DEFAULT NULL,
   `recall_event_id` int(11) DEFAULT NULL,
   `is_hidden` tinyint(1) NOT NULL DEFAULT '0',
-  `no_work_contact` enum('N','Y') DEFAULT 'N',
+  `no_work_contact` varchar(1) DEFAULT 'N',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=99 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `client` (
   `ClientID` int(11) NOT NULL DEFAULT '0',
@@ -163,7 +166,7 @@ CREATE TABLE `declinations` (
   `created` datetime NOT NULL,
   `created_by` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `departments` (
   `ClientID` int(11) DEFAULT NULL,
@@ -237,7 +240,7 @@ CREATE TABLE `documents` (
   `document_updated_at` datetime DEFAULT NULL,
   `document_fingerprint` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `employee_department` (
   `person_id` int(11) NOT NULL,
@@ -262,7 +265,7 @@ CREATE TABLE `followups` (
   `attendance_id` int(11) NOT NULL,
   `result_attendance_id` int(11) DEFAULT NULL,
   `person_id` int(11) NOT NULL,
-  `type` enum('on','before','after') NOT NULL,
+  `type` varchar(8) NOT NULL,
   `date` datetime DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -318,7 +321,7 @@ CREATE TABLE `notifications` (
   `read_date` datetime DEFAULT NULL,
   `problems` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=427 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=530 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `operational_priorities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -387,7 +390,7 @@ CREATE TABLE `recall_list_item_events` (
   `attendance_id` int(11) DEFAULT NULL,
   `note` text,
   `created` datetime DEFAULT NULL,
-  `contact_type` enum('Email 1','Email 2','Email 3','Informed HR','Informed HandS','Appointment Made','Creating List','Advised by OH Staff') DEFAULT 'Advised by OH Staff',
+  `contact_type` varchar(64) DEFAULT 'Advised by OH Staff',
   `created_by` int(11) NOT NULL,
   `invite_date` date NOT NULL,
   `comments` text NOT NULL,
@@ -437,7 +440,7 @@ CREATE TABLE `referrals` (
   `updated_at` datetime DEFAULT NULL,
   `case_reference_number` varchar(255) DEFAULT NULL,
   `referrer_id` int(11) DEFAULT NULL,
-  `state` enum('new','accepted','declined','closed') NOT NULL DEFAULT 'new',
+  `state` varchar(16) NOT NULL DEFAULT 'new',
   `sickness_started` date DEFAULT NULL,
   `sicknote_expires` date DEFAULT NULL,
   `operational_priority_id` varchar(255) DEFAULT NULL,
@@ -449,15 +452,15 @@ CREATE TABLE `referrals` (
   KEY `created_by` (`created_by`),
   KEY `updated_by` (`updated_by`),
   KEY `created_at` (`created_at`),
-  KEY `state` (`state`)
-) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=latin1;
+  KEY `state` (`state`(1))
+) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `referrals_followers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `referral_id` int(11) DEFAULT NULL,
   `referrer_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `referrer_types` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -643,3 +646,7 @@ INSERT INTO schema_migrations (version) VALUES ('20120320064354');
 INSERT INTO schema_migrations (version) VALUES ('20120320115906');
 
 INSERT INTO schema_migrations (version) VALUES ('20120611092320');
+
+INSERT INTO schema_migrations (version) VALUES ('20120622090331');
+
+INSERT INTO schema_migrations (version) VALUES ('20120622124359');
