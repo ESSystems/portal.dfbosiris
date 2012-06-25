@@ -27,7 +27,7 @@ namespace :deploy do
   task :stop do ; end
 
   task :create_shared_paths do
-    run "cd #{shared_path}/ ; mkdir assets/ "
+    run "cd #{shared_path}/ ; mkdir downloads/ "
     run "cd #{shared_path}/ ; mkdir config/ "
     run "cd #{shared_path}/ ; mkdir -p public/system/"
   end
@@ -36,8 +36,8 @@ namespace :deploy do
     run "touch #{File.join(current_path,'tmp','restart.txt')}"
   end
 
-  task :symlink_assets_path do
-    run "cd #{release_path}; ln -s #{shared_path}/assets assets"
+  task :symlink_downloads_path do
+    run "cd #{release_path}; ln -s #{shared_path}/downloads downloads"
   end
 
   task :symlink_system_path do
@@ -50,7 +50,7 @@ namespace :deploy do
 end
 
 after "deploy:setup" , "deploy:create_shared_paths"
-after "deploy:symlink", "deploy:symlink_assets_path"
+after "deploy:symlink", "deploy:symlink_downloads_path"
 after "deploy:symlink", "deploy:symlink_system_path"
 before "deploy:finalize_update" , "deploy:symlink_database_yaml"
 

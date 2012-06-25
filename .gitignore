@@ -8,7 +8,7 @@ coverage/
 database.yml
 .sass-cache/
 .project
-assets/documents/*
+downloads/documents/*
 public/system/documents/*
 public/assets/*
 *.sublime-*
