@@ -165,10 +165,8 @@ class ReferralsController < ApplicationController
           "operational_priority"
         ].index(key) != nil
       }
-      if @referral.private?
-        params[:referral].delete :private
-      end
     end
+    params[:referral].delete :private if @referral.private?
 
     # if a referral is declined, when updated it should be resubmitted, i.e. it's status should be 'new'
     @referral.renew if @referral.declined?

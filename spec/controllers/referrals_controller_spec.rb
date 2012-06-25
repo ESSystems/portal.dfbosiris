@@ -72,7 +72,7 @@ describe ReferralsController do
   
   describe "PUT update" do
     let(:referral) {
-      create(:referral, :referrer => create(:user))
+      create(:referral, :referrer => subject.current_user)
     }
     
     it "should not modify the user that created the referral, i.e. referrer_id"
