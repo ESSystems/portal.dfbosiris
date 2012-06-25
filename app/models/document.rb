@@ -2,7 +2,7 @@ class Document < ActiveRecord::Base
   belongs_to :attachable, :polymorphic => true
 
   has_attached_file :document,
-    :url => '/documents/:fingerprint/download'
+    :url => '/download/:fingerprint/documents'
 
   def is_creator? user_id
   	r = Referral.joins(:documents).where("documents.id = ? and referrals.referrer_id = ?", id, user_id)
