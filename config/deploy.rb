@@ -50,8 +50,7 @@ namespace :deploy do
 end
 
 after "deploy:setup" , "deploy:create_shared_paths"
-after "deploy:symlink", "deploy:symlink_downloads_path"
-after "deploy:symlink", "deploy:symlink_system_path"
+after "deploy:symlink", "deploy:symlink_downloads_path", "deploy:symlink_system_path"
 before "deploy:finalize_update" , "deploy:symlink_database_yaml"
 
 after "deploy", "deploy:migrate"
