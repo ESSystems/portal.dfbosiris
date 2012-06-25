@@ -20,7 +20,7 @@ ClinicManagerExtension::Application.routes.draw do
     get 'page/:page', :action => :index, :on => :collection
   end
 # resources :documents
-  match 'documents/:id/download' => 'documents#download', :as => :download
+  match 'documents/:fingerprint/download' => 'documents#download', :as => :download
   match "notifications/read/:id" => "notifications#read"
   match "notifications" => "notifications#index"
 
