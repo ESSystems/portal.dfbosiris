@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|  
     Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
     if !current_user.nil?
-      flash[:error] = "You don't have access to this resource! Please contact your supervisor or IOH Staff Members!"
+      flash[:error] = "You don't have access to this resource or to the action you are trying to make! Please contact your supervisor or IOH Staff Members!"
       redirect_to root_url
     elsif
       flash[:error] = "Access denied! Please login first!"

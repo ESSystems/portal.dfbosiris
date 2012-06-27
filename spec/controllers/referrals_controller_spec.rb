@@ -3,8 +3,63 @@ require 'spec_helper'
 describe ReferralsController do
   login_user
 
+  describe "DELETE destroy" do
+    let(:referral) {
+      mock_model(Referral, :id => "2", :appointments => [], :referrer => subject.current_user)
+    }
+
+    before do
+      Referral.stub!(:find).with(referral.id).and_return(referral)
+      Referral.stub!(:find_by_id).with(referral.id).and_return(referral)
+    end
+
+    it "calls find_by_id on Referral" do
+      Referral.should_receive(:find_by_id).with(referral.id)
+      delete :destroy, :id => referral.id
+    end
+
+    it "redirects to index" do
+      delete :destroy, :id => referral.id
+      response.should redirect_to(:action => "index")
+    end
+
+    it "calls destroy on referral" do
+      referral.should_receive(:destroy)
+      delete :destroy, :id => referral.id
+    end
+
+    it "shows a success message when the referral is destroyed" do
+      referral.stub(:destroy).and_return(true)
+      delete :destroy, :id => referral.id
+      flash[:success].should eq("The referral was successfully deleted")
+    end
+
+    it "shows an error message when the referral is not destroyed" do
+      referral.stub(:destroy).and_return(false)
+      delete :destroy, :id => referral.id
+      flash[:error].should eq("The referral could not be deleted")
+    end
+
+    it "shows an error message when the referral is not found" do
+      Referral.stub!(:find_by_id).with(referral.id).and_return(nil)
+      delete :destroy, :id => referral.id
+      flash[:error].should eq("The referral you requested could not be found")
+    end
+
+    context "when a referral is found" do
+      before do
+        Referral.stub!(:find_by_id).with(referral.id).and_return(referral)
+      end
+
+      it "verifies if any appointment is set" do
+        referral.appointments.should_receive(:empty?)
+        delete :destroy, :id => referral.id
+      end
+    end
+  end
+
   describe "POST create" do
-    
+
     let!(:person) { create :person }
 
     let(:referral) {
@@ -14,7 +69,7 @@ describe ReferralsController do
     let!(:referral_attributes) {
       build(:referral).attributes
     }
-    
+
     let!(:user) {
       create(:user)
     }
@@ -35,33 +90,33 @@ describe ReferralsController do
       post :create
       pending "person department in referral"
     end
-    
+
     context "when the referral saves successfully" do
       before do
         referral.stub(:save).and_return(true)
       end
-      
+
       it "sets a flash[:notice] message" do
         post :create
         flash[:success].should eq("New referral created.")
       end
-      
+
       it "redirects to the Referrals index" do
         post :create
         response.should redirect_to(:action => "index")
       end
     end
-    
+
     context "when the referral fails to save" do
       before do
         referral.stub(:save).and_return(false)
       end
-      
+
       it "assigns @referral" do
         post :create
         assigns[:referral].should eq(referral)
       end
-      
+
       it "renders the new template" do
         post :create
         response.should render_template("new")
@@ -69,12 +124,12 @@ describe ReferralsController do
       end
     end
   end
-  
+
   describe "PUT update" do
     let(:referral) {
       create(:referral, :referrer => subject.current_user)
     }
-    
+
     it "should not modify the user that created the referral, i.e. referrer_id"
 
     context "when the referral saves successfully" do
@@ -85,7 +140,7 @@ describe ReferralsController do
         response.should redirect_to(:controller => 'referrals', :action => 'show', :id => 10)
       end
     end
-    
+
     context "when the referral fails to save" do
       before do
         Referral.stub(:find).and_return(referral)
@@ -110,7 +165,7 @@ describe ReferralsController do
         referral = create(:referral, :private => false, :referrer => create(:user))
         get :index
         assigns[:referrals].should include(referral)
-      end 
+      end
 
       it "doesn't view private referrals" do
         referral = create(:referral, :private => true)
@@ -125,5 +180,5 @@ describe ReferralsController do
       end
     end
   end
-  
+
 end

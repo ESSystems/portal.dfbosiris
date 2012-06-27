@@ -43,6 +43,21 @@ class ReferralsController < ApplicationController
   def cancel
   end
 
+  def destroy
+    @referral = Referral.find_by_id(params[:id])
+    if @referral
+      if @referral.destroy
+        flash[:success] = "The referral was successfully deleted"
+      else
+        flash[:error] = "The referral could not be deleted"
+      end
+    else
+      flash[:error] = "The referral you requested could not be found"
+    end
+
+    redirect_to :action => "index"
+  end
+
   def create
     @allow_edit = true
     @referral = Referral.new(params[:referral])

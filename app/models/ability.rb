@@ -5,8 +5,16 @@ class Ability
     unless user.nil?
       can [:index, :new, :create, :autocomplete_person_full_name, :followers_suggestions], :all
 
-      can [:edit, :update, :show, :cancel, :accept_declination_and_close], Referral do |r|
+      can [:edit, :update, :show, :accept_declination_and_close], Referral do |r|
         r.try(:referrer) == user
+      end
+
+      can [:cancel], Referral do |r|
+        !r.try(:appointments).empty? && r.try(:referrer) == user
+      end
+
+      can [:destroy], Referral do |r|
+        r.try(:appointments).empty? && r.try(:referrer) == user
       end
 
       if user.track_referrals == "all"

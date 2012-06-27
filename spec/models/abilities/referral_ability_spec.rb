@@ -46,8 +46,32 @@ describe Ability do
           @ability.should be_able_to(:update, referral)
         end
 
-        it "cancels the referral" do
-          @ability.should be_able_to(:cancel, referral)
+        context "when no appointments are created for the referral" do
+          before do
+            referral.appointments = []
+          end
+
+          it "destroys the referral" do
+            @ability.should be_able_to(:destroy, referral)
+          end
+
+          it "doesn't cancel the referral" do
+            @ability.should_not be_able_to(:cancel, referral)
+          end
+        end
+
+        context "when appointments are created for the referral" do
+          before do
+            referral.appointments = [build(:appointment)]
+          end
+
+          it "doesn't destroy the referral" do
+            @ability.should_not be_able_to(:destroy, referral)
+          end
+
+          it "cancels the referral" do
+            @ability.should be_able_to(:cancel, referral)
+          end
         end
       end
 
@@ -66,6 +90,10 @@ describe Ability do
 
         it "cancel the referral" do
           @ability.should_not be_able_to(:cancel, referral)
+        end
+
+        it "destroy the referral" do
+          @ability.should_not be_able_to(:destroy, referral)
         end
       end
 
@@ -91,8 +119,32 @@ describe Ability do
             @ability.should be_able_to(:update, referral)
           end
 
-          it "can cancel the referral" do
-            @ability.should be_able_to(:cancel, referral)
+          context "when no appointments are created for the referral" do
+            before do
+              referral.appointments = []
+            end
+
+            it "destroys the referral" do
+              @ability.should be_able_to(:destroy, referral)
+            end
+
+            it "doesn't cancel the referral" do
+              @ability.should_not be_able_to(:cancel, referral)
+            end
+          end
+
+          context "when appointments are created for the referral" do
+            before do
+              referral.appointments = [build(:appointment)]
+            end
+
+            it "doesn't destroy the referral" do
+              @ability.should_not be_able_to(:destroy, referral)
+            end
+
+            it "cancels the referral" do
+              @ability.should be_able_to(:cancel, referral)
+            end
           end
         end
 
@@ -111,6 +163,10 @@ describe Ability do
 
           it "doesn't cancel the referral" do
             @ability.should_not be_able_to(:cancel, referral)
+          end
+
+          it "doesn't destroy the referral" do
+            @ability.should_not be_able_to(:destroy, referral)
           end
         end
       end
@@ -146,6 +202,10 @@ describe Ability do
           it "cancel the referral" do
             @ability.should_not be_able_to(:cancel, referral)
           end
+
+          it "destroy the referral" do
+            @ability.should_not be_able_to(:destroy, referral)
+          end
         end
       end
     end
@@ -172,6 +232,10 @@ describe Ability do
 
         it "doesn't cancel the referral" do
           @ability.should_not be_able_to(:cancel, referral)
+        end
+
+        it "doesn't destroy the referral" do
+          @ability.should_not be_able_to(:destroy, referral)
         end
       end
 
@@ -201,9 +265,11 @@ describe Ability do
         it "doesn't cancel the referral" do
           @ability.should_not be_able_to(:cancel, referral)
         end
+
+        it "doesn't destroy the referral" do
+          @ability.should_not be_able_to(:destroy, referral)
+        end
       end
-
     end
-
   end
 end

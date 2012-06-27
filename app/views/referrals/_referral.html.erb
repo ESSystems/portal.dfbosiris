@@ -19,6 +19,9 @@
 			<% if can? :cancel, referral %>
 				<li><%= link_to "Cancel", cancel_referral_path(referral) %></li>
 			<% end %>
+			<% if can? :destroy, referral %>
+				<li><%= link_to "Delete", referral, :data => {:confirm => "Are you sure you want to delete this referral?"}, :method => :delete %></li>
+			<% end %>
 		</ul>
 	</td>
 </tr>
