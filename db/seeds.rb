@@ -93,3 +93,11 @@ case Rails.env
   tl_user_2.update_attribute(:person_id, tl_person_2.id)
   puts "finished creating test users."
 end
+
+# attendance outcomes data from attendance_outcomes csv file
+puts "importing attendance outcomes data..."
+CSV.foreach("#{Rails.root}/db/data/attendance_outcomes.csv") do |row|
+  AttendanceOutcome.find_or_create_by_title row[0]
+end
+puts "finished importing attendance outcomes data."
+
