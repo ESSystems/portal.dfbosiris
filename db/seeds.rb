@@ -35,10 +35,17 @@ CSV.foreach("#{Rails.root}/db/data/referrer_types.csv") do |row|
 end
 puts "finished importing referrer type data."
 
+# attendance outcomes data from attendance_outcomes csv file
+puts "importing attendance outcomes data..."
+CSV.foreach("#{Rails.root}/db/data/attendance_outcomes.csv") do |row|
+  AttendanceOutcome.find_or_create_by_title row[0]
+end
+puts "finished importing attendance outcomes data."
+
 case Rails.env
   # call this with: rake db:seed :env=development
   when "development"
-    
+
   # create test users
   puts "creating test users..."
   hr_person = Person.find_or_initialize_by_email_address("hresources@test.com")
@@ -57,7 +64,7 @@ case Rails.env
     :track_referrals => "all"
   })
   hr_user.update_attribute(:person_id, hr_person.id)
-  
+
   tl_person = Person.find_or_initialize_by_email_address("tleader@test.com")
   tl_person.update_attributes({
     :first_name => "Barbara",
@@ -74,7 +81,7 @@ case Rails.env
     :track_referrals => "initiated_and_assigned"
   })
   tl_user.update_attribute(:person_id, tl_person.id)
-  
+
   tl_person_2 = Person.find_or_initialize_by_email_address("teaml@test.com")
   tl_person_2.update_attributes({
     :first_name => "Charlie",
@@ -93,11 +100,4 @@ case Rails.env
   tl_user_2.update_attribute(:person_id, tl_person_2.id)
   puts "finished creating test users."
 end
-
-# attendance outcomes data from attendance_outcomes csv file
-puts "importing attendance outcomes data..."
-CSV.foreach("#{Rails.root}/db/data/attendance_outcomes.csv") do |row|
-  AttendanceOutcome.find_or_create_by_title row[0]
-end
-puts "finished importing attendance outcomes data."
 
