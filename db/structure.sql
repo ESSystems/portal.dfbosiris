@@ -42,11 +42,11 @@ CREATE TABLE `appointments` (
   `new_or_review` varchar(10) DEFAULT NULL,
   `referrer_type_id` int(11) DEFAULT NULL,
   `referrer_name` varchar(100) DEFAULT NULL,
-  `deleted_by` int(11) NOT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
   `deleted_on` datetime DEFAULT NULL,
   `deleted_reason` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=219 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=221 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `attendance_feedback` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -62,7 +62,7 @@ CREATE TABLE `attendance_outcomes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `attendance_reasons` (
   `code` varchar(8) NOT NULL,
@@ -249,7 +249,7 @@ CREATE TABLE `documents` (
   `document_updated_at` datetime DEFAULT NULL,
   `document_fingerprint` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `employee_department` (
   `person_id` int(11) NOT NULL,
@@ -330,7 +330,7 @@ CREATE TABLE `notifications` (
   `read_date` datetime DEFAULT NULL,
   `problems` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=551 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=555 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `operational_priorities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -462,7 +462,7 @@ CREATE TABLE `referrals` (
   KEY `updated_by` (`updated_by`),
   KEY `created_at` (`created_at`),
   KEY `state` (`state`(1))
-) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `referrals_followers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -663,3 +663,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120622124359');
 INSERT INTO schema_migrations (version) VALUES ('20120627060350');
 
 INSERT INTO schema_migrations (version) VALUES ('20120627075902');
+
+INSERT INTO schema_migrations (version) VALUES ('20120627150250');

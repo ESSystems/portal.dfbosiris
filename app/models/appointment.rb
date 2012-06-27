@@ -1,7 +1,7 @@
 class Appointment < ActiveRecord::Base
   self.inheritance_column = :ruby_type
 
-  STATE = %w[new confirmed booked closed rejected]
+  STATE = %w[new confirmed booked closed rejected deleted]
 
   belongs_to :referral
   belongs_to :person

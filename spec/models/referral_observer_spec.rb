@@ -14,7 +14,7 @@ describe ReferralObserver do
 			referral.reload
 		end
 
-		it "sets Attendance.no_work_contact to 'Y'", :focus => true do
+		it "sets Attendance.no_work_contact to 'Y'" do
 			attendance.reload
 			attendance.no_work_contact.should eql('Y')
 		end
