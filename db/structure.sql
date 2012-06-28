@@ -46,7 +46,7 @@ CREATE TABLE `appointments` (
   `deleted_on` datetime DEFAULT NULL,
   `deleted_reason` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=221 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=223 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `attendance_feedback` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -330,7 +330,7 @@ CREATE TABLE `notifications` (
   `read_date` datetime DEFAULT NULL,
   `problems` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=555 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=559 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `operational_priorities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -457,12 +457,14 @@ CREATE TABLE `referrals` (
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `private` tinyint(1) DEFAULT '0',
+  `canceled_on` datetime DEFAULT NULL,
+  `canceled_reason` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `created_by` (`created_by`),
   KEY `updated_by` (`updated_by`),
   KEY `created_at` (`created_at`),
   KEY `state` (`state`(1))
-) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `referrals_followers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -665,3 +667,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120627060350');
 INSERT INTO schema_migrations (version) VALUES ('20120627075902');
 
 INSERT INTO schema_migrations (version) VALUES ('20120627150250');
+
+INSERT INTO schema_migrations (version) VALUES ('20120628095648');

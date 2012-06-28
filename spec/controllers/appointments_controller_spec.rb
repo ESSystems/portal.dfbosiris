@@ -19,6 +19,7 @@ describe AppointmentsController do
       before do
         appointment.stub(:update_attribute).and_return(true)
         appointment.stub(:confirm).and_return(true)
+        appointment.stub(:deleted?).and_return(false)
       end
 
       it "calls appointment confirm" do
@@ -41,6 +42,7 @@ describe AppointmentsController do
       before do
         appointment.stub(:update_attribute).and_return(false)
         appointment.stub(:confirm).and_return(false)
+        appointment.stub(:deleted?).and_return(false)
       end
 
       it "should redirect to associated referral page" do

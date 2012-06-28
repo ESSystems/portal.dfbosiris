@@ -6,7 +6,6 @@ ClinicManagerExtension::Application.routes.draw do
   resources :referrals do
     get :autocomplete_person_full_name, :on => :collection
     get :followers_suggestions, :on => :collection
-    get :cancel, :on => :member
     get :accept_declination_and_close, :on => :member
   end
 
@@ -19,7 +18,8 @@ ClinicManagerExtension::Application.routes.draw do
   resources :people do
     get 'page/:page', :action => :index, :on => :collection
   end
-# resources :documents
+
+  match 'referrals/cancel/:id(/:reason)' => 'referrals#cancel', :as => :cancel_referral
   match 'download/:fingerprint(/:staff_member)/documents' => 'documents#download', :as => :download
   match "notifications/read/:id" => "notifications#read"
   match "notifications" => "notifications#index"

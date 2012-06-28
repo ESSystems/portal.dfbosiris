@@ -13,6 +13,18 @@ class Appointment < ActiveRecord::Base
     where("diary_id = ? and ? < to_date and from_date < ?", diary_id, from_date, to_date)
   }
 
+  def confirm
+    update_attribute(:state, :confirmed)
+  end
+
+  def confirmed?
+    state == "confirmed"
+  end
+
+  def deleted?
+    state == "deleted"
+  end
+
   # getter for the "type" column
   def device_type
     self[:type]
@@ -32,15 +44,15 @@ class Appointment < ActiveRecord::Base
     !appointments.empty?
   end
 
-  def confirmed?
-    state == "confirmed"
-  end
-
   def new?
     state == "new"
   end
 
-  def confirm
-    update_attribute(:state, :confirmed)
+  def soft_delete reason
+    self.state = "deleted"
+    self.deleted_by = User.current.person_id
+    self.deleted_on = DateTime.now
+    self.deleted_reason = reason
+    self.save
   end
 end

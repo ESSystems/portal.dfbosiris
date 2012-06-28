@@ -5,7 +5,7 @@ box_extra = ""
 box_extra = link_to("Edit referral", edit_referral_path(@referral), :class => "btn orange right") if @submit_referral && can?(:edit, @referral) %>
 <%= box_widget "Referral information", {:body_class => "information"}, [box_extra] do %>
 	<ul>
-		<li class="full-width"><span class="label">State</span>: <%= @referral.state %></li>
+		<li class="full-width"><span class="label">State</span>: <%= @referral.state %> <%= "<span class='label'>with reason:</span> #{@referral.canceled_reason}".html_safe if @referral.canceled?%></li>
 		<li class="full-width"><span class="label">Person</span>: <%= @referral.person.full_name %> - <%= render 'shared/person_information', :person => @referral.person %></li>
 		<li class="clr"><span class="label">Person status</span>: <%= @referral.patient_status.status %></li>
 		<li><span class="label">Referral Reason</span>: <%= @referral.referral_reason.reason %></li>

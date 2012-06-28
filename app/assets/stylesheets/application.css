@@ -2,6 +2,7 @@
  *= require_self
  *= require formtastic
  *= require app-formtastic
+ *= require impromptu
  *= require vendor
  *= require chameleon-circuit
  *= require token-input-facebook

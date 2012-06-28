@@ -1,8 +1,10 @@
 require 'spork'
 
 Spork.prefork do
-  require 'simplecov'
-  SimpleCov.start 'rails'
+  unless ENV['DRB']
+    require 'simplecov'
+    SimpleCov.start 'rails'
+  end
 
   ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path("../../config/environment", __FILE__)
@@ -57,6 +59,11 @@ Spork.prefork do
 end
 
 Spork.each_run do
+  if ENV['DRB']
+    require 'simplecov'
+    SimpleCov.start 'rails'
+  end
+
   FactoryGirl.reload
 
   # reload all the models

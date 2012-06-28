@@ -5,7 +5,7 @@ describe ReferralsController do
 
   describe "DELETE destroy" do
     let(:referral) {
-      mock_model(Referral, :id => "2", :appointments => [], :referrer => subject.current_user)
+      mock_model(Referral, :id => "2", :appointments => [], :referrer => subject.current_user, :state => "new")
     }
 
     before do
@@ -121,6 +121,57 @@ describe ReferralsController do
         post :create
         response.should render_template("new")
         flash[:error].should eq("Could not create new referral.")
+      end
+    end
+  end
+
+  describe "cancel" do
+    let(:referral) {
+      mock_model(Referral, :referrer => subject.current_user, :appointments => [build(:appointment)])
+    }
+
+    before do
+      Referral.stub!(:find).and_return(referral)
+      referral.stub(:canceled?).and_return(false)
+    end
+
+    it "redirects to index" do
+      put :cancel, :id => 12
+      response.should redirect_to(:action => "index")
+    end
+
+    it "calls find_by_id on Referral" do
+      Referral.should_receive(:find_by_id).with("12").and_return(referral)
+      referral.stub(:cancel).and_return(true)
+      put :cancel, :id => 12
+    end
+
+    it "shows an error message when the referral is not found" do
+      Referral.should_receive(:find_by_id).with("12").and_return(nil)
+      put :cancel, :id => 12
+      flash[:error].should eq("The referral you requested could not be found or a reason for cancelation was not given")
+    end
+
+    context "when the referral is found" do
+      before do
+        Referral.should_receive(:find_by_id).with("12").and_return(referral)
+      end
+
+      it "calls cancel on referral" do
+        referral.should_receive(:cancel).with("reason")
+        put :cancel, :id => 12, :reason => "reason"
+      end
+
+      it "show a success message if cancel was succesful" do
+        referral.stub(:cancel).and_return(true)
+        put :cancel, :id => 12, :reason => "reason"
+        flash[:success].should eq("The referral was canceled successfully")
+      end
+
+      it "shows an error message if cancel was not succesful" do
+        referral.stub(:cancel).and_return(false)
+        put :cancel, :id => 12, :reason => "reason"
+        flash[:error].should eq("The referral could not be canceled")
       end
     end
   end

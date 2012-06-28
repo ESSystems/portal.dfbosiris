@@ -34,16 +34,37 @@ describe Ability do
           @ability.should be_able_to(:show, referral)
         end
 
-        it "edits the referral" do
-          @ability.should be_able_to(:edit, referral)
+        context "when the referral is not canceled" do
+          before do
+            referral.state = "new"
+          end
+
+          it "edits the referral" do
+            referral.state = "new"
+            @ability.should be_able_to(:edit, referral)
+          end
+
+          it "updates the referral" do
+            @ability.should be_able_to(:update, referral)
+          end
+        end
+
+        context "when the referral is canceled" do
+          before do
+            referral.state = "canceled"
+          end
+
+          it "doesn't edit the referral" do
+            @ability.should_not be_able_to(:edit, referral)
+          end
+
+          it "doesn't update the referral" do
+            @ability.should_not be_able_to(:update, referral)
+          end
         end
 
         it "accepts declination and closes the referral" do
           @ability.should be_able_to(:accept_declination_and_close, referral)
-        end
-
-        it "updates the referral" do
-          @ability.should be_able_to(:update, referral)
         end
 
         context "when no appointments are created for the referral" do
@@ -51,8 +72,14 @@ describe Ability do
             referral.appointments = []
           end
 
-          it "destroys the referral" do
+          it "destroys the referral if the state is 'new'" do
+            referral.state = 'new'
             @ability.should be_able_to(:destroy, referral)
+          end
+
+          it "doesn't destroy the referral if the state is not 'new'" do
+            referral.state = 'declined'
+            @ability.should_not be_able_to(:destroy, referral)
           end
 
           it "doesn't cancel the referral" do
@@ -69,8 +96,14 @@ describe Ability do
             @ability.should_not be_able_to(:destroy, referral)
           end
 
-          it "cancels the referral" do
+          it "cancels the referral when not already canceled" do
+            referral.state = "new"
             @ability.should be_able_to(:cancel, referral)
+          end
+
+          it "doesn't cancel the referral when already canceled" do
+            referral.state = "canceled"
+            @ability.should_not be_able_to(:cancel, referral)
           end
         end
       end

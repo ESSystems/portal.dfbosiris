@@ -1,6 +1,6 @@
 class Referral < ActiveRecord::Base
 
-  STATE = %w[new accepted declined closed]
+  STATE = %w[new accepted declined closed canceled]
 
   attr_accessor :person_full_name
   attr_accessible :referrer_id, :person, :person_id, :person_department_name, :patient_status, :patient_status_id,
@@ -94,6 +94,17 @@ class Referral < ActiveRecord::Base
 
   def appointment
     appointments.first
+  end
+
+  def cancel reason
+    self.state = "canceled"
+    self.canceled_reason = reason
+    self.canceled_on = DateTime.now
+    self.save
+  end
+
+  def canceled?
+    state == "canceled"
   end
 
   def close

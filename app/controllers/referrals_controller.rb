@@ -41,6 +41,17 @@ class ReferralsController < ApplicationController
   end
 
   def cancel
+    @referral = Referral.find_by_id(params[:id])
+    if @referral && params[:reason]
+      if @referral.cancel params[:reason]
+        flash[:success] = "The referral was canceled successfully"
+      else
+        flash[:error] = "The referral could not be canceled"
+      end
+    else
+      flash[:error] = "The referral you requested could not be found or a reason for cancelation was not given"
+    end
+    redirect_to :action => "index"
   end
 
   def destroy

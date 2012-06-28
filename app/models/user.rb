@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   self.table_name = "referrers"
-  
+
   REFERRALS_TRACKING = %w[all initiated_and_assigned]
 
   belongs_to :person
@@ -21,15 +21,22 @@ class User < ActiveRecord::Base
     param = "%#{search}%"
     joins(:person).where("person.first_name LIKE ? OR person.last_name LIKE ?", param, param)
   }
-  
+
   scope :users_in_organisation, lambda { |organisation_id|
     where("client_id" => organisation_id)
   }
 
+  def self.current
+    Thread.current[:user]
+  end
+  def self.current=(user)
+    Thread.current[:user] = user
+  end
+
   def display_name
     person.full_name
   end
-  
+
   def unread_notifications
     number = 0
 
@@ -37,7 +44,7 @@ class User < ActiveRecord::Base
     result.each{ |res|
       number = res[0] if res != nil
     }
-    
+
     number
   end
 end

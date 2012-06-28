@@ -327,6 +327,31 @@ $(document).ready(function() {
   $("#referral_private").click(function() {
     $("#referral_followers_input").toggle('slow');
   });
+
+  $(".cancel").live('click', function() {
+    var url = $(this).attr("href");
+    var html = $(this).attr("data-prompt") + "<br />";
+    html += '<p>Please provide a motivation for your cancelation:</p>';
+    html += '<textarea id="promptReason" name="reason" style="width:98%;"></textarea>';
+
+    $.prompt(html,{
+      opacity: 0.3,
+      submit: function(e,v,m,f){
+        an = m.children('#promptReason');
+
+        if(v && f.reason === ""){
+          an.css("border","solid #ff0000 1px");
+          return false;
+        } else if(!v) {
+          return true;
+        } else {
+          location.href = url + "/" + f.reason;
+        }
+      },
+      buttons:{Ok:true,Cancel:false}
+    });
+    return false;
+  });
 });
 
 var typewatch = (function() {

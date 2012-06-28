@@ -328,6 +328,9 @@ header .search {
 .icon.list {
 	background-image: url(/assets/chameleon-circuit/fugue/book-open-list.png)
 }
+.icon.private {
+  background-image: url(/assets/chameleon-circuit/fugue/do-not-disturb-sign-cross.png)
+}
 .icon.referral-accepted {
 	background-image: url(/assets/chameleon-circuit/fugue/reports-stack.png)
 }
@@ -339,6 +342,9 @@ header .search {
 }
 .icon.referral-closed {
 	background-image: url(/assets/chameleon-circuit/fugue/report-paper.png)
+}
+.icon.referral-canceled {
+  background-image: url(/assets/chameleon-circuit/fugue/cross-script.png)
 }
 
 #show-all-people {

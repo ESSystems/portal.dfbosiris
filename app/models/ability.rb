@@ -5,16 +5,20 @@ class Ability
     unless user.nil?
       can [:index, :new, :create, :autocomplete_person_full_name, :followers_suggestions], :all
 
-      can [:edit, :update, :show, :accept_declination_and_close], Referral do |r|
+      can [:show, :accept_declination_and_close], Referral do |r|
         r.try(:referrer) == user
       end
 
+      can [:edit, :update], Referral do |r|
+        r.try(:referrer) == user && !r.try(:canceled?)
+      end
+
       can [:cancel], Referral do |r|
-        !r.try(:appointments).empty? && r.try(:referrer) == user
+        !r.try(:appointments).empty? && r.try(:referrer) == user && !r.try(:canceled?)
       end
 
       can [:destroy], Referral do |r|
-        r.try(:appointments).empty? && r.try(:referrer) == user
+        r.try(:appointments).empty? && r.try(:referrer) == user && r.try(:state) == 'new'
       end
 
       if user.track_referrals == "all"
@@ -40,7 +44,7 @@ class Ability
       can [:index, :read], Notification
 
       can [:confirm_appointment, :calendar_data, :calendar_update_date], Appointment do |a|
-        a.try(:referral).referrer == user
+        a.try(:referral).referrer == user && !a.try(:deleted?)
       end
     end
   end

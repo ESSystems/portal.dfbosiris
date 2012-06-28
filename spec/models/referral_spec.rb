@@ -47,7 +47,17 @@ describe Referral do
     referral.case_reference_number.should_not be_nil
   end
 
-  it "should show '...' only if case nature is longer than 150 characters"
+  it "should show '...' when case nature is longer than 150 characters" do
+    long_case_nature = Forgery(:basic).text(:at_least => 170, :at_most => 180)
+    referral = build(:referral, :case_nature => long_case_nature)
+    referral.short_case_nature.should eq("#{long_case_nature.slice(0..150)}...")
+  end
+
+  it "should not show '...' when case nature is shorter than 150 characters" do
+    short_case_nature = Forgery(:basic).text(:at_least => 100, :at_most => 140)
+    referral = build(:referral, :case_nature => short_case_nature)
+    referral.short_case_nature.should eq(short_case_nature)
+  end
 
   it "has no followers when private is set to true" do
     referral = create(:referral, :private => false)
@@ -96,6 +106,41 @@ describe Referral do
           Referral.public_and_owned(user.id).all.should include(referral)
         end
       end
+    end
+  end
+
+  describe "cancel" do
+    let(:referral) { create(:referral, :state => 'new') }
+
+    before do
+      referral.cancel "reason"
+      referral.reload
+    end
+
+    it "sets the referral state to 'canceled'" do
+      referral.state.should eq("canceled")
+    end
+
+    it "sets a canceled reason" do
+      referral.canceled_reason.should eq("reason")
+    end
+
+    it "sets a canceled date" do
+      referral.canceled_on.should_not be_nil
+    end
+  end
+
+  describe "canceled?" do
+    let(:referral) { build(:referral) }
+
+    it "returns true when the referral's state is 'canceled'" do
+      referral.state = "canceled"
+      referral.canceled?.should be_true
+    end
+
+    it "returns false when the referral's state is not 'canceled'" do
+      referral.state = "new"
+      referral.canceled?.should be_false
     end
   end
 end

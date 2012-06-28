@@ -45,5 +45,5 @@ end
 group :test do
   gem 'cucumber-rails'
   gem 'guard-cucumber'
-  gem 'simplecov'
+  gem 'simplecov', :require => false
 end
