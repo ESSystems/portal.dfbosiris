@@ -44,7 +44,12 @@ box_extra = link_to("Edit referral", edit_referral_path(@referral), :class => "b
 
 	<%= box_widget "Appointment", {}, [confirm_extra] do %>
 		<p><%= message_start %>: <b id="appointment-date"><%= @referral.appointment.display_date %></b> <%= "with <b>#{@referral.appointment.diary.name}</b>".html_safe if @referral.appointment.diary %> <%= message_end %></p>
-		<p><%= "Feedback received: #{@referral.appointment.attendance.attendance_feedback.report}" if @show_feedback %></p>
+		<% if @show_feedback %>
+			<p><%= "<b>Report:</b> #{@referral.appointment.attendance.attendance_feedback.report}".html_safe %></p>
+			<p><% unless @referral.appointment.attendance.attendance_feedback.documents.empty? %>
+				<b>Attachments:</b> <%= show_documents(@referral.appointment.attendance.attendance_feedback.documents, true) %>
+			<% end %></p>
+		<% end %>
 		<br />
 		<div id="extjs-calendar" extjs-calendar-url="<%= @extjs_calendar_url %>"></div>
 		<!-- <div id="calendar" name="calendar"></div> -->

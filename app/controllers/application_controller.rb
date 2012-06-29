@@ -27,4 +27,9 @@ class ApplicationController < ActionController::Base
       redirect_to user_session_url
     end
   end
+
+  rescue_from ActionController::MissingFile do |e|
+    flash[:error] = "There was a problem accessing the file you requested"
+    redirect_to root_url
+  end
 end

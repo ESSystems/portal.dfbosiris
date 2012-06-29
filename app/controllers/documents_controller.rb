@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
 	def download
-		document = Document.find_by_document_fingerprint params[:fingerprint]
+		document = Document.find_by_id_and_document_fingerprint params[:id], params[:fingerprint]
 
 		if document
 			if current_user

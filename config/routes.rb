@@ -20,7 +20,7 @@ ClinicManagerExtension::Application.routes.draw do
   end
 
   match 'referrals/cancel/:id(/:reason)' => 'referrals#cancel', :as => :cancel_referral
-  match 'download/:fingerprint(/:staff_member)/documents' => 'documents#download', :as => :download
+  match 'download/:id/:fingerprint(/:staff_member)/documents' => 'documents#download', :as => :download
   match "notifications/read/:id" => "notifications#read"
   match "notifications" => "notifications#index"
 
