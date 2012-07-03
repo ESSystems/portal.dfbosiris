@@ -47,7 +47,7 @@ box_extra = link_to("Edit referral", edit_referral_path(@referral), :class => "b
 		<% if @show_feedback %>
 			<p><%= "<b>Report:</b> #{@referral.appointment.attendance.attendance_feedback.report}".html_safe %></p>
 			<p><% unless @referral.appointment.attendance.attendance_feedback.documents.empty? %>
-				<b>Attachments:</b> <%= show_documents(@referral.appointment.attendance.attendance_feedback.documents, true) %>
+				<b>Attachments:</b> <%= show_documents @referral.appointment.attendance.attendance_feedback.documents %>
 			<% end %></p>
 		<% end %>
 		<br />
@@ -75,7 +75,7 @@ box_extra = link_to("Edit referral", edit_referral_path(@referral), :class => "b
 					<% if !a.attendance.nil? and !a.attendance.attendance_feedback.nil? %>
 						<b>Report:</b> <%= a.attendance.attendance_feedback.report  %>
 						<% unless a.attendance.attendance_feedback.documents.empty? %>
-							<br /><b>Attachments:</b> <%= show_documents(a.attendance.attendance_feedback.documents, true) %>
+							<br /><b>Attachments:</b> <%= show_documents a.attendance.attendance_feedback.documents %>
 						<% end %>
 					<% end %>
 				</td>

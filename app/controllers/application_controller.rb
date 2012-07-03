@@ -32,4 +32,10 @@ class ApplicationController < ActionController::Base
     flash[:error] = "There was a problem accessing the file you requested"
     redirect_to root_url
   end
+
+  rescue_from Timeout::Error, Errno::ENOENT do |e|
+    logger.debug e
+    flash[:error] = "There was a problem accessing the page you requested"
+    redirect_to root_url
+  end
 end

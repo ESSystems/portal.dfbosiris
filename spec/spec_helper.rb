@@ -66,6 +66,8 @@ Spork.each_run do
 
   FactoryGirl.reload
 
+  load "#{Rails.root}/config/routes.rb"
+
   # reload all the models
   Dir["#{Rails.root}/app/models/**/*.rb"].each do |model|
     load model

@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
   belongs_to :organisation, :foreign_key => "client_id"
 
   # Include default devise modules. Others available are:
-  # :registerable, :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :recoverable, :trackable, :validatable
+  # :registerable, :token_authenticatable, :encryptable, :confirmable, :lockable and :omniauthable
+  devise :database_authenticatable, :recoverable, :trackable, :validatable, :timeoutable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :username, :track_referrals
@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
   def self.current
     Thread.current[:user]
   end
+
   def self.current=(user)
     Thread.current[:user] = user
   end

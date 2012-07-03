@@ -1,5 +1,5 @@
 module ApplicationHelper
-  
+
   def add_document_button(title, target, form, options = {})
     add_document = render(:partial => 'shared/add_document', :locals => { :f => form, :document => Document.new })
     options.merge!(:type => "button", :onclick => "$('##{target}').append('" << escape_javascript(add_document) << "')")
@@ -7,7 +7,7 @@ module ApplicationHelper
       title
     end
   end
-  
+
   # Only need this helper once, it will provide an interface to convert a block into a partial.
   # 1. Capture is a Rails helper which will 'capture' the output of a block into a variable
   # 2. Merge the 'body' variable into our options hash
@@ -16,16 +16,16 @@ module ApplicationHelper
     options.merge!(:body => capture(&block))
     render(:partial => partial_name, :locals => options)
   end
- 
-  # Create as many of these as you like, each should call a different partial 
+
+  # Create as many of these as you like, each should call a different partial
   def box_widget(title, options = {}, extra = [], &block)
     block_to_partial('shared/box_widget', options.merge(:title => title, :extra => extra), &block)
   end
-  
-  def button_to_add_fields(name, f, association, options = {}, target = "")  
-    new_object = f.object.class.reflect_on_association(association).klass.new  
+
+  def button_to_add_fields(name, f, association, options = {}, target = "")
+    new_object = f.object.class.reflect_on_association(association).klass.new
     fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
-      render("shared/" << association.to_s.singularize << "_fields", :f => builder)  
+      render("shared/" << association.to_s.singularize << "_fields", :f => builder)
     end
     target = association if target == ""
     options.merge!(:type => "button", :onclick => "add_fields(this, \"#{association}\", \"#{target}\", \"#{escape_javascript(fields)}\")")
@@ -33,19 +33,19 @@ module ApplicationHelper
       name
     end
   end
-  
+
   def html_message(text_message)
     pattern = /http:\/\/.+\b/
     link = text_message.match(pattern)[0]
-    
+
     link = '<a href="{link}">{link}</a>'.gsub!(/{link}/, link)
-    
+
     text_message.gsub!(pattern, link)
     text_message.gsub!(/\n/, "<br />")
-    
+
     text_message.html_safe
   end
-  
+
   def show_documents(documents, osiris = false)
     html_options = {}
     result = ''
@@ -53,12 +53,11 @@ module ApplicationHelper
       result << ", " if result.length != 0
       title = d.title == "" || d.title.nil? ? d.document_file_name : d.title
       html_options["original-title"] = d.description != "" ? d.description : nil
-      url = osiris ? d.osiris_url : d.document.url
-      result << link_to(title , url, html_options)
+      result << link_to(title, d.document.url, html_options)
     end
     result.html_safe
   end
-  
+
   def show_followers(followers)
     result = ''
     followers.each do |f|
@@ -67,16 +66,16 @@ module ApplicationHelper
     end
     result
   end
-  
+
   def sortable(column, title = nil)
     title ||= column.titleize
     css_class = (column == sort_column) ? "current #{sort_direction}" : nil
     direction = (column == sort_column && sort_direction == "asc") ? "desc" : "asc"
     link_to title, {:sort => column, :direction => direction}, {:class => css_class}
   end
-  
-  def title(page_title)  
-    content_for(:title) { page_title }  
+
+  def title(page_title)
+    content_for(:title) { page_title }
   end
 
 end

@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class DocumentsController < ApplicationController
 	def download
 		document = Document.find_by_id_and_document_fingerprint params[:id], params[:fingerprint]
@@ -5,7 +7,9 @@ class DocumentsController < ApplicationController
 		if document
 			if current_user
 				if document.is_creator?(current_user.id) || document.is_follower?(current_user.id) || current_user.track_referrals == 'all' && !document.is_private?
-					send_file document.document.path, :type => document.document_content_type
+					source = document.from_osiris? ? document.osiris_url : document.path
+					data = open(source)
+					send_data data.read, :type => document.document_content_type, :filename => document.document_file_name
 				else
 					flash[:error] = "You are not allowed to view the file you requested"
 					redirect_to referrals_path

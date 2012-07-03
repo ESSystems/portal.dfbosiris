@@ -56,7 +56,7 @@ CREATE TABLE `attendance_feedback` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `attendance_outcomes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -248,8 +248,9 @@ CREATE TABLE `documents` (
   `document_file_size` int(11) DEFAULT NULL,
   `document_updated_at` datetime DEFAULT NULL,
   `document_fingerprint` varchar(255) DEFAULT NULL,
+  `origin` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `employee_department` (
   `person_id` int(11) NOT NULL,
@@ -330,7 +331,7 @@ CREATE TABLE `notifications` (
   `read_date` datetime DEFAULT NULL,
   `problems` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=559 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=566 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `operational_priorities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -487,7 +488,6 @@ CREATE TABLE `referrers` (
   `encrypted_password` varchar(128) NOT NULL DEFAULT '',
   `reset_password_token` varchar(255) DEFAULT NULL,
   `reset_password_sent_at` datetime DEFAULT NULL,
-  `remember_created_at` datetime DEFAULT NULL,
   `sign_in_count` int(11) DEFAULT '0',
   `current_sign_in_at` datetime DEFAULT NULL,
   `last_sign_in_at` datetime DEFAULT NULL,
@@ -669,3 +669,7 @@ INSERT INTO schema_migrations (version) VALUES ('20120627075902');
 INSERT INTO schema_migrations (version) VALUES ('20120627150250');
 
 INSERT INTO schema_migrations (version) VALUES ('20120628095648');
+
+INSERT INTO schema_migrations (version) VALUES ('20120702112105');
+
+INSERT INTO schema_migrations (version) VALUES ('20120702154903');

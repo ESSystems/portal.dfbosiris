@@ -1,8 +1,25 @@
 class Document < ActiveRecord::Base
+
+  ORIGIN = %w[osiris portal]
+
+  before_save :default_values
+
   belongs_to :attachable, :polymorphic => true
 
   has_attached_file :document,
     :url => '/download/:id/:fingerprint/documents'
+
+  def default_values
+    self.origin ||= 'portal'
+  end
+
+  def from_osiris?
+    self.origin == "osiris"
+  end
+
+  def from_portal?
+    self.origin == "portal"
+  end
 
   def is_creator? user_id
   	r = Referral.joins(:documents).where("documents.id = ? and referrals.referrer_id = ?", id, user_id)
@@ -20,6 +37,10 @@ class Document < ActiveRecord::Base
   end
 
   def osiris_url
-    "http://#{OSIRIS_SERVER_NAME}/upload/#{self.class.name.downcase.pluralize}/#{self.document_fingerprint}/#{self.document_file_name}"
+    "http://#{OSIRIS_SERVER_NAME}/download/#{id}/#{document_fingerprint}/#{User.current.id}/documents"
+  end
+
+  def path
+    document.path
   end
 end
