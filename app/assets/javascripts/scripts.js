@@ -345,7 +345,11 @@ $(document).ready(function() {
         } else if(!v) {
           return true;
         } else {
-          location.href = url + "/" + f.reason;
+          // pass rails routes
+          reason = $.trim(f.reason);
+          reason = reason.replace(/\//g," ");
+          reason = reason.replace(/\./g," ");
+          location.href = url + "/" + reason;
         }
       },
       buttons:{Ok:true,Cancel:false}
