@@ -39,6 +39,9 @@ box_extra = link_to("Edit referral", edit_referral_path(@referral), :class => "b
 		elsif @show_attendance
 			message_start = "The appointment on"
 			message_end = "was updated with the result: <b>#{@referral.appointment.attendance.attendance_result}</b>.".html_safe
+		elsif @show_deleted
+			message_start = "The appointment on"
+			message_end = "was deleted with the reason: <b>#{@referral.appointment.deleted_reason}</b>".html_safe
 		end
 	%>
 
@@ -59,6 +62,7 @@ box_extra = link_to("Edit referral", edit_referral_path(@referral), :class => "b
 	<table>
 		<thead>
 			<tr>
+				<td style="width:17px;">&nbsp;</td>
 				<td style="width:230px;">Date</td>
 				<td style="width:200px;">With</td>
 				<td style="width:170px;">Result</td>
@@ -67,7 +71,8 @@ box_extra = link_to("Edit referral", edit_referral_path(@referral), :class => "b
 		</thead>
 		<tbody>
 			<% @referral.appointments.each do |a| %>
-			<tr>
+			<tr class="<%= "deleted".html_safe if a.deleted? %>">
+				<td><%= "<span class=\"icon #{a.state} left\" original-title=\"This appointment was deleted with the following reason: '#{a.deleted_reason}'\"></span>".html_safe if a.deleted? %></td>
 				<td><%= a.display_date %></td>
 				<td><%= a.diary.name %></td>
 				<td><%= a.attendance.attendance_result if !a.attendance.nil? and !a.attendance.attendance_result.nil? %></td>

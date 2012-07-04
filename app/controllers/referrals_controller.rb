@@ -146,6 +146,7 @@ class ReferralsController < ApplicationController
     @referral = Referral.find(params[:id])
     @show_appointment = false
     @show_confirmed = false
+    @show_deleted = false
     @show_attendance = false
     @show_all_appointments = false
     @show_declinations = false
@@ -162,6 +163,7 @@ class ReferralsController < ApplicationController
 
       @show_confirmed = @referral.appointment.confirmed?
       @show_confirm = @referral.appointment.new?
+      @show_deleted = @referral.appointment.deleted?
       if @referral.appointment.attendance
         @show_attendance = true
         @show_feedback = true if @referral.appointment.attendance.attendance_feedback

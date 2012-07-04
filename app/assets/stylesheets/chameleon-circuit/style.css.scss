@@ -176,6 +176,7 @@ thead .desc {
 td {text-align: left; padding: 5px; vertical-align: middle}
 tbody tr.odd, li.odd {background:#f7f7f7}
 tbody tr.even, li.even {background:#ededed}
+tbody tr.deleted, li.deleted, tbody tr.canceled, li.canceled {color:#777;}
 
 table.simple td:first-child {padding-left: 10px}
 
@@ -331,19 +332,19 @@ header .search {
 .icon.private {
   background-image: url(/assets/chameleon-circuit/fugue/do-not-disturb-sign-cross.png)
 }
-.icon.referral-accepted {
+.icon.accepted {
 	background-image: url(/assets/chameleon-circuit/fugue/reports-stack.png)
 }
-.icon.referral-new {
+.icon.new {
 	background-image: url(/assets/chameleon-circuit/fugue/report--plus.png)
 }
-.icon.referral-declined {
+.icon.declined {
 	background-image: url(/assets/chameleon-circuit/fugue/report--minus.png)
 }
-.icon.referral-closed {
+.icon.closed {
 	background-image: url(/assets/chameleon-circuit/fugue/report-paper.png)
 }
-.icon.referral-canceled {
+.icon.canceled, .icon.deleted {
   background-image: url(/assets/chameleon-circuit/fugue/cross-script.png)
 }
 

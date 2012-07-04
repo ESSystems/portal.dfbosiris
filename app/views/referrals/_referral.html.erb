@@ -1,6 +1,6 @@
-<tr>
+<tr class="<%= "canceled" if referral.canceled? %>">
 	<td>
-		<span class="icon referral-<%= referral.state %> left" original-title="Referral is <%= referral.state %>"></span>
+		<span class="icon <%= referral.state %> left" original-title="Referral is <%= referral.state %>"></span>
 		<%= "<span class=\"icon attachments left\" original-title=\"Has attachments\"></span>".html_safe if not referral.documents.empty? %>
 		<%= "<span class=\"icon private left\" original-title=\"Referral is private\"></span>".html_safe if referral.private? %>
 	</td>
