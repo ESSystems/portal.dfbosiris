@@ -42,11 +42,6 @@ describe Referral do
     end
   end
 
-  it "should generate a case reference number when created" do
-    referral = build(:referral)
-    referral.case_reference_number.should_not be_nil
-  end
-
   it "should show '...' when case nature is longer than 150 characters" do
     long_case_nature = Forgery(:basic).text(:at_least => 170, :at_most => 180)
     referral = build(:referral, :case_nature => long_case_nature)
@@ -141,6 +136,22 @@ describe Referral do
     it "returns false when the referral's state is not 'canceled'" do
       referral.state = "new"
       referral.canceled?.should be_false
+    end
+  end
+
+  describe "generate_case_reference_number" do
+    let(:case_number) { "32432REW38" }
+    let(:existing_referral) { create(:referral, :case_reference_number => case_number) }
+
+    it "is generated when the referral is created" do
+      referral = build(:referral)
+      referral.case_reference_number.should_not be_nil
+    end
+
+    it "searches for existing case number" do
+      Referral.any_instance.stub(:random_number).and_return(case_number)
+      Referral.should_receive(:find).with(:first, :conditions => {:case_reference_number => case_number})
+      referral = build(:referral)
     end
   end
 end

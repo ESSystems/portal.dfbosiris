@@ -134,15 +134,24 @@ class Referral < ActiveRecord::Base
   private
 
   def generate_case_reference_number
-    csn = SecureRandom.uuid
-    csn.gsub!("-","")
-    self.case_reference_number ||= csn[0..9].upcase
+    case_reference_number = random_number
+    if Referral.find :first, :conditions => {:case_reference_number => case_reference_number}
+      self.case_reference_number ||= self.generate_case_reference_number
+    else
+      self.case_reference_number ||= case_reference_number
+    end
   end
 
   def private_can_not_be_modified_after_true
     if private_was == true && private_changed?
       errors.add(:private, "can't be modified after set tot true")
     end
+  end
+
+  def random_number
+    csn = SecureRandom.uuid
+    csn.gsub!("-","")
+    csn[0..9].upcase
   end
 
   def valid_attribute?(attribute_name)

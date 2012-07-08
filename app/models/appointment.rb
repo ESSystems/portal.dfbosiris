@@ -49,10 +49,12 @@ class Appointment < ActiveRecord::Base
   end
 
   def soft_delete reason
-    self.state = "deleted"
-    self.deleted_by = User.current.person_id
-    self.deleted_on = DateTime.now
-    self.deleted_reason = reason
-    self.save
+    if self.from_date > Time.now && self.to_date > Time.now
+      self.state = "deleted"
+      self.deleted_by = User.current.person_id
+      self.deleted_on = DateTime.now
+      self.deleted_reason = reason
+      self.save
+    end
   end
 end

@@ -73,29 +73,60 @@ describe Appointment do
   end
 
   describe "soft_delete" do
-    let(:appointment) { create(:appointment) }
     let(:user) { build(:user) }
 
     before do
       User.stub!(:current).and_return(user)
-      appointment.soft_delete "reason to soft delete"
-      appointment.reload
     end
 
-    it "sets the state as 'deleted'" do
-      appointment.state.should eq("deleted")
+    context "when appointment date is in the future" do
+      let(:appointment) { create(:appointment, :from_date => Time.now + (60*60*24), :to_date => Time.now + (60*60*23)) }
+
+      before do
+        appointment.soft_delete "reason to soft delete"
+        appointment.reload
+      end
+
+      it "sets the state as 'deleted'" do
+        appointment.state.should eq("deleted")
+      end
+
+      it "sets the person id of the user who deleted the referral" do
+        appointment.deleted_by.should_not be_nil
+      end
+
+      it "sets the deleted_on date" do
+        appointment.deleted_on.should_not be_nil
+      end
+
+      it "sets a deleted reason" do
+        appointment.deleted_reason.should_not be_nil
+      end
     end
 
-    it "sets the person id of the user who deleted the referral" do
-      appointment.deleted_by.should_not be_nil
-    end
+    context "when appointment date is in the past it doesn't" do
+      let(:appointment) { create(:appointment, :from_date => Time.now - (60*60*24), :to_date => Time.now - (60*60*23)) }
 
-    it "sets the deleted_on date" do
-      appointment.deleted_on.should_not be_nil
-    end
+      before do
+        appointment.soft_delete "reason to soft delete"
+        appointment.reload
+      end
 
-    it "sets a deleted reason" do
-      appointment.deleted_reason.should_not be_nil
+      it "set the state as 'deleted'" do
+        appointment.state.should_not eq("deleted")
+      end
+
+      it "set the person id of the user who deleted the referral" do
+        appointment.deleted_by.should be_nil
+      end
+
+      it "set the deleted_on date" do
+        appointment.deleted_on.should be_nil
+      end
+
+      it "set a deleted reason" do
+        appointment.deleted_reason.should be_nil
+      end
     end
   end
 end

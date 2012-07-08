@@ -346,7 +346,7 @@ $(document).ready(function() {
           return true;
         } else {
           // pass rails routes
-          reason = $.trim(f.reason);
+          var reason = $.trim(f.reason);
           reason = reason.replace(/\//g," ");
           reason = reason.replace(/\./g," ");
           location.href = url + "/" + reason;
