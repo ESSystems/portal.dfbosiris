@@ -133,6 +133,7 @@ describe ReferralsController do
     before do
       Referral.stub!(:find).and_return(referral)
       referral.stub(:canceled?).and_return(false)
+      referral.stub(:passes_late_cancelation_condition?).and_return(true)
     end
 
     it "redirects to index" do

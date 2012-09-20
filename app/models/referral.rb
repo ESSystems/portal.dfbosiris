@@ -1,6 +1,7 @@
 class Referral < ActiveRecord::Base
 
   STATE = %w[new accepted declined closed canceled]
+  LATE_CANCELATION_INTERVAL = 48 #hours
 
   attr_accessor :person_full_name
   attr_accessible :referrer_id, :person, :person_id, :person_department_name, :patient_status, :patient_status_id,
@@ -125,6 +126,13 @@ class Referral < ActiveRecord::Base
 
   def is_private?
     self.private ? "Yes" : "No"
+  end
+
+  def passes_late_cancelation_condition?
+    from_date = Time.now
+    to_date = Time.now + 60 * 60 * Referral::LATE_CANCELATION_INTERVAL
+    appointments = self.appointments.where("appointments.from_date <= ? and ? <= appointments.to_date", to_date, from_date)
+    appointments.empty?
   end
 
   def renew
