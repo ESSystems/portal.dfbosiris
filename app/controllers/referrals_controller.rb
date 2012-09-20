@@ -19,8 +19,10 @@ class ReferralsController < ApplicationController
   end
 
   def autocomplete_person_full_name
-    persons_list = Person.find_by_full_name(params[:term]).people_in_organisation(current_user.client_id)
-    @persons = persons_list.first(15)
+    # persons_list = Person.find_by_full_name(params[:term]).limit(15).order('id ASC').people_in_organisation(current_user.client_id)
+    # @persons = persons_list.first(15)
+    people_list = Person.find_people_in_organisation_by_full_name(current_user.client_id, params[:term], 15)
+    @persons = people_list.first(15)
     @persons.collect! do |p|
       result = {}
       result["id"] = p.id

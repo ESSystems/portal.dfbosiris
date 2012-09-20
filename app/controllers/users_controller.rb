@@ -11,7 +11,7 @@ class UsersController < ApplicationController
         @referrals = ordered_referral.initiated_and_assigned(current_user.id)
       end
 
-      @notifications = Notification.associated_notifications("Referrer", current_user.id).limit(5)
+      @notifications = Notification.associated_notifications("Referrer", current_user.id, 5)
     end
   end
 

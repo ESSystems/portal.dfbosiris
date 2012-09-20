@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
   def unread_notifications
     number = 0
 
-    result = connection.execute "SELECT COUNT(*) FROM notifications n WHERE n.read = 0 AND n.target_id = #{self.id}"
+    result = connection.execute "SELECT COUNT(*) FROM notifications n USE INDEX(read_target_id_index) WHERE n.read = 0 AND n.target_id = #{self.id}"
     result.each{ |res|
       number = res[0] if res != nil
     }

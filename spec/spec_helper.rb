@@ -6,6 +6,12 @@ Spork.prefork do
     SimpleCov.start 'rails'
   end
 
+  require 'rails/application'
+  Spork.trap_method(Rails::Application, :reload_routes!)
+  Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
+  # Prevent main application to eager_load in the prefork block (do not load files in autoload_paths)
+  Spork.trap_method(Rails::Application, :eager_load!)
+
   ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
@@ -13,6 +19,9 @@ Spork.prefork do
   require 'capybara/rspec'
   require 'cancan/matchers'
   require 'database_cleaner'
+
+  # Load all railties files
+  Rails.application.railties.all { |r| r.eager_load! }
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
@@ -66,15 +75,8 @@ Spork.each_run do
 
   FactoryGirl.reload
 
-  load "#{Rails.root}/config/routes.rb"
-
-  # reload all the models
-  Dir["#{Rails.root}/app/models/**/*.rb"].each do |model|
-    load model
-  end
-
-  # reload all the controllers
-  Dir["#{Rails.root}/app/controllers/**/*.rb"].each do |controller|
-    load controller
+  # reload custom inputs
+  Dir["#{Rails.root}/app/inputs/**/*.rb"].each do |input|
+    load input
   end
 end

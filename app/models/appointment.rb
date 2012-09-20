@@ -10,7 +10,7 @@ class Appointment < ActiveRecord::Base
   belongs_to :attendance
 
   scope :overlapping_dates_for_diary, lambda { |diary_id, from_date, to_date|
-    where("diary_id = ? and ? < to_date and from_date < ?", diary_id, from_date, to_date)
+    all(:conditions => ["diary_id = ? and ? < to_date and from_date < ?", diary_id, from_date, to_date], :from => "#{quoted_table_name} USE INDEX(diary_id_to_date_from_date_index)")
   }
 
   def confirm
@@ -40,7 +40,7 @@ class Appointment < ActiveRecord::Base
   end
 
   def is_overlapping_another(from_date, to_date)
-    appointments = Appointment.overlapping_dates_for_diary(self.diary_id, from_date, to_date).where("id <> #{self.id}")
+    appointments = Appointment.where("id <> #{self.id}").overlapping_dates_for_diary(self.diary_id, from_date, to_date)
     !appointments.empty?
   end
 

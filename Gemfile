@@ -24,17 +24,9 @@ group :development, :test do
   gem 'capistrano'
   gem 'capistrano-ext'
   gem 'capybara'
-  gem 'database_cleaner'
-  gem 'factory_girl_rails'
-  gem 'forgery'
-  gem 'guard-rspec'
-  gem 'guard-spork'
   gem 'launchy'
   gem 'pry'
-  gem 'rspec-rails'
   gem 'rvm-capistrano'
-  gem 'spork', '~> 1.0rc'
-  gem 'turn', '< 0.8.3'
 end
 
 group :test, :darwin do
@@ -43,7 +35,14 @@ group :test, :darwin do
 end
 
 group :test do
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'forgery'
   gem 'guard-cucumber'
+  gem 'guard-rspec'
+  gem 'guard-spork'
+  gem 'rspec-rails'
   gem 'simplecov', :require => false
+  gem 'spork-rails'
 end
