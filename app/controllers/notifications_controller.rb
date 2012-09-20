@@ -3,7 +3,7 @@ class NotificationsController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @notifications = Notification.associated_notifications("Referrer", current_user.id).page(params[:page])
+    @notifications = Kaminari.paginate_array(Notification.associated_notifications("Referrer", current_user.id)).page(params[:page]).per(15)
   end
 
   def read
