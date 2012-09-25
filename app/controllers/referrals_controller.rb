@@ -45,10 +45,14 @@ class ReferralsController < ApplicationController
   def cancel
     @referral = Referral.find_by_id(params[:id])
     if @referral && params[:reason]
-      if @referral.cancel params[:reason]
-        flash[:success] = "The referral was canceled successfully"
+      if @referral.passes_late_cancelation_condition?
+        if @referral.cancel params[:reason]
+          flash[:success] = "The referral was canceled successfully"
+        else
+          flash[:error] = "The referral could not be canceled"
+        end
       else
-        flash[:error] = "The referral could not be canceled"
+        flash[:error] = "An appointment has been scheduled in the next 48 hours.  Please contact a member of staff from IOH directly."
       end
     else
       flash[:error] = "The referral you requested could not be found or a reason for cancelation was not given"
@@ -188,12 +192,12 @@ class ReferralsController < ApplicationController
     if(!@referral.appointment.nil?)
       params[:referral].delete_if { |key, value|
         ["patient_status",
-          "case_nature",
-          "specific_requirements",
-          "advice",
-          "referral_reason",
-          "operational_priority"
-        ].index(key) != nil
+         "case_nature",
+         "specific_requirements",
+         "advice",
+         "referral_reason",
+         "operational_priority"
+         ].index(key) != nil
       }
     end
     params[:referral].delete :private if @referral.private?

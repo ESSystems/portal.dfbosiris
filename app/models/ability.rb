@@ -14,7 +14,7 @@ class Ability
       end
 
       can [:cancel], Referral do |r|
-        !r.try(:appointments).empty? && r.try(:passes_late_cancelation_condition?) && r.try(:referrer) == user && !r.try(:canceled?)
+        !r.try(:appointments).empty? && r.try(:referrer) == user && !r.try(:canceled?)
       end
 
       can [:destroy], Referral do |r|

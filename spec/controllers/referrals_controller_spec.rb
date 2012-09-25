@@ -158,21 +158,49 @@ describe ReferralsController do
         Referral.should_receive(:find_by_id).with("12").and_return(referral)
       end
 
-      it "calls cancel on referral" do
-        referral.should_receive(:cancel).with("reason")
-        put :cancel, :id => 12, :reason => "reason"
-      end
-
-      it "show a success message if cancel was succesful" do
+      it "verifies that the referral passes late cancelation" do
+        referral.should_receive(:passes_late_cancelation_condition?)
         referral.stub(:cancel).and_return(true)
         put :cancel, :id => 12, :reason => "reason"
-        flash[:success].should eq("The referral was canceled successfully")
       end
 
-      it "shows an error message if cancel was not succesful" do
-        referral.stub(:cancel).and_return(false)
-        put :cancel, :id => 12, :reason => "reason"
-        flash[:error].should eq("The referral could not be canceled")
+      context "when an appointment passes late cancelation condition" do
+        before do
+          referral.stub(:passes_late_cancelation_condition?).and_return(true)
+        end
+
+        it "calls cancel on referral" do
+          referral.should_receive(:cancel).with("reason")
+          put :cancel, :id => 12, :reason => "reason"
+        end
+
+        it "show a success message if cancel was succesful" do
+          referral.stub(:cancel).and_return(true)
+          put :cancel, :id => 12, :reason => "reason"
+          flash[:success].should eq("The referral was canceled successfully")
+        end
+
+        it "shows an error message if cancel was not succesful" do
+          referral.stub(:cancel).and_return(false)
+          put :cancel, :id => 12, :reason => "reason"
+          flash[:error].should eq("The referral could not be canceled")
+        end
+      end
+
+      context "when an appointment doesn't pass late cancelation condition" do
+        before do
+          referral.stub(:passes_late_cancelation_condition?).and_return(false)
+        end
+
+        it "doesn't call cancel on referral" do
+          referral.should_not_receive(:cancel).with("reason")
+          put :cancel, :id => 12, :reason => "reason"
+        end
+
+        it "shows an error message" do
+          put :cancel, :id => 12, :reason => "reason"
+          flash[:error].should eq("An appointment has been scheduled in the next 48 hours.  Please contact a member of staff from IOH directly.")
+        end
       end
     end
   end

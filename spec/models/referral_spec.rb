@@ -154,4 +154,22 @@ describe Referral do
       referral = build(:referral)
     end
   end
+
+  describe "passes_late_cancelation_condition?" do
+    let(:referral) { create(:referral) }
+
+    it "returns true when conditions are met" do
+      from_date = Time.now + 60 * 60 * (Referral::LATE_CANCELATION_INTERVAL + 24)
+      to_date = Time.now + 60 * 60 * (Referral::LATE_CANCELATION_INTERVAL + 25)
+      referral.appointments = [build(:appointment, :referral => referral, :from_date => from_date, :to_date => to_date)]
+      referral.passes_late_cancelation_condition?.should be_true
+    end
+
+    it "returns false when conditions are not met" do
+      from_date = Time.now + 60 * 60 * (Referral::LATE_CANCELATION_INTERVAL - 10)
+      to_date = Time.now + 60 * 60 * (Referral::LATE_CANCELATION_INTERVAL - 9)
+      referral.appointments = [build(:appointment, :referral => referral, :from_date => from_date, :to_date => to_date)]
+      referral.passes_late_cancelation_condition?.should be_false
+    end
+  end
 end

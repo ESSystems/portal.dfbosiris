@@ -88,43 +88,22 @@ describe Ability do
         end
 
         context "when appointments are created for the referral" do
-          context "when an appointment passes late cancelation condition" do
-            before do
-              from_date = Time.now + 60 * 60 * (Referral::LATE_CANCELATION_INTERVAL + 24)
-              to_date = Time.now + 60 * 60 * (Referral::LATE_CANCELATION_INTERVAL + 25)
-              referral.appointments = [build(:appointment, :referral => referral, :from_date => from_date, :to_date => to_date)]
-            end
-
-            it "doesn't destroy the referral" do
-              @ability.should_not be_able_to(:destroy, referral)
-            end
-
-            it "cancels the referral when not already canceled" do
-              referral.state = "new"
-              @ability.should be_able_to(:cancel, referral)
-            end
-
-            it "doesn't cancel the referral when already canceled" do
-              referral.state = "canceled"
-              @ability.should_not be_able_to(:cancel, referral)
-            end
+          before do
+            referral.appointments = [build(:appointment, :referral => referral)]
           end
 
-          context "when an appointment doesn't pass late cancelation condition" do
-            before do
-              from_date = Time.now + 60 * 60 * (Referral::LATE_CANCELATION_INTERVAL - 10)
-              to_date = Time.now + 60 * 60 * (Referral::LATE_CANCELATION_INTERVAL - 9)
-              referral.appointments = [build(:appointment, :referral => referral, :from_date => from_date, :to_date => to_date)]
-            end
+          it "doesn't destroy the referral" do
+            @ability.should_not be_able_to(:destroy, referral)
+          end
 
-            it "doesn't destroy the referral" do
-              @ability.should_not be_able_to(:destroy, referral)
-            end
+          it "cancels the referral when not already canceled" do
+            referral.state = "new"
+            @ability.should be_able_to(:cancel, referral)
+          end
 
-            it "doesn't cancel the referral" do
-              referral.state = "new"
-              @ability.should_not be_able_to(:cancel, referral)
-            end
+          it "doesn't cancel the referral when already canceled" do
+            referral.state = "canceled"
+            @ability.should_not be_able_to(:cancel, referral)
           end
         end
       end
@@ -189,9 +168,7 @@ describe Ability do
 
           context "when appointments are created for the referral" do
             before do
-              from_date = from_date = Time.now + 60 * 60 * (Referral::LATE_CANCELATION_INTERVAL + 2)
-              to_date = Time.now + 60 * 60 * (Referral::LATE_CANCELATION_INTERVAL + 3)
-              referral.appointments = [build(:appointment, :referral => referral, :from_date => from_date, :to_date => to_date)]
+              referral.appointments = [build(:appointment, :referral => referral)]
             end
 
             it "doesn't destroy the referral" do

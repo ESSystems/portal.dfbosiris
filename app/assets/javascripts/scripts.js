@@ -329,31 +329,43 @@ $(document).ready(function() {
   });
 
   $(".cancel").live('click', function() {
-    var url = $(this).attr("href");
-    var html = $(this).attr("data-prompt") + "<br />";
-    html += '<p>Please provide a motivation for your cancelation:</p>';
-    html += '<textarea id="promptReason" name="reason" style="width:98%;"></textarea>';
+    if($(this).attr("data-prompt") !== undefined) {
+      var url = $(this).attr("href");
+      var html = $(this).attr("data-prompt") + "<br />";
+      html += '<p>Please provide a motivation for your cancelation:</p>';
+      html += '<textarea id="promptReason" name="reason" style="width:98%;"></textarea>';
 
-    $.prompt(html,{
-      opacity: 0.3,
-      submit: function(e,v,m,f){
-        an = m.children('#promptReason');
+      $.prompt(html,{
+        opacity: 0.3,
+        submit: function(e,v,m,f){
+          an = m.children('#promptReason');
 
-        if(v && f.reason === ""){
-          an.css("border","solid #ff0000 1px");
-          return false;
-        } else if(!v) {
-          return true;
-        } else {
-          // pass rails routes
-          var reason = $.trim(f.reason);
-          reason = reason.replace(/\//g," ");
-          reason = reason.replace(/\./g," ");
-          location.href = url + "/" + reason;
-        }
-      },
-      buttons:{Ok:true,Cancel:false}
-    });
+          if(v && f.reason === ""){
+            an.css("border","solid #ff0000 1px");
+            return false;
+          } else if(!v) {
+            return true;
+          } else {
+            // pass rails routes
+            var reason = $.trim(f.reason);
+            reason = reason.replace(/\//g," ");
+            reason = reason.replace(/\./g," ");
+            location.href = url + "/" + reason;
+          }
+        },
+        buttons:{Ok:true,Cancel:false}
+      });
+    } else if($(this).attr("data-warn") !== undefined) {
+      var html_warn = $(this).attr("data-warn") + "<br />";
+
+      $.prompt(html_warn,{
+        opacity: 0.3,
+        submit: function(e,v,m,f){
+            return true;
+        },
+        buttons:{Ok:false}
+      });
+    }
     return false;
   });
 });
