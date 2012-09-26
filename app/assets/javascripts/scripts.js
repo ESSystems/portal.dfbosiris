@@ -250,6 +250,11 @@ $(document).ready(function() {
       suggestion += info.length !== 0 ? "<br />" + info : "";
       return $("<li></li>").data("item.autocomplete", item).append("<a>" + suggestion + "</a>").appendTo(ul);
     };
+    $("#referral_person_full_name").on("blur", function() {
+      if($("#referral_person_id").val() === '') {
+        $(this).val('');
+      }
+    });
     /*
   $("#show-all-people").click(function() {
     var input = $("#referral_person_full_name");
