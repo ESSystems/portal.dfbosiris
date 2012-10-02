@@ -131,7 +131,7 @@ class Referral < ActiveRecord::Base
   def passes_late_cancelation_condition?
     from_date = Time.now
     to_date = Time.now + 60 * 60 * Referral::LATE_CANCELATION_INTERVAL
-    appointments = self.appointments.where("appointments.from_date <= ? and ? <= appointments.to_date", to_date, from_date)
+    appointments = self.appointments.where("appointments.from_date <= ? and ? <= appointments.to_date and appointments.state not like ?", to_date, from_date, "deleted")
     appointments.empty?
   end
 

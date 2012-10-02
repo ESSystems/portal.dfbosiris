@@ -158,17 +158,26 @@ describe Referral do
   describe "passes_late_cancelation_condition?" do
     let(:referral) { create(:referral) }
 
-    it "returns true when conditions are met" do
-      from_date = Time.now + 60 * 60 * (Referral::LATE_CANCELATION_INTERVAL + 24)
-      to_date = Time.now + 60 * 60 * (Referral::LATE_CANCELATION_INTERVAL + 25)
-      referral.appointments = [build(:appointment, :referral => referral, :from_date => from_date, :to_date => to_date)]
-      referral.passes_late_cancelation_condition?.should be_true
+    context "returns true" do
+      it "when interval conditions are met" do
+        from_date = Time.now + 60 * 60 * (Referral::LATE_CANCELATION_INTERVAL + 24)
+        to_date = Time.now + 60 * 60 * (Referral::LATE_CANCELATION_INTERVAL + 25)
+        referral.appointments = [build(:appointment, :referral => referral, :from_date => from_date, :to_date => to_date)]
+        referral.passes_late_cancelation_condition?.should be_true
+      end
+
+      it "when interval conditions are not met but appointment is deleted" do
+        from_date = Time.now + 60 * 60 * (Referral::LATE_CANCELATION_INTERVAL - 10)
+        to_date = Time.now + 60 * 60 * (Referral::LATE_CANCELATION_INTERVAL - 9)
+        referral.appointments = [build(:appointment, :referral => referral, :from_date => from_date, :to_date => to_date, :state => "deleted")]
+        referral.passes_late_cancelation_condition?.should be_true
+      end
     end
 
-    it "returns false when conditions are not met" do
+    it "returns false when interval conditions are not met and has another state than deleted" do
       from_date = Time.now + 60 * 60 * (Referral::LATE_CANCELATION_INTERVAL - 10)
       to_date = Time.now + 60 * 60 * (Referral::LATE_CANCELATION_INTERVAL - 9)
-      referral.appointments = [build(:appointment, :referral => referral, :from_date => from_date, :to_date => to_date)]
+      referral.appointments = [build(:appointment, :referral => referral, :from_date => from_date, :to_date => to_date, :state => Appointment::STATE.select{|s| s != 'deleted'}.sample)]
       referral.passes_late_cancelation_condition?.should be_false
     end
   end
