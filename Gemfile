@@ -26,6 +26,7 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'pry'
+  gem 'pry-doc'
   gem 'rvm-capistrano'
 end
 
