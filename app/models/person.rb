@@ -26,7 +26,7 @@ class Person < ActiveRecord::Base
   }
 
   def self.find_people_in_organisation_by_full_name organisation_id, search, limit
-    employees = find_by_full_name(search).joins(:employee).where("nemployees.client_id = ? and nemployees.employment_end_date IS NULL", organisation_id).order("last_name ASC").limit(limit)
+    employees = find_by_full_name(search).joins(:employee).where("nemployees.client_id = ? AND nemployees.employment_end_date IS NULL AND nemployees.id = (SELECT MAX(id) FROM nemployees WHERE person_id = person.id)", organisation_id).order("last_name ASC").limit(limit)
     outside_patients = find_by_full_name(search).joins(:patient).joins(:referrer).where("referrers.client_id" => organisation_id).order("last_name ASC").limit(limit)
     employees.concat(outside_patients)
   end
