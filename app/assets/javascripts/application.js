@@ -7,8 +7,9 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require jquery-migrate-1.1.1.min
 //= require autocomplete-rails
-//= require jquery-impromptu.4.0.min
+//= require jquery-impromptu.4.0
 //= require chameleon-circuit/jquery.cleditor.min
 //= require chameleon-circuit/jquery.colorbox-min
 //= require chameleon-circuit/jquery.dataTables.min

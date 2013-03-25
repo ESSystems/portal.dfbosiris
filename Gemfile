@@ -16,9 +16,8 @@ gem 'jquery-rails'
 gem 'formtastic'
 gem 'rails3-jquery-autocomplete'
 gem 'paperclip'
-gem "therubyracer", "~> 0.9.8"
+gem "therubyracer"
 gem 'kaminari'
-gem 'airbrake'
 
 group :development, :test do
   gem 'capistrano'
@@ -33,14 +32,13 @@ end
 group :test, :darwin do
   gem 'rb-fsevent'
   gem 'growl'
+  gem 'rb-readline'
 end
 
 group :test do
-  gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'forgery'
-  gem 'guard-cucumber'
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'rspec-rails'

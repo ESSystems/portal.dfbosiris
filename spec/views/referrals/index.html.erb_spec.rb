@@ -85,7 +85,7 @@ describe "referrals/index.html.erb" do
         end
 
         it "deletes the referral" do
-          page.should have_link("Delete", :href => referral_path(@referral), :method => :delete)
+          page.should have_selector("//a[@data-method='delete' and @href='#{referral_path(@referral)}']", :text => "Delete")
         end
       end
 

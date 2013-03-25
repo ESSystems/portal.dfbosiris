@@ -26,9 +26,7 @@ describe Ability do
       end
 
       context "when the user created a referral" do
-        before :all do
-          referral.referrer = user
-        end
+        let(:referral) { create(:referral, :referrer => user) }
 
         it "shows the referral" do
           @ability.should be_able_to(:show, referral)
@@ -273,9 +271,7 @@ describe Ability do
       end
 
       context "when the user is a follower of a referral" do
-        before :all do
-          referral.followers = [user]
-        end
+        let(:referral) { create(:referral, :followers => [user]) }
 
         it "when the referral is private it doesn't show the referral" do
           referral.private = true

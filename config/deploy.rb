@@ -2,7 +2,7 @@ require "bundler/capistrano"
 require "capistrano/ext/multistage"
 require "rvm/capistrano"
 
-set :stages, %w(production staging)
+set :stages, %w(production staging ioh-own)
 set :default_stage, "staging"
 
 set :use_sudo, false

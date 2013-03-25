@@ -10,9 +10,7 @@ describe Ability do
   end
 
   context "when the user created the referral" do
-    before :all do
-      referral.referrer = user
-    end
+    let(:referral) { create(:referral, :referrer => user) }
 
     context "when the appointment is not deleted" do
       before do
