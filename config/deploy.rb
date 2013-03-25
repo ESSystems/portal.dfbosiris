@@ -13,6 +13,7 @@ set :scm, :git
 set :repository, "git@git.assembla.com:clinic-manager-extension.git"
 set :deploy_via, :remote_cache
 set :ssh_options, { :forward_agent => true }
+default_run_options[:pty] = true
 
 set :branch, "production"
 
