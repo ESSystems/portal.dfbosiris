@@ -12,6 +12,7 @@ set :application, "clinicmanagerextension"
 set :scm, :git
 set :repository, "git@git.assembla.com:clinic-manager-extension.git"
 set :deploy_via, :remote_cache
+set :ssh_options, { :forward_agent => true }
 
 set :branch, "production"
 
@@ -20,7 +21,7 @@ set :rvm_ruby_string, "ruby-1.9.2-p318@cmx"
 
 set :bundle_without , [:development , :test, :darwin]
 
-ssh_options[:forward_agent] = true
+# ssh_options[:forward_agent] = true
 
 namespace :deploy do
   task :start do ; end
@@ -50,7 +51,7 @@ namespace :deploy do
 end
 
 after "deploy:setup" , "deploy:create_shared_paths"
-after "deploy:symlink", "deploy:symlink_system_path"
+after "deploy:create_symlink", "deploy:symlink_system_path"
 before "deploy:finalize_update" , "deploy:symlink_database_yaml"
 after "deploy:finalize_update", "deploy:symlink_downloads_path"
 
