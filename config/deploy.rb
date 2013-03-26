@@ -22,7 +22,7 @@ set :rvm_ruby_string, "ruby-1.9.2-p318@cmx"
 
 set :bundle_without , [:development , :test, :darwin]
 
-# ssh_options[:forward_agent] = true
+ssh_options[:forward_agent] = true
 
 namespace :deploy do
   task :start do ; end
