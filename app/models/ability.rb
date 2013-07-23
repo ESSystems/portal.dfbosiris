@@ -45,10 +45,10 @@ class Ability
       # Person abilities
       can [:show], Person
       can [:edit, :update], Person do |p|
-        p.try(:referrer) == user
+        !user.read_only_access? && p.try(:referrer) == user
       end
       can [:destroy], Person do |p|
-        Appointment.find_by_person_id(p.id).nil? && Referral.find_by_person_id(p.id).nil? && p.try(:referrer) == user
+        !user.read_only_access? && Appointment.find_by_person_id(p.id).nil? && Referral.find_by_person_id(p.id).nil? && p.try(:referrer) == user
       end
 
       # User abilities

@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe Ability do
-  # let(:another_users_referral) { create(:referral) }
-  # let(:own_referral) { create(:referral, :referrer => user) }
   let(:user) { create(:user, :read_only_access => true) }
 
   before do
