@@ -42,6 +42,7 @@ group :test do
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
   gem 'simplecov', :require => false
   gem 'spork-rails'
 end

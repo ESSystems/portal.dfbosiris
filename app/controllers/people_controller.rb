@@ -1,14 +1,14 @@
 class PeopleController < ApplicationController
 
   before_filter :init_options, :only => [:new, :edit, :update, :create]
-  
+
   load_and_authorize_resource
-  
+
   def init_options
     @genders = %w( M F )
     @organisations = Organisation.order_by_name('asc').all;
   end
-  
+
   def index
     if !current_user.nil?
       #@people = Person.people_in_organisation(current_user.client_id).page(params[:page])
@@ -27,20 +27,20 @@ class PeopleController < ApplicationController
       end
     end
   end
-  
+
   def show
     @person = Person.find(params[:id])
   end
-  
+
   def edit
     @person = Person.find(params[:id])
   end
-  
+
   def new
     @person = Person.new
     @person.build_patient(:organisation_id => current_user.client_id)
   end
-  
+
   def destroy
     @person = Person.find(params[:id])
     if @person.added_by_referrer
@@ -50,7 +50,7 @@ class PeopleController < ApplicationController
     end
     redirect_to :action => "index"
   end
-  
+
   def create
     @person = Person.new(params[:person])
     @person.add_outside_person(current_user)
@@ -62,7 +62,7 @@ class PeopleController < ApplicationController
       render :action => "new"
     end
   end
-  
+
   def update
     @person = Person.find(params[:id])
     if @person.update_attributes(params[:person])

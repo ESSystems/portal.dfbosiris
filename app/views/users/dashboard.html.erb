@@ -30,8 +30,12 @@
     <div class="widget_title clearfix">
         <h2>Referrals</h2>
 		<ul>
-			<li><%= link_to "New referral", new_referral_path, :class => "btn orange right" %></li>
-			<li><%= link_to "View all referrals", referrals_path, :class => "btn grey right" %></li>
+			<% if can? :create, Referral.new %>
+				<li><%= link_to "New referral", new_referral_path, :class => "btn orange right" %></li>
+			<% end %>
+			<% if can? :index, Referral %>
+				<li><%= link_to "View all referrals", referrals_path, :class => "btn grey right" %></li>
+			<% end %>
 		</ul>
     </div>
     <div class="widget_body">

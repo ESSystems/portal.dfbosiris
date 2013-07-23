@@ -1,19 +1,21 @@
 <% title "Referrals" %>
 <div class="grid_16 widget first">
-    <div class="widget_title clearfix">
-        <h2>List</h2>
+	<div class="widget_title clearfix">
+		<h2>List</h2>
+		<% if can? :create, Referral.new %>
 		<ul>
 			<li><%= link_to "New referral", new_referral_path, :class => "btn orange right" %></li>
 		</ul>
-    </div>
-    <div class="widget_body">
+		<% end %>
+	</div>
+	<div class="widget_body">
 		<div class="widget_options clearfix">
 			<%= form_tag referrals_path, :remote => true, :method => "get", :id => "search-form" do %>
-				<div class="dataTables_filter">
-					Search: 
-					<%= submit_tag "Search", :class => "small grey right" %>
-					<input type="text" name="search" id="search" autocomplete="off">
-				</div>
+			<div class="dataTables_filter">
+				Search:
+				<%= submit_tag "Search", :class => "small grey right" %>
+				<input type="text" name="search" id="search" autocomplete="off">
+			</div>
 			<% end %>
 		</div>
 		<table>
@@ -30,10 +32,10 @@
 			</thead>
 			<tbody id="referrals">
 				<% @referrals.each do |referral| %>
-					<%= render 'referral', :referral => referral %>
+				<%= render 'referral', :referral => referral %>
 				<% end %>
 			</tbody>
 		</table>
 		<div id="referrals-paginator"><%= paginate @referrals, :remote => true %></div>
-    </div>
+	</div>
 </div>

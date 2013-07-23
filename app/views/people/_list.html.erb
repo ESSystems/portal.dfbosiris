@@ -1,11 +1,13 @@
 <div class="grid_16 widget first">
-    <div class="widget_title clearfix">
-        <h2><%= title %></h2>
+	<div class="widget_title clearfix">
+		<h2><%= title %></h2>
+		<% if can? :create, Person.new %>
 		<ul>
 			<li><%= link_to("New person", new_person_path, :class => "btn orange right") if show_new_link %></li>
 		</ul>
-    </div>
-    <div class="widget_body">
+		<% end %>
+	</div>
+	<div class="widget_body">
 		<div class="widget_options clearfix">
 		</div>
 		<table>
@@ -21,10 +23,10 @@
 			</thead>
 			<tbody id="<%= type %>">
 				<% people.each do |person| %>
-					<%= render 'person', :person => person %>
+				<%= render 'person', :person => person %>
 				<% end %>
 			</tbody>
 		</table>
 		<div id="<%= type %>-paginator"><%= paginate people, :params => {:type => type}, :remote => true %></div>
-    </div>
+	</div>
 </div>

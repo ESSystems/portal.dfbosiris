@@ -3,7 +3,11 @@ class Ability
 
   def initialize(user)
     unless user.nil?
-      can [:index, :new, :create, :autocomplete_person_full_name, :followers_suggestions], :all
+      can :index, :all
+
+      can [:new, :create, :autocomplete_person_full_name, :followers_suggestions], :all do |m|
+        !user.read_only_access?
+      end
 
       can [:show, :accept_declination_and_close], Referral do |r|
         r.try(:referrer) == user

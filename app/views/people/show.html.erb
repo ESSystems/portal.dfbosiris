@@ -1,6 +1,12 @@
-<% title "View " << @person.full_name %>
+<%
+title "View " << @person.full_name
 
-<% box_extra = link_to "Edit person", edit_person_path(@person), :class => "btn orange right" %>
+if can? :update, @person
+	box_extra = link_to "Edit person", edit_person_path(@person), :class => "btn orange right"
+end
+
+%>
+
 <%= box_widget "Person information", {:body_class => "information"}, [box_extra] do %>
 	<ul>
 		<li><span class="label">First name</span>: <%= @person.first_name %></li>

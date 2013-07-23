@@ -1,5 +1,10 @@
 require 'spec_helper'
 
+# Structure
+describe User do
+  it { should have_db_column(:read_only_access).of_type(:boolean) }
+end
+
 describe User do
 
   describe "update email address" do
