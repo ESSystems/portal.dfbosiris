@@ -1,125 +1,125 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>IOH Clinic Manager - Case Tracking</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-  <%= yield :head %>
-  
+	<title>IOH Clinic Manager - Case Tracking</title>
+	<%= stylesheet_link_tag    "application" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
+	<%= yield :head %>
+
   <!--[if lt IE 9]>
   	<%= javascript_include_tag "application-ie9" %>
-  <![endif]-->
-        
+  	<![endif]-->
+
   <!--[if IE 7]>
   	<%= stylesheet_link_tag    "application-ie7" %>
-  <![endif]-->
-</head>
-<body>
+  	<![endif]-->
+  </head>
 
-	<header>
-	            <div class="container_16 clearfix">
+  <body>
+  	<header>
+  		<div class="container_16 clearfix">
+			<!--
+        <div class="clearfix">
+            <a id="logo" href="/"></a>
+            <input type="text" class="search" title="Search..."/>
+        </div>
+      -->
+      <nav>
+      	<div id="navcontainer" class="clearfix">
+      		<% if user_signed_in? %>
+      		<div id="user" class="clearfix">
+      			<img src="/assets/ioh-avatar.jpg" alt="" />
+      			<strong class="username">Welcome, <a href="#"><%= current_user.person.full_name %></a></strong>
+      			<ul class="piped">
+      				<li><%= link_to "My account", edit_user_path(current_user) %></li>
+      				<li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+      			</ul>
+      		</div>
+      		<% end %>
+
+      		<div id="navclose"></div>
+
+      		<ul class="sf-menu">
+      			<li class="<%= request.path == "/" ? "active" : "" %>">
+      				<a href="/">
+      					<span class="icon"><img src="/assets/chameleon-circuit/menu/dashboard.png" /></span>
+      					<span class="title">Home</span>
+      				</a>
+      			</li>
+      			<li class="<%= params[:controller] == "referrals" && request.path != "/" ? "active" : "" %>">
+      				<% if can? :index, @referral %>
+      				<a href="/referrals">
+      					<span class="icon"><img src="/assets/chameleon-circuit/menu/pages.png" /></span>
+      					<span class="title">Referrals</span>
+      				</a>
+      				<% end %>
+      				<ul>
+      					<% if can? :create, @referral %>
+      					<li><a href="/referrals/new" class="styleswitcher" rel="new">Add new</a></li>
+      					<% end %>
+      				</ul>
+      			</li>
+      			<li class="<%= params[:controller] == "people" ? "active" : "" %>">
+      				<% if can? :index, @people %>
+      				<a href="/people">
+      					<span class="icon"><img src="/assets/chameleon-circuit/menu/tables.png" /></span>
+      					<span class="title">People</span>
+      				</a>
+      				<% end %>
+      				<ul>
+      					<% if can? :create, @people %>
+      					<li><a href="/people/new" class="styleswitcher" rel="new">Add new</a></li>
+      					<% end %>
+      				</ul>
+      			</li>
+      			<li class="<%= params[:controller] == "notifications" ? "active" : "" %>">
+      				<% if can? :index, @notification %>
+      				<a href="/notifications">
+      					<% if current_user.unread_notifications != 0 %>
+      					<span class="notification"><%= current_user.unread_notifications %></span>
+      					<% end %>
+      					<span class="icon"><img src="/assets/chameleon-circuit/menu/msg.png" /></span>
+      					<span class="title">Notifications</span>
+      				</a>
+      				<% end %>
+      			</li>
+      		</ul>
+      	</div>
+      </nav>
+      <div id="pagetitle" class="clearfix">
+      	<h1 class="left">
+      		<%= yield :title %>
+      	</h1>
+      </div>
+    </div>
+  </header>
+  <div class="container_16 clearfix" id="actualbody">
 		<!--
-	                <div class="clearfix">
-	                    <a id="logo" href="/"></a>
-	                    <input type="text" class="search" title="Search..."/>
-	                </div>
+			<ul class="breadcrumbs first">
+			    <li><a href="#">Home</a></li>
+			    <li class="active"><a href="#">Dashboard</a></li>
+			</ul>
 		-->
-	                <nav>
-	                    <div id="navcontainer" class="clearfix">
-	                    <% if user_signed_in? %>
-		                    <div id="user" class="clearfix">
-		                        <img src="/assets/ioh-avatar.jpg" alt="" />
-		                        <strong class="username">Welcome, <a href="#"><%= current_user.person.full_name %></a></strong>
-		                        <ul class="piped">
-		                            <li><%= link_to "My account", edit_user_path(current_user) %></li>
-		                            <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
-		                        </ul>
-		                    </div>
-		                <% end %>
+		<%= render "/flash_messages" %>
+		<%= yield %>
 
-	                    <div id="navclose"></div>
+		<div class="clear"></div>
+	</div> <!-- #actualbody -->
+</div> <!-- #main -->
+</div> <!-- #wrap -->
 
-	                    <ul class="sf-menu">
-	                        <li class="<%= request.path == "/" ? "active" : "" %>">
-	                            <a href="/">
-	                                <span class="icon"><img src="/assets/chameleon-circuit/menu/dashboard.png" /></span>
-	                                <span class="title">Home</span>
-	                            </a>
-	                        </li>
-	                        <li class="<%= params[:controller] == "referrals" && request.path != "/" ? "active" : "" %>">
-	                        	<% if can? :index, @referral %> 
-	                            <a href="/referrals">
-	                                <span class="icon"><img src="/assets/chameleon-circuit/menu/pages.png" /></span>
-	                                <span class="title">Referrals</span>
-	                            </a>
-	                            <% end %>
-								<ul>
-									<% if can? :create, @referral %>
-	                                <li><a href="/referrals/new" class="styleswitcher" rel="new">Add new</a></li>
-	                                <% end %>
-	                            </ul>
-	                        </li>
-	                        <li class="<%= params[:controller] == "people" ? "active" : "" %>">
-	                        	<% if can? :index, @people %> 
-	                            <a href="/people">
-	                                <span class="icon"><img src="/assets/chameleon-circuit/menu/tables.png" /></span>
-	                                <span class="title">People</span>
-	                            </a>
-	                            <% end %>
-								<ul>
-									<% if can? :create, @people %>
-	                                <li><a href="/people/new" class="styleswitcher" rel="new">Add new</a></li>
-	                                <% end %>
-	                            </ul>
-	                        </li>
-	                        <li class="<%= params[:controller] == "notifications" ? "active" : "" %>">
-	                        	<% if can? :index, @notification %> 
-	                            <a href="/notifications">
-	                            	<% if current_user.unread_notifications != 0 %>
-	                            	<span class="notification"><%= current_user.unread_notifications %></span>
-	                            	<% end %>
-	                                <span class="icon"><img src="/assets/chameleon-circuit/menu/msg.png" /></span>
-	                                <span class="title">Notifications</span>
-	                            </a>
-	                            <% end %>
-	                        </li>
-	                    </ul>
-	                    </div>
-	                </nav>
-	                <div id="pagetitle" class="clearfix">
-	                    <h1 class="left">
-	                        <%= yield :title %>
-	                    </h1>
-	                </div>
-	            </div>
-	        </header>
-	        <div class="container_16 clearfix" id="actualbody">
-<!-- 
-				<ul class="breadcrumbs first">
-				    <li><a href="#">Home</a></li>
-				    <li class="active"><a href="#">Dashboard</a></li>
-				</ul>
--->		
-				<%= render "/flash_messages" %>
-				<%= yield %>
-		
-			    <div class="clear"></div>
-	
-	            </div> <!-- #actualbody -->
-	        </div> <!-- #main -->
-	    </div> <!-- #wrap -->
-	    <footer>
-	        <div class="container_12">
-	            <div class="grid_12 clearfix">
-	                <p class="left">
-	                    Powered by <a href="http://www.tripledub.co.uk">Tripledub</a>
-	                </p>
-	                <p class="right">
-	                    &copy; IOH <%= Time.new.year %>
-	                </p>
-	            </div>
-	        </div>
-	    </footer>
+<footer>
+	<div class="container_12">
+		<div class="grid_12 clearfix">
+			<p class="left">
+				Powered by <a href="http://www.essystems.co.uk">ES Systems</a>
+			</p>
+			<p class="right">
+				&copy; IOH <%= Time.new.year %>
+			</p>
+		</div>
+	</div>
+</footer>
 </body>
 </html>
