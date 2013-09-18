@@ -49,6 +49,11 @@ namespace :deploy do
   task :symlink_system_path do
     run "cd #{current_path}/public; rm -rf system; ln -s #{shared_path}/public/system system"
   end
+
+  desc "seed defaults database with seed data"
+  task :seed do
+    run "cd #{current_path}; rake db:seed RAILS_ENV=#{rails_env}"
+  end
 end
 
 after "deploy:setup" , "deploy:create_shared_paths"
@@ -57,5 +62,6 @@ before "deploy:finalize_update" , "deploy:symlink_database_yaml"
 after "deploy:finalize_update", "deploy:symlink_downloads_path"
 
 after "deploy", "deploy:migrate"
+after "deploy", "deploy:seed"
 
 require './config/boot'

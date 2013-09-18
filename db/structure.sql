@@ -45,6 +45,7 @@ CREATE TABLE `appointments` (
   `deleted_by` int(11) DEFAULT NULL,
   `deleted_on` datetime DEFAULT NULL,
   `deleted_reason` varchar(255) DEFAULT NULL,
+  `blocked` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_appointments_on_referral_id` (`referral_id`),
   KEY `index_appointments_on_person_id` (`person_id`),
@@ -52,7 +53,7 @@ CREATE TABLE `appointments` (
   KEY `index_appointments_on_diary_id` (`diary_id`),
   KEY `index_appointments_on_attendance_id` (`attendance_id`),
   KEY `diary_id_to_date_from_date_index` (`from_date`,`to_date`,`diary_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=341 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=342 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `attendance_feedback` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -348,7 +349,7 @@ CREATE TABLE `notifications` (
   PRIMARY KEY (`id`),
   KEY `target_id_target_model_index` (`target_id`,`target_model`),
   KEY `read_target_id_index` (`target_id`,`read`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `operational_priorities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -412,7 +413,7 @@ CREATE TABLE `person` (
   KEY `index_person_on_first_name` (`first_name`),
   KEY `index_person_on_last_name` (`last_name`),
   KEY `index_person_on_first_name_and_last_name` (`first_name`,`last_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=32211 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=32212 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `recall_list_item_events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -495,7 +496,7 @@ CREATE TABLE `referrals` (
   KEY `index_referrals_on_patient_status_id` (`patient_status_id`),
   KEY `index_referrals_on_referral_reason_id` (`referral_reason_id`),
   KEY `index_referrals_on_operational_priority_id` (`operational_priority_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=180 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=181 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `referrals_followers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -717,3 +718,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120919174718');
 INSERT INTO schema_migrations (version) VALUES ('20120920103107');
 
 INSERT INTO schema_migrations (version) VALUES ('20130723071736');
+
+INSERT INTO schema_migrations (version) VALUES ('20130730074842');

@@ -42,6 +42,25 @@ CSV.foreach("#{Rails.root}/db/data/attendance_outcomes.csv") do |row|
 end
 puts "finished importing attendance outcomes data."
 
+puts "importing diagnoses data..."
+CSV.foreach("#{Rails.root}/db/data/diagnoses.csv") do |row|
+  parent_id = 0
+  if row[1]
+    parent_id = Diagnosis.where(description: row[1]).first.id
+  end
+  exists = Diagnosis.where(description: row[0], parent_id: parent_id).first
+  unless exists
+    Diagnosis.create(
+      _id: 0,
+      _parent_id: 0,
+      description: row[0],
+      is_obsolete: 0,
+      parent_id: parent_id
+    )
+  end
+end
+puts "finished importing attendance outcomes data."
+
 case Rails.env
   # call this with: rake db:seed :env=development
   when "development"

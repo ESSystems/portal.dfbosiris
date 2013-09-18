@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Appointment do
+  it { should have_db_column(:blocked).of_type(:boolean) }
+end
+
+describe Appointment do
   describe "display date" do
     let(:appointment) do
       create(:appointment)
