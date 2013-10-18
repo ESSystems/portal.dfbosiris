@@ -10,7 +10,7 @@ set :use_sudo, false
 set :application, "clinicmanagerextension"
 
 set :scm, :git
-set :repository, "git@bitbucket.org/cristian_stanescu/cmx_dfb.git"
+set :repository, "git@bitbucket.org:cristian_stanescu/cmx_dfb.git"
 set :deploy_via, :remote_cache
 set :ssh_options, { :forward_agent => true }
 default_run_options[:pty] = true
