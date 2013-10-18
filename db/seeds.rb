@@ -59,7 +59,7 @@ CSV.foreach("#{Rails.root}/db/data/diagnoses.csv") do |row|
     )
   end
 end
-puts "finished importing attendance outcomes data."
+puts "finished importing diagnoses data."
 
 case Rails.env
   # call this with: rake db:seed :env=development
